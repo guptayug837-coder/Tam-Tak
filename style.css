@@ -1,6 +1,7 @@
-/* =====================================
-   TAM TAK - LOGIN PAGE
-===================================== */
+/* =========================================
+   TAM TAK - PREMIUM STYLE
+   LOGIN + HOME
+========================================= */
 
 * {
     margin: 0;
@@ -8,304 +9,307 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary: #6c5ce7;
+    --secondary: #00cec9;
+    --pink: #fd79a8;
+    --dark: #0b1020;
+    --text: #20242d;
+    --muted: #6b7280;
+    --white: #ffffff;
+    --light: #f5f7fb;
+    --border: #e5e7eb;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #fafafa;
-    color: #262626;
+    background: #f5f7fb;
+    color: var(--text);
 }
 
 
-/* =====================================
-   LOGIN PAGE
-===================================== */
+/* =========================================
+   LOGIN
+========================================= */
 
 .login-page {
     min-height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+
+    padding: 25px;
 
     background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(108, 92, 231, .35),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(0, 206, 201, .25),
+            transparent 30%
+        ),
         linear-gradient(
             135deg,
-            #833ab4,
-            #fd1d1d,
-            #fcb045
+            #0b1020,
+            #151b35,
+            #10172c
         );
 }
 
-
-/* =====================================
-   LOGIN CONTAINER
-===================================== */
-
-.login-container {
+.login-card {
     width: 100%;
-    max-width: 390px;
+    max-width: 430px;
 
-    background: white;
+    padding: 38px 34px;
 
-    padding: 35px 30px;
+    background: rgba(255, 255, 255, .97);
 
-    border-radius: 18px;
+    border-radius: 24px;
 
     box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.20);
+        0 30px 80px rgba(0, 0, 0, .35);
+
+    animation: cardIn .6s ease;
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
-/* =====================================
+/* =========================================
    LOGO
-===================================== */
+========================================= */
 
-.logo-area {
+.logo,
+.home-logo {
     text-align: center;
+}
+
+.logo {
     margin-bottom: 28px;
 }
 
-.logo-area h1 {
-    font-size: 42px;
+.logo h1,
+.home-logo h1 {
+    font-size: 40px;
     font-weight: 800;
 
     background:
         linear-gradient(
-            45deg,
-            #833ab4,
-            #fd1d1d,
-            #fcb045
+            90deg,
+            var(--primary),
+            var(--pink),
+            var(--secondary)
         );
 
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-clip: text;
 
-    margin-bottom: 8px;
+    color: transparent;
 }
 
-.logo-area p {
-    color: #777;
+.logo p {
+    margin-top: 7px;
+    color: var(--muted);
     font-size: 14px;
 }
 
 
-/* =====================================
-   SOCIAL BUTTONS
-===================================== */
+/* =========================================
+   SOCIAL BUTTON
+========================================= */
 
-.social-btn {
+.social-button {
     width: 100%;
-    height: 48px;
-
-    border: none;
-    border-radius: 9px;
+    height: 52px;
 
     margin-bottom: 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: white;
+
+    cursor: pointer;
 
     font-size: 15px;
     font-weight: 600;
 
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    position: relative;
-
-    transition: 0.2s ease;
+    transition: .2s;
 }
 
-.social-btn:hover {
-    transform: translateY(-1px);
+.social-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, .12);
 }
 
-
-/* GOOGLE */
-
-.google-btn {
-    background: white;
-    color: #333;
-
-    border: 1px solid #ddd;
-}
-
-.google-btn:hover {
-    background: #f7f7f7;
+.social-button span {
+    margin-right: 10px;
+    font-weight: 800;
 }
 
 
-/* FACEBOOK */
-
-.facebook-btn {
-    background: #1877f2;
-    color: white;
-}
-
-.facebook-btn:hover {
-    background: #166fe5;
-}
-
-
-/* ICON */
-
-.social-btn .icon {
-    position: absolute;
-    left: 17px;
-
-    font-size: 20px;
-    font-weight: bold;
-}
-
-
-/* =====================================
+/* =========================================
    DIVIDER
-===================================== */
+========================================= */
 
 .divider {
     display: flex;
     align-items: center;
+
     gap: 12px;
 
-    margin: 22px 0;
+    margin: 23px 0;
 }
 
 .divider span {
-    height: 1px;
-    background: #ddd;
     flex: 1;
+    height: 1px;
+    background: var(--border);
 }
 
-.divider p {
-    color: #999;
+.divider b {
     font-size: 12px;
-    font-weight: bold;
+    color: #9ca3af;
 }
 
 
-/* =====================================
-   INPUT GROUP
-===================================== */
+/* =========================================
+   FORM
+========================================= */
 
-.input-group {
-    margin-bottom: 17px;
-}
-
-.input-group label {
+label {
     display: block;
-
-    font-size: 13px;
-    font-weight: 600;
 
     margin-bottom: 7px;
 
-    color: #444;
+    font-size: 13px;
+    font-weight: 700;
 }
 
-.input-group input {
+input,
+textarea {
     width: 100%;
-    height: 48px;
 
-    padding: 0 14px;
+    border: 1px solid var(--border);
 
-    border: 1px solid #ddd;
-    border-radius: 9px;
+    border-radius: 12px;
 
     outline: none;
 
-    font-size: 15px;
+    background: #f9fafb;
 
-    background: #fafafa;
+    font-family: inherit;
 
-    transition: 0.2s ease;
+    transition: .2s;
 }
 
-.input-group input:focus {
-    border-color: #833ab4;
+input {
+    height: 52px;
+    padding: 0 15px;
 
+    margin-bottom: 17px;
+}
+
+input:focus,
+textarea:focus {
     background: white;
 
+    border-color: var(--primary);
+
     box-shadow:
-        0 0 0 3px rgba(131, 58, 180, 0.08);
+        0 0 0 4px rgba(108, 92, 231, .10);
 }
 
 
-/* =====================================
+/* =========================================
    PASSWORD
-===================================== */
+========================================= */
 
-.password-box {
+.password-wrapper {
     position: relative;
 }
 
-.password-box input {
+.password-wrapper input {
     padding-right: 70px;
 }
 
-.password-box button {
+.password-wrapper button {
     position: absolute;
 
-    right: 12px;
-    top: 50%;
+    right: 10px;
+    top: 7px;
 
-    transform: translateY(-50%);
+    height: 38px;
 
     border: none;
+
     background: transparent;
 
-    color: #1877f2;
+    color: var(--primary);
 
-    font-size: 13px;
-    font-weight: bold;
+    font-weight: 700;
 
     cursor: pointer;
 }
 
 
-/* =====================================
-   FORGOT LINKS
-===================================== */
+/* =========================================
+   FORGOT
+========================================= */
 
-.forgot-links {
+.forgot-row {
     display: flex;
     justify-content: space-between;
 
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
-.forgot-links button {
+.forgot-row button {
     border: none;
-    background: none;
+    background: transparent;
 
-    color: #1877f2;
+    color: var(--primary);
+
+    cursor: pointer;
 
     font-size: 12px;
     font-weight: 600;
-
-    cursor: pointer;
-}
-
-.forgot-links button:hover {
-    text-decoration: underline;
 }
 
 
-/* =====================================
+/* =========================================
    LOGIN BUTTON
-===================================== */
+========================================= */
 
-.login-btn {
+.login-button {
     width: 100%;
-    height: 48px;
+    height: 53px;
 
     border: none;
-    border-radius: 9px;
+    border-radius: 13px;
 
     background:
         linear-gradient(
-            45deg,
-            #833ab4,
-            #fd1d1d,
-            #fcb045
+            135deg,
+            #6c5ce7,
+            #8e44ad,
+            #fd79a8
         );
 
     color: white;
@@ -315,74 +319,74 @@ body {
 
     cursor: pointer;
 
-    transition: 0.2s ease;
-}
-
-.login-btn:hover {
-    transform: translateY(-1px);
-
     box-shadow:
-        0 6px 18px rgba(253, 29, 29, 0.25);
+        0 10px 25px rgba(108, 92, 231, .3);
+
+    transition: .2s;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
 }
 
 
-/* =====================================
+/* =========================================
    CREATE ACCOUNT
-===================================== */
+========================================= */
 
-.create-account-btn {
+.create-button {
     width: 100%;
-    height: 48px;
+    height: 50px;
 
     margin-top: 12px;
 
-    border: 1px solid #ddd;
-    border-radius: 9px;
+    border: 1px solid #d9dbea;
+    border-radius: 13px;
 
     background: white;
 
-    color: #1877f2;
+    color: var(--primary);
 
-    font-size: 15px;
     font-weight: 700;
 
     cursor: pointer;
 
-    transition: 0.2s ease;
+    transition: .2s;
 }
 
-.create-account-btn:hover {
-    background: #f5f5f5;
+.create-button:hover {
+    background: #f7f5ff;
 }
 
 
-/* =====================================
+/* =========================================
    MESSAGE
-===================================== */
+========================================= */
 
 .auth-message {
-    min-height: 20px;
+    min-height: 22px;
 
-    margin-top: 15px;
+    margin-top: 14px;
 
     text-align: center;
 
     font-size: 13px;
+    font-weight: 600;
 
-    color: #d93025;
+    color: #dc2626;
 }
 
 
-/* =====================================
+/* =========================================
    TERMS
-===================================== */
+========================================= */
 
 .terms {
-    margin-top: 25px;
+    margin-top: 17px;
 
     text-align: center;
 
-    color: #999;
+    color: #9ca3af;
 
     font-size: 11px;
 
@@ -390,55 +394,366 @@ body {
 }
 
 
-/* =====================================
-   MOBILE RESPONSIVE
-===================================== */
+/* =========================================
+   HOME PAGE
+========================================= */
 
-@media (max-width: 480px) {
+.home-page {
+    min-height: 100vh;
 
-    .login-page {
-        padding: 12px;
+    background:
+        linear-gradient(
+            180deg,
+            #f8f9ff,
+            #eef2f7
+        );
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.home-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    min-height: 72px;
+
+    padding: 10px 5%;
+
+    background: rgba(255, 255, 255, .95);
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    backdrop-filter: blur(15px);
+}
+
+.home-logo h1 {
+    font-size: 30px;
+}
+
+.home-nav {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.home-nav button,
+.mobile-nav button {
+    border: none;
+
+    background: transparent;
+
+    padding: 10px 13px;
+
+    border-radius: 10px;
+
+    color: #4b5563;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.home-nav button:hover,
+.mobile-nav button:hover {
+    background: #f0edff;
+    color: var(--primary);
+}
+
+#logoutBtn {
+    background: #fff0f3;
+    color: #e11d48;
+}
+
+
+/* =========================================
+   HOME CONTENT
+========================================= */
+
+.home-content {
+    width: 100%;
+    max-width: 850px;
+
+    margin: auto;
+
+    padding: 35px 20px 100px;
+}
+
+
+/* =========================================
+   WELCOME
+========================================= */
+
+.welcome-box {
+    padding: 30px;
+
+    border-radius: 20px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c5ce7,
+            #8e44ad,
+            #fd79a8
+        );
+
+    box-shadow:
+        0 15px 35px rgba(108, 92, 231, .25);
+
+    margin-bottom: 25px;
+}
+
+.welcome-box h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.welcome-box p {
+    opacity: .9;
+}
+
+
+/* =========================================
+   CREATE POST
+========================================= */
+
+.create-post {
+    padding: 22px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, .05);
+
+    margin-bottom: 28px;
+}
+
+.create-post h3 {
+    margin-bottom: 15px;
+}
+
+textarea {
+    min-height: 100px;
+
+    padding: 15px;
+
+    resize: vertical;
+
+    margin-bottom: 12px;
+}
+
+#createPostBtn {
+    padding: 12px 22px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   FEED
+========================================= */
+
+.feed {
+    width: 100%;
+}
+
+.section-title {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.section-title span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* =========================================
+   POSTS
+========================================= */
+
+#postsContainer {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.post-card {
+    padding: 20px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 7px 20px rgba(0, 0, 0, .05);
+}
+
+.post-user {
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.post-text {
+    line-height: 1.6;
+
+    color: #4b5563;
+
+    margin-bottom: 15px;
+}
+
+.post-actions {
+    display: flex;
+
+    gap: 10px;
+
+    border-top: 1px solid #f0f0f0;
+
+    padding-top: 12px;
+}
+
+.post-actions button {
+    border: none;
+
+    background: #f5f6fa;
+
+    border-radius: 9px;
+
+    padding: 8px 13px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   MOBILE NAV
+========================================= */
+
+.mobile-nav {
+    display: none;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .home-header {
+        padding: 10px 15px;
     }
 
-    .login-container {
-        padding: 28px 20px;
-
-        border-radius: 15px;
+    .home-logo h1 {
+        font-size: 25px;
     }
 
-    .logo-area h1 {
-        font-size: 36px;
+    .home-nav {
+        display: none;
     }
 
-    .social-btn,
-    .login-btn,
-    .create-account-btn {
-        height: 46px;
+    .home-content {
+        padding: 25px 12px 90px;
     }
 
-    .forgot-links {
-        flex-direction: column;
+    .welcome-box {
+        padding: 24px;
+    }
+
+    .welcome-box h2 {
+        font-size: 23px;
+    }
+
+    .mobile-nav {
+        position: fixed;
+
+        display: flex;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        z-index: 200;
+
+        height: 65px;
+
+        background: rgba(255, 255, 255, .96);
+
+        border-top: 1px solid var(--border);
+
+        justify-content: space-around;
         align-items: center;
-        gap: 10px;
+
+        backdrop-filter: blur(15px);
+    }
+
+    .mobile-nav button {
+        font-size: 11px;
+
+        padding: 8px;
     }
 }
 
 
-/* =====================================
-   SMALL DEVICES
-===================================== */
+/* =========================================
+   SMALL MOBILE
+========================================= */
 
-@media (max-width: 350px) {
+@media (max-width: 450px) {
 
-    .login-container {
-        padding: 25px 16px;
+    .login-page {
+        padding: 15px;
     }
 
-    .logo-area h1 {
-        font-size: 32px;
+    .login-card {
+        padding: 28px 20px;
+        border-radius: 20px;
     }
 
-    .social-btn {
-        font-size: 13px;
+    .logo h1 {
+        font-size: 35px;
+    }
+
+    .forgot-row {
+        gap: 5px;
+    }
+
+    .forgot-row button {
+        font-size: 11px;
     }
 }
