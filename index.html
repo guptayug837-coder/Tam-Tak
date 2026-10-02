@@ -1,198 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Tam Tak - Login</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
-    <!-- =========================
-         LOGIN PAGE
-    ========================== -->
+    <main class="login-page">
 
-    <div class="login-page">
+        <div class="login-card">
 
-        <div class="login-container">
-
-            <!-- LOGO -->
-
-            <div class="logo-area">
-
+            <div class="logo">
                 <h1>Tam Tak</h1>
-
-                <p>
-                    Connect with people.
-                    Share your world.
-                </p>
-
+                <p>Connect. Share. Discover.</p>
             </div>
 
-
-            <!-- GOOGLE LOGIN -->
-
             <button
-                type="button"
                 id="googleLogin"
-                class="social-btn google-btn"
-            >
-
-                <span class="icon">G</span>
-
+                class="social-button"
+                type="button">
+                <span>G</span>
                 Continue with Google
-
             </button>
-
-
-            <!-- FACEBOOK LOGIN -->
 
             <button
-                type="button"
                 id="facebookLogin"
-                class="social-btn facebook-btn"
-            >
-
-                <span class="icon">f</span>
-
+                class="social-button"
+                type="button">
+                <span>f</span>
                 Continue with Facebook
-
             </button>
-
-
-            <!-- DIVIDER -->
 
             <div class="divider">
-
                 <span></span>
-
-                <p>OR</p>
-
+                <b>OR</b>
                 <span></span>
-
             </div>
 
+            <label for="email">
+                Email address
+            </label>
 
-            <!-- EMAIL -->
+            <input
+                id="email"
+                type="email"
+                placeholder="Enter your email">
 
-            <div class="input-group">
+            <label for="password">
+                Password
+            </label>
 
-                <label for="email">
-                    Email address
-                </label>
+            <div class="password-wrapper">
 
                 <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    autocomplete="email"
-                >
-
-            </div>
-
-
-            <!-- PASSWORD -->
-
-            <div class="input-group">
-
-                <label for="password">
-                    Password
-                </label>
-
-                <div class="password-box">
-
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                    >
-
-                    <button
-                        type="button"
-                        id="showPassword"
-                    >
-                        Show
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- FORGOT LINKS -->
-
-            <div class="forgot-links">
+                    id="password"
+                    type="password"
+                    placeholder="Enter your password">
 
                 <button
-                    type="button"
+                    id="showPassword"
+                    type="button">
+                    Show
+                </button>
+
+            </div>
+
+            <div class="forgot-row">
+
+                <button
                     id="forgotEmail"
-                >
-                    Forgot Email ID?
+                    type="button">
+                    Forgot Email?
                 </button>
 
                 <button
-                    type="button"
                     id="forgotPassword"
-                >
+                    type="button">
                     Forgot Password?
                 </button>
 
             </div>
 
-
-            <!-- LOGIN -->
-
             <button
-                type="button"
                 id="loginBtn"
-                class="login-btn"
-            >
+                class="login-button"
+                type="button">
                 Log In
             </button>
 
-
-            <!-- CREATE ACCOUNT -->
-
             <button
-                type="button"
                 id="createAccountBtn"
-                class="create-account-btn"
-            >
+                class="create-button"
+                type="button">
                 Create New Account
             </button>
 
-
-            <!-- MESSAGE -->
-
             <p
                 id="authMessage"
-                class="auth-message"
-            ></p>
-
-
-            <!-- TERMS -->
+                class="auth-message">
+            </p>
 
             <p class="terms">
-
                 By continuing, you agree to
                 Tam Tak's Terms and Privacy Policy.
-
             </p>
 
         </div>
 
-    </div>
-    
-<script type="module" src="script.js"></script>    
-    
+    </main>
 
-</body>
+    <!-- ONLY ONE SCRIPT -->
+
+<script type="module" src="./script.js"></script></body>
+
 </html>
