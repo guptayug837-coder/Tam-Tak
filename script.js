@@ -1,6 +1,10 @@
 import { signInWithPopup } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { auth, googleProvider } from "./firebase-config.js";
+import { signInWithPopup } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 import { auth, googleProvider } from "./firebase-config.js";
+console.log("Firebase loaded:", auth);
+console.log("Google provider loaded:", googleProvider);
 /* =====================================================
    TAM TAK - STEP 4
    WORKING LOCAL LOGIN SYSTEM
@@ -530,7 +534,11 @@ if (forgotEmailBtn) {
 
 if (googleLoginBtn) {
 
-    googleLoginBtn.addEventListener("click", async function () {
+    console.log("Google button found");
+
+    googleLoginBtn.addEventListener("click", async () => {
+
+        console.log("Google button clicked");
 
         try {
 
@@ -539,28 +547,34 @@ if (googleLoginBtn) {
                 googleProvider
             );
 
-            console.log("Google Login Successful:", result.user);
+            console.log("LOGIN SUCCESS:", result.user);
 
-            showMessage("Google Login Successful!");
+            alert(
+                "Welcome " +
+                (result.user.displayName || result.user.email)
+            );
 
-            setTimeout(function () {
-                window.location.href = "home.html";
-            }, 1000);
+            window.location.href = "home.html";
 
         } catch (error) {
 
-            console.error("Google Login Error:", error);
+            console.error("GOOGLE LOGIN ERROR:", error);
 
-            showMessage(
-                "Google Login Failed: " + error.message
+            alert(
+                "Google Login Error:\n" +
+                error.code +
+                "\n" +
+                error.message
             );
-
         }
 
     });
 
-}
+} else {
 
+    console.error("Google button NOT found!");
+
+}
 /* =====================================================
    GET CURRENT USER
    ===================================================== */
