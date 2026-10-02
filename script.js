@@ -1,11 +1,10 @@
 
-import { auth, googleProvider } from "./firebase-config.js";
 import { signInWithPopup } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 import { auth, googleProvider } from "./firebase-config.js";
+
 console.log("Firebase loaded:", auth);
-console.log("Google provider loaded:", googleProvider);
-/* =====================================================
+console.log("Google provider loaded:", googleProvider);/* =====================================================
    TAM TAK - STEP 4
    WORKING LOCAL LOGIN SYSTEM
    ===================================================== */
