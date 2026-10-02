@@ -1,3 +1,6 @@
+import { signInWithPopup } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import { auth, googleProvider } from "./firebase-config.js";
 /* =====================================================
    TAM TAK - STEP 4
    WORKING LOCAL LOGIN SYSTEM
@@ -527,37 +530,36 @@ if (forgotEmailBtn) {
 
 if (googleLoginBtn) {
 
-    googleLoginBtn.addEventListener(
-        "click",
-        function () {
+    googleLoginBtn.addEventListener("click", async function () {
+
+        try {
+
+            const result = await signInWithPopup(
+                auth,
+                googleProvider
+            );
+
+            console.log("Google Login Successful:", result.user);
+
+            showMessage("Google Login Successful!");
+
+            setTimeout(function () {
+                window.location.href = "home.html";
+            }, 1000);
+
+        } catch (error) {
+
+            console.error("Google Login Error:", error);
 
             showMessage(
-                "Google Login will be connected with Firebase in the production version."
+                "Google Login Failed: " + error.message
             );
 
         }
-    );
+
+    });
+
 }
-
-
-/* =====================================================
-   FACEBOOK BUTTON
-   ===================================================== */
-
-if (facebookLoginBtn) {
-
-    facebookLoginBtn.addEventListener(
-        "click",
-        function () {
-
-            showMessage(
-                "Facebook Login will be connected with Meta/Firebase in the production version."
-            );
-
-        }
-    );
-}
-
 
 /* =====================================================
    GET CURRENT USER
