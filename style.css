@@ -1,759 +1,992 @@
-/* =========================================
-   TAM TAK - PREMIUM STYLE
-   LOGIN + HOME
-========================================= */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    --primary: #6c5ce7;
-    --secondary: #00cec9;
-    --pink: #fd79a8;
-    --dark: #0b1020;
-    --text: #20242d;
-    --muted: #6b7280;
-    --white: #ffffff;
-    --light: #f5f7fb;
-    --border: #e5e7eb;
-}
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     background: #f5f7fb;
-    color: var(--text);
+
+    color: #172033;
 }
 
 
-/* =========================================
-   LOGIN
-========================================= */
 
-.login-page {
-    min-height: 100vh;
+/* ================= TOP BAR ================= */
+
+.topbar {
+
+    height: 70px;
+
+    background: white;
+
+    border-bottom:
+        1px solid #e6e9f0;
 
     display: flex;
-    justify-content: center;
+
     align-items: center;
 
-    padding: 25px;
+    padding: 0 5%;
 
-    background:
-        radial-gradient(
-            circle at 10% 20%,
-            rgba(108, 92, 231, .35),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(0, 206, 201, .25),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #0b1020,
-            #151b35,
-            #10172c
-        );
+    gap: 28px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 10;
 }
 
-.login-card {
-    width: 100%;
-    max-width: 430px;
-
-    padding: 38px 34px;
-
-    background: rgba(255, 255, 255, .97);
-
-    border-radius: 24px;
-
-    box-shadow:
-        0 30px 80px rgba(0, 0, 0, .35);
-
-    animation: cardIn .6s ease;
-}
-
-@keyframes cardIn {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* =========================================
-   LOGO
-========================================= */
-
-.logo,
-.home-logo {
-    text-align: center;
-}
 
 .logo {
-    margin-bottom: 28px;
+
+    font-size: 26px;
+
+    font-weight: 800;
+
+    color: #5b3df5;
+
+    min-width: 180px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
 }
 
-.logo h1,
-.home-logo h1 {
-    font-size: 40px;
-    font-weight: 800;
+
+.logo-dot {
+
+    width: 13px;
+
+    height: 13px;
+
+    border-radius: 50%;
 
     background:
         linear-gradient(
-            90deg,
-            var(--primary),
-            var(--pink),
-            var(--secondary)
+            135deg,
+            #7c3aed,
+            #ec4899
         );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
 }
 
-.logo p {
-    margin-top: 7px;
-    color: var(--muted);
+
+
+/* ================= SEARCH ================= */
+
+.search-box {
+
+    height: 42px;
+
+    max-width: 460px;
+
+    flex: 1;
+
+    background: #f3f5f9;
+
+    border-radius: 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 15px;
+
+    color: #7d8799;
+}
+
+
+.search-box span {
+
+    font-size: 22px;
+
+}
+
+
+.search-box input {
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    width: 100%;
+
+    padding-left: 10px;
+
     font-size: 14px;
 }
 
 
-/* =========================================
-   SOCIAL BUTTON
-========================================= */
 
-.social-button {
-    width: 100%;
-    height: 52px;
+/* ================= TOP ACTIONS ================= */
 
-    margin-bottom: 12px;
+.top-actions {
 
-    border: 1px solid var(--border);
-    border-radius: 12px;
+    margin-left: auto;
 
-    background: white;
-
-    cursor: pointer;
-
-    font-size: 15px;
-    font-weight: 600;
-
-    transition: .2s;
-}
-
-.social-button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, .12);
-}
-
-.social-button span {
-    margin-right: 10px;
-    font-weight: 800;
-}
-
-
-/* =========================================
-   DIVIDER
-========================================= */
-
-.divider {
     display: flex;
+
     align-items: center;
 
-    gap: 12px;
-
-    margin: 23px 0;
-}
-
-.divider span {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-}
-
-.divider b {
-    font-size: 12px;
-    color: #9ca3af;
+    gap: 10px;
 }
 
 
-/* =========================================
-   FORM
-========================================= */
+.top-btn {
 
-label {
-    display: block;
+    width: 40px;
 
-    margin-bottom: 7px;
+    height: 40px;
 
-    font-size: 13px;
-    font-weight: 700;
-}
-
-input,
-textarea {
-    width: 100%;
-
-    border: 1px solid var(--border);
+    border: none;
 
     border-radius: 12px;
 
-    outline: none;
+    background: #f2f4f8;
 
-    background: #f9fafb;
-
-    font-family: inherit;
-
-    transition: .2s;
-}
-
-input {
-    height: 52px;
-    padding: 0 15px;
-
-    margin-bottom: 17px;
-}
-
-input:focus,
-textarea:focus {
-    background: white;
-
-    border-color: var(--primary);
-
-    box-shadow:
-        0 0 0 4px rgba(108, 92, 231, .10);
-}
-
-
-/* =========================================
-   PASSWORD
-========================================= */
-
-.password-wrapper {
-    position: relative;
-}
-
-.password-wrapper input {
-    padding-right: 70px;
-}
-
-.password-wrapper button {
-    position: absolute;
-
-    right: 10px;
-    top: 7px;
-
-    height: 38px;
-
-    border: none;
-
-    background: transparent;
-
-    color: var(--primary);
-
-    font-weight: 700;
+    font-size: 18px;
 
     cursor: pointer;
 }
 
 
-/* =========================================
-   FORGOT
-========================================= */
+.profile-avatar {
 
-.forgot-row {
-    display: flex;
-    justify-content: space-between;
+    width: 40px;
 
-    margin-bottom: 20px;
-}
-
-.forgot-row button {
-    border: none;
-    background: transparent;
-
-    color: var(--primary);
-
-    cursor: pointer;
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-
-/* =========================================
-   LOGIN BUTTON
-========================================= */
-
-.login-button {
-    width: 100%;
-    height: 53px;
+    height: 40px;
 
     border: none;
-    border-radius: 13px;
+
+    border-radius: 50%;
+
+    color: white;
+
+    font-weight: bold;
 
     background:
         linear-gradient(
             135deg,
-            #6c5ce7,
-            #8e44ad,
-            #fd79a8
+            #6d42f5,
+            #e6468a
         );
+
+    cursor: pointer;
+}
+
+
+
+/* ================= MAIN LAYOUT ================= */
+
+.layout {
+
+    max-width: 1280px;
+
+    margin: 24px auto;
+
+    padding: 0 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        230px
+        minmax(400px, 650px)
+        280px;
+
+    gap: 26px;
+}
+
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+
+    position: sticky;
+
+    top: 94px;
+
+    height: max-content;
+}
+
+
+.nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 13px 15px;
+
+    margin: 4px 0;
+
+    border-radius: 12px;
+
+    color: #536078;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+.nav:hover {
+
+    background: #f0f1f6;
+}
+
+
+.nav.active {
+
+    background: #eeeafd;
+
+    color: #5b3df5;
+}
+
+
+.nav span {
+
+    font-size: 20px;
+
+    width: 24px;
+
+    text-align: center;
+}
+
+
+.nav b {
+
+    margin-left: auto;
+
+    background: #5b3df5;
 
     color: white;
 
-    font-size: 16px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 10px 25px rgba(108, 92, 231, .3);
-
-    transition: .2s;
-}
-
-.login-button:hover {
-    transform: translateY(-2px);
-}
-
-
-/* =========================================
-   CREATE ACCOUNT
-========================================= */
-
-.create-button {
-    width: 100%;
-    height: 50px;
-
-    margin-top: 12px;
-
-    border: 1px solid #d9dbea;
-    border-radius: 13px;
-
-    background: white;
-
-    color: var(--primary);
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.create-button:hover {
-    background: #f7f5ff;
-}
-
-
-/* =========================================
-   MESSAGE
-========================================= */
-
-.auth-message {
-    min-height: 22px;
-
-    margin-top: 14px;
-
-    text-align: center;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    color: #dc2626;
-}
-
-
-/* =========================================
-   TERMS
-========================================= */
-
-.terms {
-    margin-top: 17px;
-
-    text-align: center;
-
-    color: #9ca3af;
+    border-radius: 10px;
 
     font-size: 11px;
 
-    line-height: 1.6;
+    padding: 3px 7px;
 }
 
 
-/* =========================================
-   HOME PAGE
-========================================= */
 
-.home-page {
-    min-height: 100vh;
+/* ================= WELCOME CARD ================= */
 
-    background:
-        linear-gradient(
-            180deg,
-            #f8f9ff,
-            #eef2f7
-        );
-}
+.welcome-card {
 
+    margin-top: 25px;
 
-/* =========================================
-   HEADER
-========================================= */
+    padding: 20px;
 
-.home-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-
-    min-height: 72px;
-
-    padding: 10px 5%;
-
-    background: rgba(255, 255, 255, .95);
-
-    border-bottom: 1px solid var(--border);
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    backdrop-filter: blur(15px);
-}
-
-.home-logo h1 {
-    font-size: 30px;
-}
-
-.home-nav {
-    display: flex;
-    align-items: center;
-
-    gap: 8px;
-}
-
-.home-nav button,
-.mobile-nav button {
-    border: none;
-
-    background: transparent;
-
-    padding: 10px 13px;
-
-    border-radius: 10px;
-
-    color: #4b5563;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.home-nav button:hover,
-.mobile-nav button:hover {
-    background: #f0edff;
-    color: var(--primary);
-}
-
-#logoutBtn {
-    background: #fff0f3;
-    color: #e11d48;
-}
-
-
-/* =========================================
-   HOME CONTENT
-========================================= */
-
-.home-content {
-    width: 100%;
-    max-width: 850px;
-
-    margin: auto;
-
-    padding: 35px 20px 100px;
-}
-
-
-/* =========================================
-   WELCOME
-========================================= */
-
-.welcome-box {
-    padding: 30px;
-
-    border-radius: 20px;
-
-    color: white;
+    border-radius: 17px;
 
     background:
         linear-gradient(
             135deg,
-            #6c5ce7,
-            #8e44ad,
-            #fd79a8
+            #5b3df5,
+            #8b5cf6
         );
-
-    box-shadow:
-        0 15px 35px rgba(108, 92, 231, .25);
-
-    margin-bottom: 25px;
-}
-
-.welcome-box h2 {
-    font-size: 28px;
-    margin-bottom: 8px;
-}
-
-.welcome-box p {
-    opacity: .9;
-}
-
-
-/* =========================================
-   CREATE POST
-========================================= */
-
-.create-post {
-    padding: 22px;
-
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, .05);
-
-    margin-bottom: 28px;
-}
-
-.create-post h3 {
-    margin-bottom: 15px;
-}
-
-textarea {
-    min-height: 100px;
-
-    padding: 15px;
-
-    resize: vertical;
-
-    margin-bottom: 12px;
-}
-
-#createPostBtn {
-    padding: 12px 22px;
-
-    border: none;
-    border-radius: 10px;
-
-    background: var(--primary);
 
     color: white;
 
-    font-weight: 700;
-
-    cursor: pointer;
+    box-shadow:
+        0 12px 30px
+        rgba(91,61,245,.15);
 }
 
 
-/* =========================================
-   FEED
-========================================= */
+.welcome-card h3 {
 
-.feed {
-    width: 100%;
+    font-size: 15px;
 }
 
-.section-title {
+
+.welcome-card p {
+
+    font-size: 13px;
+
+    margin-top: 8px;
+
+    opacity: .85;
+}
+
+
+
+/* ================= STORIES ================= */
+
+.stories {
+
+    background: white;
+
+    border:
+        1px solid #e8ebf2;
+
+    border-radius: 18px;
+
+    padding: 15px;
+
     display: flex;
 
-    justify-content: space-between;
-    align-items: center;
+    gap: 18px;
+
+    overflow: hidden;
 
     margin-bottom: 18px;
 }
 
-.section-title span {
-    color: var(--muted);
-    font-size: 13px;
+
+.story {
+
+    width: 68px;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    color: #59657b;
+
+    flex-shrink: 0;
 }
 
 
-/* =========================================
-   POSTS
-========================================= */
+.story > div {
 
-#postsContainer {
+    width: 58px;
+
+    height: 58px;
+
+    border-radius: 50%;
+
+    margin: 0 auto 7px;
+
+    display: grid;
+
+    place-items: center;
+}
+
+
+.story-add {
+
+    border:
+        2px dashed #a9b1c2;
+
+    color: #6d42f5;
+
+    font-size: 27px;
+}
+
+
+.story-pic {
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    border: 3px solid white;
+
+    box-shadow:
+        0 0 0 2px #7b4df5;
+}
+
+
+.p1 {
+    background: #ee6b8d;
+}
+
+.p2 {
+    background: #ef9d45;
+}
+
+.p3 {
+    background: #4f8ee8;
+}
+
+.p4 {
+    background: #50b88b;
+}
+
+
+
+/* ================= POST ================= */
+
+.post {
+
+    background: white;
+
+    border:
+        1px solid #e8ebf2;
+
+    border-radius: 18px;
+
+    margin-bottom: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 18px
+        rgba(23,32,51,.03);
+}
+
+
+.post-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 16px;
+}
+
+
+.user-avatar {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6d42f5,
+            #e6468a
+        );
+
+    color: white;
+
+    font-weight: 800;
+}
+
+
+.user-avatar.second {
+
+    background:
+        linear-gradient(
+            135deg,
+            #00a8ff,
+            #6d42f5
+        );
+}
+
+
+.post-header small {
+
+    display: block;
+
+    color: #8a93a5;
+
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+
+.more {
+
+    margin-left: auto;
+
+    background: transparent;
+
+    color: #8992a5;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+}
+
+
+
+/* ================= CAPTION ================= */
+
+.caption {
+
+    padding:
+        0 16px 15px;
+
+    line-height: 1.55;
+
+    color: #364157;
+}
+
+
+
+/* ================= TAM TAK IMAGE ================= */
+
+.post-image {
+
+    height: 310px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #21105f,
+            #6b21a8 48%,
+            #ec4899
+        );
+
     display: flex;
 
     flex-direction: column;
 
-    gap: 18px;
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
 }
 
-.post-card {
-    padding: 20px;
+
+.tam-logo {
+
+    font-size: 58px;
+
+    font-weight: 900;
+
+    letter-spacing: -3px;
+}
+
+
+.tagline {
+
+    font-size: 12px;
+
+    letter-spacing: 5px;
+
+    margin-top: 6px;
+
+    opacity: .8;
+}
+
+
+
+/* ================= STATS ================= */
+
+.post-stats {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 12px 16px;
+
+    color: #8992a5;
+
+    font-size: 12px;
+
+    border-bottom:
+        1px solid #eef0f4;
+}
+
+
+
+/* ================= ACTIONS ================= */
+
+.post-actions {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    padding: 5px;
+}
+
+
+.post-actions button {
 
     background: white;
 
-    border: 1px solid var(--border);
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 7px 20px rgba(0, 0, 0, .05);
-}
-
-.post-user {
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.post-text {
-    line-height: 1.6;
-
-    color: #4b5563;
-
-    margin-bottom: 15px;
-}
-
-.post-actions {
-    display: flex;
-
-    gap: 10px;
-
-    border-top: 1px solid #f0f0f0;
-
-    padding-top: 12px;
-}
-
-.post-actions button {
     border: none;
 
-    background: #f5f6fa;
+    padding: 11px;
+
+    color: #59657b;
 
     border-radius: 9px;
 
-    padding: 8px 13px;
+    cursor: pointer;
+}
+
+
+.post-actions button:hover {
+
+    background: #f4f5f9;
+
+    color: #5b3df5;
+}
+
+
+
+/* ================= COMMENT ================= */
+
+.comment-box {
+
+    display: flex;
+
+    gap: 8px;
+
+    padding:
+        10px 14px 14px;
+}
+
+
+.comment-box input {
+
+    flex: 1;
+
+    border:
+        1px solid #e4e7ee;
+
+    border-radius: 10px;
+
+    padding: 9px 12px;
+
+    outline: none;
+}
+
+
+.comment-box button {
+
+    background: #5b3df5;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 0 15px;
 
     cursor: pointer;
-
-    font-weight: 600;
 }
 
 
-/* =========================================
-   MOBILE NAV
-========================================= */
 
-.mobile-nav {
-    display: none;
+/* ================= REEL ================= */
+
+.reel-preview {
+
+    height: 260px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #374151
+        );
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
 }
 
 
-/* =========================================
-   MOBILE
-========================================= */
+.play-button {
 
-@media (max-width: 700px) {
+    width: 58px;
 
-    .home-header {
-        padding: 10px 15px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.15);
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 23px;
+}
+
+
+.reel-preview small {
+
+    color: #b8c0ce;
+}
+
+
+
+/* ================= RIGHT BAR ================= */
+
+.rightbar {
+
+    position: sticky;
+
+    top: 94px;
+
+    height: max-content;
+
+    background: white;
+
+    border:
+        1px solid #e8ebf2;
+
+    border-radius: 18px;
+
+    padding: 18px;
+}
+
+
+.mini-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding-bottom: 18px;
+
+    border-bottom:
+        1px solid #edf0f4;
+}
+
+
+.mini-profile button {
+
+    margin-left: auto;
+
+    border: none;
+
+    background: none;
+
+    color: #5b3df5;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+.mini-profile small {
+
+    display: block;
+
+    color: #8a93a5;
+
+    font-size: 11px;
+
+    margin-top: 2px;
+}
+
+
+.rightbar h3 {
+
+    font-size: 14px;
+
+    margin:
+        19px 0 14px;
+}
+
+
+
+/* ================= SUGGESTIONS ================= */
+
+.suggestion {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin: 15px 0;
+}
+
+
+.suggest-avatar {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    color: white;
+
+    font-weight: bold;
+
+    background: #4f8ee8;
+}
+
+
+.suggest-avatar.orange {
+
+    background: #ef9d45;
+}
+
+
+.suggest-avatar.blue {
+
+    background: #6d42f5;
+}
+
+
+.suggest-info {
+
+    flex: 1;
+}
+
+
+.suggest-info strong {
+
+    font-size: 13px;
+}
+
+
+.suggest-info small {
+
+    display: block;
+
+    color: #8a93a5;
+
+    font-size: 10px;
+
+    margin-top: 3px;
+}
+
+
+.suggestion button {
+
+    border: none;
+
+    background: none;
+
+    color: #5b3df5;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1050px) {
+
+    .layout {
+
+        grid-template-columns:
+            190px
+            minmax(400px, 1fr);
     }
 
-    .home-logo h1 {
-        font-size: 25px;
-    }
 
-    .home-nav {
+    .rightbar {
+
         display: none;
     }
 
-    .home-content {
-        padding: 25px 12px 90px;
-    }
-
-    .welcome-box {
-        padding: 24px;
-    }
-
-    .welcome-box h2 {
-        font-size: 23px;
-    }
-
-    .mobile-nav {
-        position: fixed;
-
-        display: flex;
-
-        left: 0;
-        right: 0;
-        bottom: 0;
-
-        z-index: 200;
-
-        height: 65px;
-
-        background: rgba(255, 255, 255, .96);
-
-        border-top: 1px solid var(--border);
-
-        justify-content: space-around;
-        align-items: center;
-
-        backdrop-filter: blur(15px);
-    }
-
-    .mobile-nav button {
-        font-size: 11px;
-
-        padding: 8px;
-    }
 }
 
 
-/* =========================================
-   SMALL MOBILE
-========================================= */
 
-@media (max-width: 450px) {
+/* ================= MOBILE ================= */
 
-    .login-page {
-        padding: 15px;
+@media (max-width: 760px) {
+
+    .topbar {
+
+        padding: 0 14px;
     }
 
-    .login-card {
-        padding: 28px 20px;
-        border-radius: 20px;
+
+    .logo {
+
+        min-width: auto;
     }
 
-    .logo h1 {
-        font-size: 35px;
+
+    .search-box {
+
+        display: none;
     }
 
-    .forgot-row {
-        gap: 5px;
+
+    .layout {
+
+        display: block;
+
+        padding: 0 10px;
+
+        margin-top: 12px;
     }
 
-    .forgot-row button {
-        font-size: 11px;
+
+    .sidebar {
+
+        display: none;
     }
+
+
+    .feed {
+
+        width: 100%;
+    }
+
+
+    .stories {
+
+        border-radius: 14px;
+    }
+
+
+    .post {
+
+        border-radius: 14px;
+    }
+
+
+    .post-image {
+
+        height: 250px;
+    }
+
+
+    .tam-logo {
+
+        font-size: 43px;
+    }
+
 }
