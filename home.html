@@ -1,969 +1,1112 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tam Tak - Home</title>
+<title>Tam Tak - Home</title>
 
-    <link rel="stylesheet" href="./style.css">
+<style>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+/* =========================
+   RESET
+========================= */
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f3f4f6;
-            color: #111827;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* TOP BAR */
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            height: 64px;
-            background: white;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-        }
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#fafafa;
+    color:#111;
+    padding-bottom:70px;
+}
 
-        .brand {
-            font-size: 26px;
-            font-weight: bold;
-            background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
 
-        .top-actions {
-            display: flex;
-            gap: 8px;
-        }
+/* =========================
+   HEADER
+========================= */
 
-        .top-actions button,
-        .logout-btn {
-            border: none;
-            padding: 9px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            background: #111827;
-            color: white;
-        }
+.header{
+    height:62px;
+    background:#fff;
+    border-bottom:1px solid #ddd;
 
-        .logout-btn {
-            background: #dc2626;
-        }
+    display:flex;
+    align-items:center;
 
-        /* MAIN */
-        .container {
-            max-width: 700px;
-            margin: 20px auto 90px;
-            padding: 0 12px;
-        }
+    padding:0 7%;
 
-        .welcome {
-            background: white;
-            padding: 18px;
-            border-radius: 14px;
-            margin-bottom: 18px;
-            box-shadow: 0 2px 8px rgba(0,0,0,.08);
-        }
+    position:sticky;
+    top:0;
+    z-index:100;
+}
 
-        .welcome h2 {
-            margin: 0 0 7px;
-        }
+.logo{
+    color:#6d35e8;
+    text-decoration:none;
 
-        .user-email {
-            color: #6b7280;
-            font-size: 14px;
-        }
+    font-size:27px;
+    font-weight:800;
+}
 
-        /* CREATE POST */
-        .create-post {
-            background: white;
-            padding: 15px;
-            border-radius: 14px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,.08);
-        }
+.search{
+    margin-left:80px;
 
-        .create-post textarea {
-            width: 100%;
-            min-height: 80px;
-            resize: vertical;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            outline: none;
-            font-size: 15px;
-        }
+    width:270px;
+    height:38px;
 
-        .post-btn {
-            margin-top: 10px;
-            width: 100%;
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            background: #2563eb;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-        }
+    background:#f1f1f1;
 
-        /* TABS */
-        .tabs {
-            display: flex;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,.08);
-        }
+    border-radius:10px;
 
-        .tab {
-            flex: 1;
-            padding: 14px;
-            border: none;
-            background: white;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 15px;
-        }
+    display:flex;
+    align-items:center;
 
-        .tab.active {
-            background: #111827;
-            color: white;
-        }
+    padding:0 12px;
+}
 
-        /* POST */
-        .post {
-            background: white;
-            border-radius: 14px;
-            margin-bottom: 18px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,.08);
-        }
+.search input{
+    width:100%;
 
-        .post-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px;
-        }
+    border:none;
+    outline:none;
 
-        .avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #833ab4, #fd1d1d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
+    background:transparent;
 
-        .post-user {
-            font-weight: bold;
-        }
+    padding-left:8px;
+}
 
-        .post-number {
-            font-size: 12px;
-            color: #777;
-        }
+.header-icons{
+    margin-left:auto;
 
-        .post-image {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            display: block;
-        }
+    display:flex;
+    align-items:center;
 
-        .post-content {
-            padding: 14px;
-        }
+    gap:16px;
+}
 
-        .caption {
-            margin: 8px 0;
-            line-height: 1.5;
-        }
+.header-icons button{
+    border:none;
+    background:none;
 
-        .actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-        }
+    font-size:23px;
 
-        .action-btn {
-            border: none;
-            background: #f3f4f6;
-            padding: 9px 13px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
+    cursor:pointer;
+}
 
-        .action-btn:hover {
-            background: #e5e7eb;
-        }
+.profile{
+    width:35px;
+    height:35px;
 
-        /* REELS */
-        .reel {
-            background: #000;
-            border-radius: 14px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            position: relative;
-            color: white;
-        }
+    border-radius:50%;
 
-        .reel-video {
-            width: 100%;
-            aspect-ratio: 9 / 16;
-            max-height: 700px;
-            object-fit: cover;
-            display: block;
-            background: #111;
-        }
+    background:
+    linear-gradient(
+        135deg,
+        #7c3aed,
+        #ec4899
+    );
 
-        .reel-info {
-            padding: 14px;
-        }
+    color:white;
 
-        .reel-user {
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
+    display:grid;
+    place-items:center;
 
-        .reel-caption {
-            line-height: 1.5;
-            margin-bottom: 10px;
-        }
+    text-decoration:none;
 
-        .reel-actions {
-            display: flex;
-            gap: 8px;
-        }
+    font-weight:bold;
+}
 
-        .reel-actions button {
-            border: none;
-            padding: 9px 13px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
 
-        /* BOTTOM NAV */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 62px;
-            background: white;
-            border-top: 1px solid #ddd;
-            display: flex;
-            justify-content: center;
-            gap: 35px;
-            align-items: center;
-            z-index: 1000;
-        }
+/* =========================
+   MAIN
+========================= */
 
-        .bottom-nav button {
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            font-size: 14px;
-        }
+main{
+    width:630px;
 
-        .hidden {
-            display: none;
-        }
+    max-width:100%;
 
-        .loading {
-            text-align: center;
-            padding: 25px;
-            color: #666;
-        }
+    margin:22px auto;
+}
 
-        @media (max-width: 600px) {
-            .topbar {
-                padding: 0 10px;
-            }
 
-            .brand {
-                font-size: 22px;
-            }
+/* =========================
+   STORIES
+========================= */
 
-            .top-actions button {
-                padding: 8px 9px;
-            }
+.stories{
+    background:white;
 
-            .container {
-                margin-top: 10px;
-            }
-        }
-    </style>
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    display:flex;
+
+    gap:18px;
+
+    overflow-x:auto;
+}
+
+.story{
+    min-width:68px;
+
+    text-align:center;
+
+    font-size:12px;
+}
+
+.story-image{
+    width:62px;
+    height:62px;
+
+    margin:auto;
+
+    margin-bottom:6px;
+
+    border-radius:50%;
+
+    display:grid;
+    place-items:center;
+
+    color:white;
+
+    font-size:20px;
+    font-weight:bold;
+
+    border:3px solid white;
+
+    box-shadow:
+    0 0 0 2px #8b3dff;
+}
+
+.add-story{
+    background:white;
+
+    color:#7c3aed;
+
+    font-size:30px;
+
+    box-shadow:
+    0 0 0 2px #ccc;
+}
+
+.s1{background:#ef4444;}
+.s2{background:#f59e0b;}
+.s3{background:#3b82f6;}
+.s4{background:#10b981;}
+.s5{background:#ec4899;}
+
+
+/* =========================
+   POST
+========================= */
+
+.post{
+    background:white;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    margin-top:22px;
+
+    overflow:hidden;
+}
+
+.post-header{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px;
+}
+
+.avatar{
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    display:grid;
+    place-items:center;
+
+    color:white;
+
+    font-weight:bold;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7c3aed,
+        #ec4899
+    );
+}
+
+.avatar.blue{
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #06b6d4
+    );
+}
+
+.post-header small{
+    display:block;
+
+    color:#777;
+
+    font-size:11px;
+
+    margin-top:3px;
+}
+
+.more{
+    margin-left:auto;
+
+    border:none;
+
+    background:none;
+
+    font-size:18px;
+
+    cursor:pointer;
+}
+
+.caption{
+    padding:0 14px 14px;
+
+    line-height:1.5;
+}
+
+
+/* =========================
+   POST IMAGE
+========================= */
+
+.post-photo{
+    height:470px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2e1065,
+        #7c3aed,
+        #ec4899
+    );
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+}
+
+.tam-tak{
+    font-size:58px;
+
+    font-weight:900;
+
+    letter-spacing:-3px;
+}
+
+.post-photo p{
+    margin-top:8px;
+
+    letter-spacing:3px;
+
+    font-size:12px;
+}
+
+
+/* =========================
+   SECOND POST
+========================= */
+
+.second-photo{
+    height:470px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #172554,
+        #2563eb,
+        #06b6d4
+    );
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-size:28px;
+}
+
+.second-photo span{
+    font-size:65px;
+
+    margin-bottom:15px;
+}
+
+
+/* =========================
+   POST INFO
+========================= */
+
+.post-info{
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:10px 14px;
+
+    color:#666;
+
+    font-size:13px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.post-buttons{
+    border-top:1px solid #eee;
+
+    border-bottom:1px solid #eee;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:6px 10px;
+}
+
+.post-buttons button{
+    border:none;
+
+    background:none;
+
+    font-size:25px;
+
+    cursor:pointer;
+
+    padding:5px 8px;
+}
+
+.post-buttons .save{
+    margin-left:auto;
+}
+
+.like-btn.liked{
+    color:#ed1b35;
+}
+
+
+/* =========================
+   COMMENT
+========================= */
+
+.comment{
+    display:flex;
+
+    padding:10px;
+}
+
+.comment input{
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    font-size:13px;
+}
+
+.comment button{
+    border:none;
+
+    background:none;
+
+    color:#6d35e8;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+
+/* =========================
+   BOTTOM NAVIGATION
+========================= */
+
+.bottom-nav{
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+    right:0;
+
+    height:65px;
+
+    background:white;
+
+    border-top:1px solid #ddd;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:65px;
+
+    z-index:200;
+}
+
+.bottom-nav a{
+    color:#222;
+
+    text-decoration:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:3px;
+
+    font-size:20px;
+}
+
+.bottom-nav span{
+    font-size:10px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    .header{
+        padding:0 15px;
+    }
+
+    .search{
+        display:none;
+    }
+
+    main{
+        width:100%;
+
+        margin-top:10px;
+    }
+
+    .stories{
+        border-radius:0;
+    }
+
+    .post{
+        border-left:none;
+        border-right:none;
+
+        border-radius:0;
+    }
+
+    .post-photo,
+    .second-photo{
+        height:430px;
+    }
+
+    .bottom-nav{
+        gap:0;
+
+        justify-content:space-around;
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <!-- TOP BAR -->
-    <header class="topbar">
 
-        <div class="brand">
-            Tam Tak
-        </div>
+<!-- =========================
+     HEADER
+========================= -->
 
-        <div class="top-actions">
-            <button onclick="openMessages()">💬 Messages</button>
-            <button class="logout-btn" id="logoutBtn">Logout</button>
-        </div>
+<header class="header">
 
-    </header>
+    <a href="home.html" class="logo">
+        Tam Tak
+    </a>
 
+    <div class="search">
 
-    <!-- MAIN -->
-    <main class="container">
+        🔍
 
-        <!-- WELCOME -->
-        <section class="welcome">
-
-            <h2 id="welcomeText">
-                Welcome to Tam Tak 👋
-            </h2>
-
-            <div class="user-email" id="userEmail">
-                Loading...
-            </div>
-
-        </section>
-
-
-        <!-- CREATE POST -->
-        <section class="create-post">
-
-            <textarea
-                id="newPostText"
-                placeholder="What's on your mind?"
-            ></textarea>
-
-            <button class="post-btn" id="createPostBtn">
-                ➕ Create Post
-            </button>
-
-        </section>
-
-
-        <!-- TABS -->
-        <div class="tabs">
-
-            <button
-                class="tab active"
-                id="homeTab"
-                onclick="showSection('posts')"
-            >
-                🏠 Posts
-            </button>
-
-            <button
-                class="tab"
-                id="reelsTab"
-                onclick="showSection('reels')"
-            >
-                🎬 Reels
-            </button>
-
-        </div>
-
-
-        <!-- POSTS -->
-        <section id="postsSection">
-
-            <div id="postsContainer">
-                <div class="loading">
-                    Loading 100 posts...
-                </div>
-            </div>
-
-        </section>
-
-
-        <!-- REELS -->
-        <section
-            id="reelsSection"
-            class="hidden"
+        <input
+            type="text"
+            placeholder="Search"
         >
 
-            <div id="reelsContainer">
-                <div class="loading">
-                    Loading 100 reels...
-                </div>
-            </div>
-
-        </section>
-
-    </main>
+    </div>
 
 
-    <!-- BOTTOM NAV -->
-    <nav class="bottom-nav">
+    <div class="header-icons">
 
-        <button onclick="showSection('posts')">
-            🏠 Home
-        </button>
-
-        <button onclick="showSection('reels')">
-            🎬 Reels
+        <button onclick="goHome()">
+            🏠
         </button>
 
         <button onclick="openMessages()">
-            💬 Messages
+            ✈️
         </button>
 
-        <button onclick="openProfile()">
-            👤 Profile
+        <button>
+            ♡
         </button>
 
-    </nav>
+        <a
+            href="profile.html"
+            class="profile"
+        >
+            Y
+        </a>
+
+    </div>
+
+</header>
 
 
-    <!-- FIREBASE -->
-    <script type="module">
 
-        import {
-            onAuthStateChanged,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+<!-- =========================
+     MAIN
+========================= -->
 
-        import {
-            auth
-        } from "./firebase-config.js";
+<main>
 
 
-        /* =========================
-           CHECK LOGIN
-        ========================= */
+<!-- STORIES -->
 
-        onAuthStateChanged(auth, (user) => {
+<section class="stories">
 
-            if (!user) {
 
-                window.location.href = "./index.html";
+    <div class="story">
 
-                return;
-            }
+        <div class="story-image add-story">
+            +
+        </div>
 
-            document.getElementById("userEmail").textContent =
-                user.email || "Tam Tak User";
+        <span>
+            Your story
+        </span>
 
-            document.getElementById("welcomeText").textContent =
-                "Welcome to Tam Tak 👋";
+    </div>
+
+
+    <div class="story">
+
+        <div class="story-image s1">
+            A
+        </div>
+
+        <span>
+            Arjun
+        </span>
+
+    </div>
+
+
+    <div class="story">
+
+        <div class="story-image s2">
+            S
+        </div>
+
+        <span>
+            Simran
+        </span>
+
+    </div>
+
+
+    <div class="story">
+
+        <div class="story-image s3">
+            R
+        </div>
+
+        <span>
+            Rahul
+        </span>
+
+    </div>
+
+
+    <div class="story">
+
+        <div class="story-image s4">
+            N
+        </div>
+
+        <span>
+            Neha
+        </span>
+
+    </div>
+
+
+    <div class="story">
+
+        <div class="story-image s5">
+            P
+        </div>
+
+        <span>
+            Priya
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     POST 1
+========================= -->
+
+<article class="post">
+
+
+    <div class="post-header">
+
+        <div class="avatar">
+            Y
+        </div>
+
+        <div>
+
+            <strong>
+                Yug Gupta
+            </strong>
+
+            <small>
+                Just now · 🌎
+            </small>
+
+        </div>
+
+        <button class="more">
+            •••
+        </button>
+
+    </div>
+
+
+    <div class="caption">
+
+        Welcome to Tam Tak ❤️
+
+        <br>
+
+        Connect. Share. Discover.
+
+    </div>
+
+
+    <div class="post-photo">
+
+        <div class="tam-tak">
+            Tam Tak
+        </div>
+
+        <p>
+            CONNECT · SHARE · DISCOVER
+        </p>
+
+    </div>
+
+
+    <div class="post-info">
+
+        <span>
+            ❤️ 1,248
+        </span>
+
+        <span>
+            128 comments
+        </span>
+
+    </div>
+
+
+    <div class="post-buttons">
+
+        <button
+            class="like-btn"
+            onclick="likePost(this)"
+        >
+            ♡
+        </button>
+
+        <button
+            onclick="commentPost()"
+        >
+            💬
+        </button>
+
+        <button
+            onclick="sharePost()"
+        >
+            ↗
+        </button>
+
+        <button class="save">
+            ♡
+        </button>
+
+    </div>
+
+
+    <div class="comment">
+
+        <input
+            id="commentInput"
+            type="text"
+            placeholder="Add a comment..."
+        >
+
+        <button onclick="addComment()">
+            Post
+        </button>
+
+    </div>
+
+
+</article>
+
+
+
+<!-- =========================
+     POST 2
+========================= -->
+
+<article class="post">
+
+
+    <div class="post-header">
+
+        <div class="avatar blue">
+            S
+        </div>
+
+        <div>
+
+            <strong>
+                Simran
+            </strong>
+
+            <small>
+                20 min ago
+            </small>
+
+        </div>
+
+        <button class="more">
+            •••
+        </button>
+
+    </div>
+
+
+    <div class="caption">
+
+        Beautiful day ✨
+
+        <br>
+
+        #TamTak #Life
+
+    </div>
+
+
+    <div class="second-photo">
+
+        <span>
+            📸
+        </span>
+
+        <strong>
+            Tam Tak Post
+        </strong>
+
+    </div>
+
+
+    <div class="post-info">
+
+        <span>
+            ❤️ 856
+        </span>
+
+        <span>
+            67 comments
+        </span>
+
+    </div>
+
+
+    <div class="post-buttons">
+
+        <button
+            class="like-btn"
+            onclick="likePost(this)"
+        >
+            ♡
+        </button>
+
+        <button>
+            💬
+        </button>
+
+        <button
+            onclick="sharePost()"
+        >
+            ↗
+        </button>
+
+        <button class="save">
+            ♡
+        </button>
+
+    </div>
+
+
+</article>
+
+
+</main>
+
+
+
+<!-- =========================
+     BOTTOM NAV
+========================= -->
+
+<nav class="bottom-nav">
+
+
+    <a href="home.html">
+
+        🏠
+
+        <span>
+            Home
+        </span>
+
+    </a>
+
+
+    <a href="reels.html">
+
+        ▶️
+
+        <span>
+            Reels
+        </span>
+
+    </a>
+
+
+    <a href="create-post.html">
+
+        ➕
+
+        <span>
+            Create
+        </span>
+
+    </a>
+
+
+    <a href="messages.html">
+
+        💬
+
+        <span>
+            Messages
+        </span>
+
+    </a>
+
+
+    <a href="profile.html">
+
+        👤
+
+        <span>
+            Profile
+        </span>
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+
+/* LIKE */
+
+function likePost(button){
+
+    button.classList.toggle("liked");
+
+    if(
+        button.classList.contains("liked")
+    ){
+
+        button.innerHTML = "♥";
+
+    }else{
+
+        button.innerHTML = "♡";
+
+    }
+
+}
+
+
+/* COMMENT */
+
+function addComment(){
+
+    const input =
+        document.getElementById(
+            "commentInput"
+        );
+
+    const text =
+        input.value.trim();
+
+
+    if(text === ""){
+
+        alert(
+            "Please write a comment."
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "Comment posted: " + text
+    );
+
+
+    input.value = "";
+
+}
+
+
+/* COMMENT BUTTON */
+
+function commentPost(){
+
+    document
+        .getElementById("commentInput")
+        .focus();
+
+}
+
+
+/* SHARE */
+
+function sharePost(){
+
+    if(
+        navigator.share
+    ){
+
+        navigator.share({
+
+            title:"Tam Tak",
+
+            text:
+            "Check this post on Tam Tak!",
+
+            url:
+            window.location.href
 
         });
 
+    }else{
 
-        /* =========================
-           LOGOUT
-        ========================= */
+        alert(
+            "Post link copied!"
+        );
 
-        document
-            .getElementById("logoutBtn")
-            .addEventListener("click", async () => {
+    }
 
-                try {
+}
 
-                    await signOut(auth);
 
-                    window.location.href = "./index.html";
+/* HOME */
 
-                } catch (error) {
+function goHome(){
 
-                    alert(error.message);
+    window.location.href =
+        "home.html";
 
-                }
+}
 
-            });
 
+/* MESSAGES */
 
-        /* =========================
-           100 POSTS
-        ========================= */
+function openMessages(){
 
-        const postsContainer =
-            document.getElementById("postsContainer");
+    window.location.href =
+        "messages.html";
 
+}
 
-        const postCaptions = [
+</script>
 
-            "Beautiful day on Tam Tak 🌅",
-            "Keep smiling 😊",
-            "Enjoy every moment ❤️",
-            "New day, new beginning ✨",
-            "Stay positive 💫",
-            "Dream big 🚀",
-            "Life is beautiful 🌎",
-            "Never give up 💪",
-            "Good vibes only 😎",
-            "Believe in yourself ❤️"
-
-        ];
-
-
-        function createPost(index) {
-
-            const post = document.createElement("article");
-
-            post.className = "post";
-
-            const userNumber =
-                ((index - 1) % 100) + 1;
-
-            const caption =
-                postCaptions[(index - 1) % postCaptions.length];
-
-
-            post.innerHTML = `
-
-                <div class="post-header">
-
-                    <div class="avatar">
-                        U${userNumber}
-                    </div>
-
-                    <div>
-
-                        <div class="post-user">
-                            Tam Tak User ${userNumber}
-                        </div>
-
-                        <div class="post-number">
-                            Post #${index}
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <img
-                    class="post-image"
-                    src="https://picsum.photos/seed/tamtak-post-${index}/700/700"
-                    alt="Tam Tak Post ${index}"
-                    loading="lazy"
-                >
-
-
-                <div class="post-content">
-
-                    <div class="caption">
-                        ${caption}
-                    </div>
-
-                    <div class="actions">
-
-                        <button
-                            class="action-btn like-btn"
-                            onclick="likePost(this)"
-                        >
-                            ❤️ Like
-                        </button>
-
-                        <button
-                            class="action-btn"
-                            onclick="commentPost(${index})"
-                        >
-                            💬 Comment
-                        </button>
-
-                        <button
-                            class="action-btn"
-                            onclick="sharePost(${index})"
-                        >
-                            📤 Share
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-            return post;
-        }
-
-
-        for (let i = 1; i <= 100; i++) {
-
-            postsContainer.appendChild(
-                createPost(i)
-            );
-
-        }
-
-
-        /* =========================
-           100 REELS
-        ========================= */
-
-        const reelsContainer =
-            document.getElementById("reelsContainer");
-
-
-        function createReel(index) {
-
-            const reel = document.createElement("article");
-
-            reel.className = "reel";
-
-            const userNumber =
-                ((index - 1) % 100) + 1;
-
-
-            reel.innerHTML = `
-
-                <video
-                    class="reel-video"
-                    controls
-                    muted
-                    loop
-                    preload="metadata"
-                    poster="https://picsum.photos/seed/tamtak-reel-${index}/500/850"
-                >
-
-                    <source
-                        src="https://www.w3schools.com/html/mov_bbb.mp4"
-                        type="video/mp4"
-                    >
-
-                    Your browser does not support video.
-
-                </video>
-
-
-                <div class="reel-info">
-
-                    <div class="reel-user">
-                        🎬 Tam Tak User ${userNumber}
-                    </div>
-
-                    <div class="reel-caption">
-                        Amazing Tam Tak Reel #${index} 🔥
-                        <br>
-                        Connect. Share. Discover.
-                    </div>
-
-
-                    <div class="reel-actions">
-
-                        <button
-                            onclick="likeReel(this)"
-                        >
-                            ❤️ Like
-                        </button>
-
-                        <button
-                            onclick="commentReel(${index})"
-                        >
-                            💬 Comment
-                        </button>
-
-                        <button
-                            onclick="shareReel(${index})"
-                        >
-                            📤 Share
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-            return reel;
-        }
-
-
-        for (let i = 1; i <= 100; i++) {
-
-            reelsContainer.appendChild(
-                createReel(i)
-            );
-
-        }
-
-
-        /* =========================
-           SECTION SWITCH
-        ========================= */
-
-        window.showSection = function(section) {
-
-            const postsSection =
-                document.getElementById("postsSection");
-
-            const reelsSection =
-                document.getElementById("reelsSection");
-
-            const homeTab =
-                document.getElementById("homeTab");
-
-            const reelsTab =
-                document.getElementById("reelsTab");
-
-
-            if (section === "reels") {
-
-                postsSection.classList.add("hidden");
-
-                reelsSection.classList.remove("hidden");
-
-                homeTab.classList.remove("active");
-
-                reelsTab.classList.add("active");
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-
-            } else {
-
-                reelsSection.classList.add("hidden");
-
-                postsSection.classList.remove("hidden");
-
-                reelsTab.classList.remove("active");
-
-                homeTab.classList.add("active");
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-
-            }
-
-        };
-
-
-        /* =========================
-           LIKE
-        ========================= */
-
-        window.likePost = function(button) {
-
-            if (button.dataset.liked === "true") {
-
-                button.dataset.liked = "false";
-
-                button.textContent = "❤️ Like";
-
-            } else {
-
-                button.dataset.liked = "true";
-
-                button.textContent = "💖 Liked";
-
-            }
-
-        };
-
-
-        window.likeReel = function(button) {
-
-            if (button.dataset.liked === "true") {
-
-                button.dataset.liked = "false";
-
-                button.textContent = "❤️ Like";
-
-            } else {
-
-                button.dataset.liked = "true";
-
-                button.textContent = "💖 Liked";
-
-            }
-
-        };
-
-
-        /* =========================
-           COMMENTS
-        ========================= */
-
-        window.commentPost = function(index) {
-
-            const comment =
-                prompt(
-                    "Write your comment on Post #" + index
-                );
-
-            if (comment && comment.trim()) {
-
-                alert(
-                    "Comment added successfully! 💬"
-                );
-
-            }
-
-        };
-
-
-        window.commentReel = function(index) {
-
-            const comment =
-                prompt(
-                    "Write your comment on Reel #" + index
-                );
-
-            if (comment && comment.trim()) {
-
-                alert(
-                    "Comment added successfully! 💬"
-                );
-
-            }
-
-        };
-
-
-        /* =========================
-           SHARE
-        ========================= */
-
-        window.sharePost = async function(index) {
-
-            const text =
-                "Check out Tam Tak Post #" + index;
-
-            if (navigator.share) {
-
-                try {
-
-                    await navigator.share({
-                        title: "Tam Tak",
-                        text: text,
-                        url: window.location.href
-                    });
-
-                } catch (error) {
-
-                    console.log(error);
-
-                }
-
-            } else {
-
-                alert(text);
-
-            }
-
-        };
-
-
-        window.shareReel = async function(index) {
-
-            const text =
-                "Check out Tam Tak Reel #" + index;
-
-            if (navigator.share) {
-
-                try {
-
-                    await navigator.share({
-                        title: "Tam Tak Reel",
-                        text: text,
-                        url: window.location.href
-                    });
-
-                } catch (error) {
-
-                    console.log(error);
-
-                }
-
-            } else {
-
-                alert(text);
-
-            }
-
-        };
-
-
-        /* =========================
-           MESSAGES
-        ========================= */
-
-        window.openMessages = function() {
-
-            alert(
-                "Messages feature coming next 💬"
-            );
-
-        };
-
-
-        /* =========================
-           PROFILE
-        ========================= */
-
-        window.openProfile = function() {
-
-            alert(
-                "Profile feature coming next 👤"
-            );
-
-        };
-
-
-        /* =========================
-           CREATE POST
-        ========================= */
-
-        document
-            .getElementById("createPostBtn")
-            .addEventListener("click", () => {
-
-                const text =
-                    document
-                        .getElementById("newPostText")
-                        .value
-                        .trim();
-
-
-                if (!text) {
-
-                    alert(
-                        "Please write something first."
-                    );
-
-                    return;
-
-                }
-
-
-                alert(
-                    "Post created successfully! 🎉"
-                );
-
-
-                document
-                    .getElementById("newPostText")
-                    .value = "";
-
-            });
-
-    </script>
 
 </body>
-
 </html>
