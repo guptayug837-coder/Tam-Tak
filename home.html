@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Tam Tak - Home</title>
+
+    <link rel="stylesheet" href="./style.css">
 
     <style>
         * {
@@ -15,1000 +16,1101 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #f3f4f6;
+            background: #f4f6f8;
             color: #111827;
         }
-
-        button,
-        input,
-        textarea {
-            font-family: inherit;
-        }
-
-        /* =========================
-           TOP BAR
-        ========================= */
 
         .topbar {
             position: sticky;
             top: 0;
-            z-index: 1000;
-
+            z-index: 100;
             height: 64px;
-
             background: white;
             border-bottom: 1px solid #ddd;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
-
-            padding: 0 20px;
+            padding: 0 18px;
         }
 
-        .brand {
-            font-size: 27px;
-            font-weight: bold;
-
-            background:
-                linear-gradient(
-                    45deg,
-                    #833ab4,
-                    #fd1d1d,
-                    #fcb045
-                );
-
-            -webkit-background-clip: text;
-            background-clip: text;
-
-            color: transparent;
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: #833ab4;
         }
 
-        .top-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .top-button {
+        .logout-btn {
             border: none;
-            padding: 9px 13px;
-            border-radius: 8px;
-
             background: #111827;
             color: white;
-
+            padding: 9px 15px;
+            border-radius: 8px;
             cursor: pointer;
         }
 
-        .logout-button {
-            background: #dc2626;
-        }
-
-        /* =========================
-           MAIN
-        ========================= */
-
         .container {
-            max-width: 700px;
-
-            margin: 20px auto 90px;
-
-            padding: 0 12px;
+            width: min(700px, 94%);
+            margin: 20px auto 100px;
         }
 
-        /* =========================
-           WELCOME
-        ========================= */
-
-        .welcome-card {
+        .user-card,
+        .create-card,
+        .post-card {
             background: white;
-
-            padding: 20px;
-
             border-radius: 15px;
-
+            padding: 16px;
             margin-bottom: 18px;
-
-            box-shadow:
-                0 2px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 3px 14px rgba(0,0,0,.08);
         }
 
-        .welcome-card h2 {
-            margin: 0 0 8px;
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-weight: 700;
         }
 
         .email {
-            color: #6b7280;
-            font-size: 14px;
-            word-break: break-word;
+            font-size: 13px;
+            color: #777;
         }
 
-        /* =========================
-           CREATE POST
-        ========================= */
-
-        .create-post {
-            background: white;
-
-            padding: 15px;
-
-            border-radius: 15px;
-
-            margin-bottom: 18px;
-
-            box-shadow:
-                0 2px 10px rgba(0, 0, 0, 0.08);
+        .create-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 14px;
         }
 
-        .create-post textarea {
+        #caption {
             width: 100%;
-
-            min-height: 80px;
-
+            min-height: 90px;
             resize: vertical;
-
+            padding: 12px;
             border: 1px solid #ddd;
-
             border-radius: 10px;
-
-            padding: 12px;
-
-            font-size: 15px;
-
             outline: none;
-        }
-
-        .create-post textarea:focus {
-            border-color: #2563eb;
-        }
-
-        .create-button {
-            width: 100%;
-
-            margin-top: 10px;
-
-            padding: 12px;
-
-            border: none;
-
-            border-radius: 10px;
-
-            background: #2563eb;
-
-            color: white;
-
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-        /* =========================
-           TABS
-        ========================= */
-
-        .tabs {
-            display: flex;
-
-            background: white;
-
-            border-radius: 12px;
-
-            overflow: hidden;
-
-            margin-bottom: 18px;
-
-            box-shadow:
-                0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .tab {
-            flex: 1;
-
-            padding: 14px;
-
-            border: none;
-
-            background: white;
-
-            cursor: pointer;
-
-            font-weight: bold;
-
             font-size: 15px;
+            margin-bottom: 12px;
         }
 
-        .tab.active {
-            background: #111827;
+        .file-box {
+            border: 2px dashed #bbb;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            margin-bottom: 12px;
+            background: #fafafa;
+        }
+
+        #mediaFile {
+            width: 100%;
+        }
+
+        #preview {
+            margin-top: 12px;
+        }
+
+        #preview img,
+        #preview video {
+            width: 100%;
+            max-height: 450px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .post-btn {
+            width: 100%;
+            border: none;
+            background: linear-gradient(90deg,#833ab4,#fd1d1d,#fcb045);
             color: white;
+            padding: 13px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
         }
 
-        /* =========================
-           POST
-        ========================= */
+        .post-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
 
-        .post {
-            background: white;
-
-            border-radius: 15px;
-
-            overflow: hidden;
-
-            margin-bottom: 18px;
-
-            box-shadow:
-                0 2px 10px rgba(0, 0, 0, 0.08);
+        .progress {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
         }
 
         .post-header {
             display: flex;
-
             align-items: center;
-
             gap: 10px;
-
-            padding: 14px;
+            margin-bottom: 12px;
         }
 
-        .avatar {
-            width: 43px;
-            height: 43px;
-
-            border-radius: 50%;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #833ab4,
-                    #fd1d1d,
-                    #fcb045
-                );
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            color: white;
-
-            font-weight: bold;
-        }
-
-        .post-user {
-            font-weight: bold;
-        }
-
-        .post-time {
-            color: #777;
-
+        .post-date {
             font-size: 12px;
-
-            margin-top: 3px;
-        }
-
-        .post-image {
-            display: block;
-
-            width: 100%;
-
-            aspect-ratio: 1 / 1;
-
-            object-fit: cover;
-        }
-
-        .post-content {
-            padding: 14px;
+            color: #888;
         }
 
         .caption {
-            line-height: 1.5;
+            margin: 8px 0 12px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
 
-            margin-bottom: 12px;
+        .post-media {
+            width: 100%;
+            max-height: 600px;
+            object-fit: contain;
+            background: #000;
+            border-radius: 12px;
         }
 
         .actions {
             display: flex;
-
-            gap: 7px;
-
-            flex-wrap: wrap;
-        }
-
-        .action-button {
-            border: none;
-
-            background: #f3f4f6;
-
-            padding: 9px 12px;
-
-            border-radius: 8px;
-
-            cursor: pointer;
-        }
-
-        .action-button:hover {
-            background: #e5e7eb;
-        }
-
-        /* =========================
-           REELS
-        ========================= */
-
-        .reel {
-            background: #000;
-
-            color: white;
-
-            border-radius: 15px;
-
-            overflow: hidden;
-
-            margin-bottom: 20px;
-        }
-
-        .reel-video {
-            display: block;
-
-            width: 100%;
-
-            aspect-ratio: 9 / 16;
-
-            max-height: 700px;
-
-            object-fit: cover;
-
-            background: #111;
-        }
-
-        .reel-info {
-            padding: 15px;
-        }
-
-        .reel-user {
-            font-weight: bold;
-
-            margin-bottom: 8px;
-        }
-
-        .reel-caption {
-            line-height: 1.5;
-
-            margin-bottom: 12px;
-        }
-
-        .reel-actions {
-            display: flex;
-
             gap: 8px;
+            margin-top: 12px;
         }
 
-        .reel-actions button {
+        .action-btn {
             border: none;
-
-            padding: 9px 12px;
-
+            background: #f1f3f5;
+            padding: 9px 14px;
             border-radius: 8px;
-
             cursor: pointer;
         }
 
-        /* =========================
-           PROFILE
-        ========================= */
-
-        .profile-section {
-            background: white;
-
-            border-radius: 15px;
-
-            padding: 25px;
-
-            text-align: center;
-
-            box-shadow:
-                0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .profile-avatar {
-            width: 100px;
-            height: 100px;
-
-            border-radius: 50%;
-
-            margin: 0 auto 15px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #833ab4,
-                    #fd1d1d,
-                    #fcb045
-                );
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            color: white;
-
-            font-size: 30px;
-
-            font-weight: bold;
-        }
-
-        .profile-name {
+        .feed-title {
             font-size: 22px;
-
-            font-weight: bold;
-
-            margin-bottom: 7px;
+            font-weight: 700;
+            margin: 25px 0 14px;
         }
 
-        .profile-email {
-            color: #6b7280;
-
-            font-size: 14px;
-
-            margin-bottom: 20px;
-        }
-
-        .profile-stats {
-            display: flex;
-
-            justify-content: space-around;
-
-            border-top: 1px solid #eee;
-
-            border-bottom: 1px solid #eee;
-
-            padding: 15px 0;
-
-            margin-bottom: 20px;
-        }
-
-        .stat strong {
-            display: block;
-
-            font-size: 20px;
-        }
-
-        .stat span {
+        .loading,
+        .empty {
+            text-align: center;
+            padding: 30px;
             color: #777;
-
-            font-size: 13px;
         }
-
-        .profile-button {
-            width: 100%;
-
-            padding: 12px;
-
-            border: none;
-
-            border-radius: 10px;
-
-            background: #111827;
-
-            color: white;
-
-            cursor: pointer;
-
-            margin-top: 8px;
-        }
-
-        /* =========================
-           BOTTOM NAV
-        ========================= */
 
         .bottom-nav {
             position: fixed;
-
+            bottom: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-
-            height: 64px;
-
+            height: 62px;
             background: white;
-
             border-top: 1px solid #ddd;
-
             display: flex;
-
-            justify-content: center;
-
+            justify-content: space-around;
             align-items: center;
-
-            gap: 25px;
-
-            z-index: 1000;
+            z-index: 100;
         }
 
-        .bottom-button {
+        .bottom-nav button {
             border: none;
-
-            background: transparent;
-
-            cursor: pointer;
-
+            background: none;
             font-size: 14px;
-
-            padding: 8px;
+            cursor: pointer;
         }
 
-        .bottom-button.active {
-            font-weight: bold;
-
-            color: #2563eb;
-        }
-
-        /* =========================
-           HIDDEN
-        ========================= */
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* =========================
-           LOADING
-        ========================= */
-
-        .loading {
-            background: white;
-
-            padding: 30px;
-
-            border-radius: 12px;
-
+        .message {
             text-align: center;
-
-            color: #666;
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 600px) {
-
-            .topbar {
-                padding: 0 10px;
-            }
-
-            .brand {
-                font-size: 22px;
-            }
-
-            .top-button {
-                padding: 8px;
-                font-size: 12px;
-            }
-
-            .container {
-                margin-top: 10px;
-            }
-
-            .bottom-nav {
-                gap: 8px;
-            }
-
-            .bottom-button {
-                font-size: 12px;
-            }
+            margin-top: 10px;
+            font-size: 14px;
         }
     </style>
 </head>
 
-
 <body>
 
-
-<!-- =========================
-     TOP BAR
-========================= -->
-
 <header class="topbar">
+    <div class="logo">Tam Tak</div>
 
-    <div class="brand">
-        Tam Tak
-    </div>
-
-
-    <div class="top-actions">
-
-        <button
-            class="top-button"
-            id="messagesTopButton"
-        >
-            💬 Messages
-        </button>
-
-
-        <button
-            class="top-button logout-button"
-            id="logoutBtn"
-        >
-            Logout
-        </button>
-
-    </div>
-
+    <button id="logoutBtn" class="logout-btn">
+        Logout
+    </button>
 </header>
 
 
-
-<!-- =========================
-     MAIN
-========================= -->
-
 <main class="container">
 
+    <!-- CURRENT USER -->
+    <section class="user-card">
+        <div class="user-info">
 
-    <!-- WELCOME -->
-
-    <section class="welcome-card">
-
-        <h2>
-            Welcome to Tam Tak 👋
-        </h2>
-
-        <div
-            class="email"
-            id="userEmail"
-        >
-            Loading...
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         CREATE POST
-    ========================= -->
-
-    <section class="create-post">
-
-        <textarea
-            id="newPostText"
-            placeholder="What's on your mind?"
-        ></textarea>
-
-
-        <button
-            class="create-button"
-            id="createPostBtn"
-        >
-            ➕ Create Post
-        </button>
-
-    </section>
-
-
-
-    <!-- =========================
-         TABS
-    ========================= -->
-
-    <div class="tabs">
-
-        <button
-            class="tab active"
-            id="postsTab"
-        >
-            🏠 Posts
-        </button>
-
-
-        <button
-            class="tab"
-            id="reelsTab"
-        >
-            🎬 Reels
-        </button>
-
-    </div>
-
-
-
-    <!-- =========================
-         POSTS
-    ========================= -->
-
-    <section id="postsSection">
-
-        <div id="postsContainer">
-
-            <div class="loading">
-                Loading 100 posts...
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         REELS
-    ========================= -->
-
-    <section
-        id="reelsSection"
-        class="hidden"
-    >
-
-        <div id="reelsContainer">
-
-            <div class="loading">
-                Loading 100 reels...
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         PROFILE
-    ========================= -->
-
-    <section
-        id="profileSection"
-        class="hidden"
-    >
-
-        <div class="profile-section">
-
-            <div
-                class="profile-avatar"
-                id="profileAvatar"
-            >
+            <div class="avatar" id="userAvatar">
                 U
             </div>
 
-
-            <div
-                class="profile-name"
-                id="profileName"
-            >
-                Tam Tak User
-            </div>
-
-
-            <div
-                class="profile-email"
-                id="profileEmail"
-            >
-                Loading...
-            </div>
-
-
-            <div class="profile-stats">
-
-                <div class="stat">
-
-                    <strong>
-                        100
-                    </strong>
-
-                    <span>
-                        Posts
-                    </span>
-
+            <div>
+                <div class="name" id="userName">
+                    Loading...
                 </div>
 
-
-                <div class="stat">
-
-                    <strong>
-                        100
-                    </strong>
-
-                    <span>
-                        Reels
-                    </span>
-
+                <div class="email" id="userEmail">
+                    Loading...
                 </div>
-
-
-                <div class="stat">
-
-                    <strong>
-                        1000
-                    </strong>
-
-                    <span>
-                        Users
-                    </span>
-
-                </div>
-
             </div>
 
+        </div>
+    </section>
 
-            <button
-                class="profile-button"
-                id="profileMessagesBtn"
+
+    <!-- CREATE POST -->
+    <section class="create-card">
+
+        <div class="create-title">
+            Create a Post
+        </div>
+
+        <textarea
+            id="caption"
+            placeholder="What's on your mind?"
+        ></textarea>
+
+        <div class="file-box">
+
+            <input
+                type="file"
+                id="mediaFile"
+                accept="image/*,video/*"
             >
-                💬 Open Messages
-            </button>
 
-
-            <button
-                class="profile-button"
-                id="profileLogoutBtn"
-            >
-                🚪 Logout
-            </button>
+            <div style="font-size:13px;color:#777;margin-top:8px;">
+                Select a photo or video
+            </div>
 
         </div>
 
+
+        <div id="preview"></div>
+
+
+        <button
+            id="postBtn"
+            class="post-btn"
+            type="button"
+        >
+            Post
+        </button>
+
+
+        <div
+            id="progress"
+            class="progress"
+        ></div>
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
     </section>
 
+
+    <div class="feed-title">
+        Latest Posts
+    </div>
+
+    <section id="feed">
+
+        <div class="loading">
+            Loading posts...
+        </div>
+
+    </section>
 
 </main>
 
 
-
-<!-- =========================
-     BOTTOM NAV
-========================= -->
-
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
 
-    <button
-        class="bottom-button active"
-        id="homeNav"
-    >
+    <button onclick="location.href='./home.html'">
         🏠 Home
     </button>
 
-
-    <button
-        class="bottom-button"
-        id="reelsNav"
-    >
+    <button onclick="location.href='./home.html#feed'">
         🎬 Reels
     </button>
 
-
-    <button
-        class="bottom-button"
-        id="messagesNav"
-    >
+    <button onclick="location.href='./messages.html'">
         💬 Messages
     </button>
 
-
-    <button
-        class="bottom-button"
-        id="profileNav"
-    >
+    <button onclick="scrollToTop()">
         👤 Profile
     </button>
 
 </nav>
 
 
-
-<!-- =========================
-     FIREBASE + JAVASCRIPT
-========================= -->
-
 <script type="module">
 
-    import {
-        onAuthStateChanged,
-        signOut
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    collection,
+    addDoc,
+    query,
+    orderBy,
+    limit,
+    getDocs,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+import {
+    ref,
+    uploadBytesResumable,
+    getDownloadURL
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-storage.js";
+
+import {
+    auth,
+    db,
+    storage
+} from "./firebase-config.js";
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const userName = document.getElementById("userName");
+const userEmail = document.getElementById("userEmail");
+const userAvatar = document.getElementById("userAvatar");
+
+const mediaFile = document.getElementById("mediaFile");
+const caption = document.getElementById("caption");
+const preview = document.getElementById("preview");
+
+const postBtn = document.getElementById("postBtn");
+const progress = document.getElementById("progress");
+const message = document.getElementById("message");
+const feed = document.getElementById("feed");
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+
+let currentUser = null;
+
+
+/* =========================
+   AUTH CHECK
+========================= */
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        window.location.href = "./index.html";
+        return;
+
     }
-    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
+    currentUser = user;
 
-    import {
-        auth
+    const name =
+        user.displayName ||
+        user.email?.split("@")[0] ||
+        "User";
+
+    userName.textContent = name;
+
+    userEmail.textContent =
+        user.email || "";
+
+    const firstLetter =
+        name.charAt(0).toUpperCase();
+
+    userAvatar.textContent = firstLetter;
+
+    if (user.photoURL) {
+
+        userAvatar.innerHTML =
+            `<img src="${user.photoURL}" alt="Profile">`;
+
     }
-    from "./firebase-config.js";
+
+    await loadPosts();
+
+});
 
 
+/* =========================
+   IMAGE / VIDEO PREVIEW
+========================= */
 
-    /* =========================
-       DOM
-    ========================= */
+mediaFile.addEventListener("change", () => {
 
-    const postsSection =
-        document.getElementById("postsSection");
+    preview.innerHTML = "";
 
+    const file = mediaFile.files[0];
 
-    const reelsSection =
-        document.getElementById("reelsSection");
-
-
-    const profileSection =
-        document.getElementById("profileSection");
+    if (!file) return;
 
 
-    const postsTab =
-        document.getElementById("postsTab");
+    if (file.size > 100 * 1024 * 1024) {
+
+        message.textContent =
+            "Video/photo must be under 100 MB.";
+
+        mediaFile.value = "";
+
+        return;
+
+    }
 
 
-    const reelsTab =
-        document.getElementById("reelsTab");
+    const url = URL.createObjectURL(file);
 
 
-    const postsNav =
-        document.getElementById("homeNav");
+    if (file.type.startsWith("image/")) {
+
+        const img =
+            document.createElement("img");
+
+        img.src = url;
+
+        preview.appendChild(img);
+
+    }
 
 
-    const reelsNav =
-        document.getElementById("reelsNav");
+    else if (file.type.startsWith("video/")) {
+
+        const video =
+            document.createElement("video");
+
+        video.src = url;
+
+        video.controls = true;
+
+        preview.appendChild(video);
+
+    }
+
+});
 
 
-    const messagesNav =
-        document.getElementById("messagesNav");
+/* =========================
+   CREATE POST
+========================= */
+
+postBtn.addEventListener("click", async () => {
+
+    if (!currentUser) {
+
+        message.textContent =
+            "Please login first.";
+
+        return;
+
+    }
 
 
-    const profileNav =
-        document.getElementById("profileNav");
+    const file =
+        mediaFile.files[0];
+
+    const text =
+        caption.value.trim();
 
 
+    if (!file && !text) {
 
-    /* =========================
-       FIREBASE LOGIN CHECK
-    ========================= */
+        message.textContent =
+            "Please add a photo, video or caption.";
 
-    onAuthStateChanged(auth, (user) => {
+        return;
 
-        if (!user) {
+    }
 
-            window.location.href =
-                "./index.html";
 
-            return;
+    if (file &&
+        !file.type.startsWith("image/") &&
+        !file.type.startsWith("video/")) {
+
+        message.textContent =
+            "Only photo and video files are allowed.";
+
+        return;
+
+    }
+
+
+    if (file &&
+        file.size > 100 * 1024 * 1024) {
+
+        message.textContent =
+            "File must be under 100 MB.";
+
+        return;
+
+    }
+
+
+    postBtn.disabled = true;
+
+    message.textContent = "";
+
+    progress.textContent =
+        "Preparing post...";
+
+
+    try {
+
+        let mediaUrl = "";
+        let mediaType = "";
+        let storagePath = "";
+
+
+        /* =========================
+           UPLOAD MEDIA
+        ========================= */
+
+        if (file) {
+
+            mediaType =
+                file.type.startsWith("video/")
+                    ? "video"
+                    : "image";
+
+
+            const safeName =
+                file.name
+                    .replace(/[^a-zA-Z0-9._-]/g, "_");
+
+
+            const fileName =
+                Date.now() +
+                "_" +
+                safeName;
+
+
+            storagePath =
+                `posts/${currentUser.uid}/${fileName}`;
+
+
+            const storageRef =
+                ref(storage, storagePath);
+
+
+            const uploadTask =
+                uploadBytesResumable(
+                    storageRef,
+                    file
+                );
+
+
+            await new Promise(
+                (resolve, reject) => {
+
+                    uploadTask.on(
+                        "state_changed",
+
+                        (snapshot) => {
+
+                            const percent =
+                                Math.round(
+                                    (
+                                        snapshot.bytesTransferred /
+                                        snapshot.totalBytes
+                                    ) * 100
+                                );
+
+                            progress.textContent =
+                                `Uploading ${percent}%`;
+
+                        },
+
+                        (error) => {
+
+                            reject(error);
+
+                        },
+
+                        async () => {
+
+                            mediaUrl =
+                                await getDownloadURL(
+                                    uploadTask.snapshot.ref
+                                );
+
+                            resolve();
+
+                        }
+                    );
+
+                }
+            );
+
         }
 
 
-        const email =
-            user.email || "Tam Tak User";
+        progress.textContent =
+            "Saving post...";
 
 
-        document
-            .getElementById("userEmail")
-            .textContent = email;
-
-
-        document
-            .getElementById("profileEmail")
-            .textContent = email;
-
+        /* =========================
+           SAVE POST IN FIRESTORE
+        ========================= */
 
         const name =
-            user.displayName ||
-            email.split("@")[0] ||
-            "Tam Tak User";
+            currentUser.displayName ||
+            currentUser.email?.split("@")[0] ||
+            "User";
 
 
-        document
-            .getElementById("profileName")
-            .textContent = name;
+        await addDoc(
+            collection(db, "posts"),
+            {
+
+                uid: currentUser.uid,
+
+                name: name,
+
+                email:
+                    currentUser.email || "",
+
+                caption: text,
+
+                mediaUrl: mediaUrl,
+
+                mediaType: mediaType,
+
+                storagePath: storagePath,
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
 
 
-        document
-            .getElementById("profileAvatar")
-            .textContent =
-                name.charAt(0).toUpperCase();
+        /* =========================
+           RESET
+        ========================= */
 
-    });
+        caption.value = "";
+
+        mediaFile.value = "";
+
+        preview.innerHTML = "";
+
+        progress.textContent = "";
+
+        message.textContent =
+            "Post uploaded successfully! 🎉";
 
 
+        await loadPosts();
 
-    /* =========================
-       LOGOUT
-    ========================= */
 
-    async function logoutUser() {
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        console.error(
+            "Firebase error code:",
+            error.code
+        );
+
+        console.error(
+            "Firebase error message:",
+            error.message
+        );
+
+
+        progress.textContent = "";
+
+
+        message.textContent =
+            "Post upload failed: " +
+            error.message;
+
+    }
+
+
+    finally {
+
+        postBtn.disabled = false;
+
+    }
+
+});
+
+
+/* =========================
+   LOAD POSTS
+========================= */
+
+async function loadPosts() {
+
+    feed.innerHTML =
+        `<div class="loading">
+            Loading posts...
+        </div>`;
+
+
+    try {
+
+        const postsQuery =
+            query(
+                collection(db, "posts"),
+                orderBy(
+                    "createdAt",
+                    "desc"
+                ),
+                limit(100)
+            );
+
+
+        const snapshot =
+            await getDocs(postsQuery);
+
+
+        feed.innerHTML = "";
+
+
+        if (snapshot.empty) {
+
+            feed.innerHTML =
+                `<div class="empty">
+                    No posts yet.<br>
+                    Create the first post!
+                </div>`;
+
+            return;
+
+        }
+
+
+        snapshot.forEach((doc) => {
+
+            const post =
+                doc.data();
+
+            renderPost(post);
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        feed.innerHTML =
+            `<div class="empty">
+                Unable to load posts.<br><br>
+                ${escapeHTML(error.message)}
+            </div>`;
+
+    }
+
+}
+
+
+/* =========================
+   RENDER POST
+========================= */
+
+function renderPost(post) {
+
+    const card =
+        document.createElement("article");
+
+    card.className =
+        "post-card";
+
+
+    const name =
+        post.name ||
+        post.email?.split("@")[0] ||
+        "User";
+
+
+    const firstLetter =
+        name.charAt(0).toUpperCase();
+
+
+    const header =
+        document.createElement("div");
+
+    header.className =
+        "post-header";
+
+
+    const avatar =
+        document.createElement("div");
+
+    avatar.className =
+        "avatar";
+
+    avatar.textContent =
+        firstLetter;
+
+
+    const userBox =
+        document.createElement("div");
+
+
+    const nameElement =
+        document.createElement("div");
+
+    nameElement.className =
+        "name";
+
+    nameElement.textContent =
+        name;
+
+
+    const emailElement =
+        document.createElement("div");
+
+    emailElement.className =
+        "email";
+
+    emailElement.textContent =
+        post.email || "";
+
+
+    userBox.appendChild(
+        nameElement
+    );
+
+    userBox.appendChild(
+        emailElement
+    );
+
+
+    header.appendChild(
+        avatar
+    );
+
+    header.appendChild(
+        userBox
+    );
+
+
+    card.appendChild(
+        header
+    );
+
+
+    /* CAPTION */
+
+    if (post.caption) {
+
+        const captionElement =
+            document.createElement("div");
+
+        captionElement.className =
+            "caption";
+
+        captionElement.textContent =
+            post.caption;
+
+        card.appendChild(
+            captionElement
+        );
+
+    }
+
+
+    /* MEDIA */
+
+    if (post.mediaUrl) {
+
+        if (post.mediaType === "video") {
+
+            const video =
+                document.createElement("video");
+
+            video.className =
+                "post-media";
+
+            video.src =
+                post.mediaUrl;
+
+            video.controls = true;
+
+            video.preload = "metadata";
+
+            card.appendChild(
+                video
+            );
+
+        }
+
+        else {
+
+            const img =
+                document.createElement("img");
+
+            img.className =
+                "post-media";
+
+            img.src =
+                post.mediaUrl;
+
+            img.alt =
+                "Tam Tak post";
+
+            img.loading =
+                "lazy";
+
+            card.appendChild(
+                img
+            );
+
+        }
+
+    }
+
+
+    /* ACTIONS */
+
+    const actions =
+        document.createElement("div");
+
+    actions.className =
+        "actions";
+
+
+    const like =
+        document.createElement("button");
+
+    like.className =
+        "action-btn";
+
+    like.textContent =
+        "❤️ Like";
+
+    like.onclick = () => {
+
+        like.textContent =
+            "❤️ Liked";
+
+    };
+
+
+    const comment =
+        document.createElement("button");
+
+    comment.className =
+        "action-btn";
+
+    comment.textContent =
+        "💬 Comment";
+
+    comment.onclick = () => {
+
+        alert(
+            "Comments feature will be connected next."
+        );
+
+    };
+
+
+    const share =
+        document.createElement("button");
+
+    share.className =
+        "action-btn";
+
+    share.textContent =
+        "↗️ Share";
+
+    share.onclick = async () => {
+
+        try {
+
+            await navigator.clipboard.writeText(
+                post.mediaUrl || ""
+            );
+
+            alert(
+                "Post link copied!"
+            );
+
+        }
+
+        catch {
+
+            alert(
+                "Share link: " +
+                (post.mediaUrl || "")
+            );
+
+        }
+
+    };
+
+
+    actions.appendChild(
+        like
+    );
+
+    actions.appendChild(
+        comment
+    );
+
+    actions.appendChild(
+        share
+    );
+
+
+    card.appendChild(
+        actions
+    );
+
+
+    feed.appendChild(
+        card
+    );
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+logoutBtn.addEventListener(
+    "click",
+    async () => {
 
         try {
 
@@ -1017,778 +1119,45 @@
             window.location.href =
                 "./index.html";
 
-        } catch (error) {
+        }
+
+        catch (error) {
 
             alert(
-                "Logout error: " +
+                "Logout failed: " +
                 error.message
             );
 
         }
 
     }
+);
 
 
-    document
-        .getElementById("logoutBtn")
-        .addEventListener(
-            "click",
-            logoutUser
-        );
+/* =========================
+   HELPERS
+========================= */
 
+function escapeHTML(value) {
 
-    document
-        .getElementById("profileLogoutBtn")
-        .addEventListener(
-            "click",
-            logoutUser
-        );
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 
+}
 
 
-    /* =========================
-       MESSAGES
-    ========================= */
+window.scrollToTop = function () {
 
-    function openMessages() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
-        window.location.href =
-            "./messages.html";
-
-    }
-
-
-    document
-        .getElementById("messagesTopButton")
-        .addEventListener(
-            "click",
-            openMessages
-        );
-
-
-    document
-        .getElementById("messagesNav")
-        .addEventListener(
-            "click",
-            openMessages
-        );
-
-
-    document
-        .getElementById("profileMessagesBtn")
-        .addEventListener(
-            "click",
-            openMessages
-        );
-
-
-
-    /* =========================
-       SHOW HOME
-    ========================= */
-
-    function showHome() {
-
-        postsSection
-            .classList
-            .remove("hidden");
-
-
-        reelsSection
-            .classList
-            .add("hidden");
-
-
-        profileSection
-            .classList
-            .add("hidden");
-
-
-        postsTab
-            .classList
-            .add("active");
-
-
-        reelsTab
-            .classList
-            .remove("active");
-
-
-        postsNav
-            .classList
-            .add("active");
-
-
-        reelsNav
-            .classList
-            .remove("active");
-
-
-        profileNav
-            .classList
-            .remove("active");
-
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    }
-
-
-
-    /* =========================
-       SHOW REELS
-    ========================= */
-
-    function showReels() {
-
-        postsSection
-            .classList
-            .add("hidden");
-
-
-        reelsSection
-            .classList
-            .remove("hidden");
-
-
-        profileSection
-            .classList
-            .add("hidden");
-
-
-        postsTab
-            .classList
-            .remove("active");
-
-
-        reelsTab
-            .classList
-            .add("active");
-
-
-        postsNav
-            .classList
-            .remove("active");
-
-
-        reelsNav
-            .classList
-            .add("active");
-
-
-        profileNav
-            .classList
-            .remove("active");
-
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    }
-
-
-
-    /* =========================
-       SHOW PROFILE
-    ========================= */
-
-    function showProfile() {
-
-        postsSection
-            .classList
-            .add("hidden");
-
-
-        reelsSection
-            .classList
-            .add("hidden");
-
-
-        profileSection
-            .classList
-            .remove("hidden");
-
-
-        postsNav
-            .classList
-            .remove("active");
-
-
-        reelsNav
-            .classList
-            .remove("active");
-
-
-        profileNav
-            .classList
-            .add("active");
-
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    }
-
-
-
-    postsTab
-        .addEventListener(
-            "click",
-            showHome
-        );
-
-
-    postsNav
-        .addEventListener(
-            "click",
-            showHome
-        );
-
-
-    reelsTab
-        .addEventListener(
-            "click",
-            showReels
-        );
-
-
-    reelsNav
-        .addEventListener(
-            "click",
-            showReels
-        );
-
-
-    profileNav
-        .addEventListener(
-            "click",
-            showProfile
-        );
-
-
-
-    /* =========================
-       100 POSTS
-    ========================= */
-
-    const postsContainer =
-        document.getElementById(
-            "postsContainer"
-        );
-
-
-    const captions = [
-
-        "Beautiful day on Tam Tak 🌅",
-
-        "Keep smiling 😊",
-
-        "Enjoy every moment ❤️",
-
-        "New day, new beginning ✨",
-
-        "Stay positive 💫",
-
-        "Dream big 🚀",
-
-        "Life is beautiful 🌎",
-
-        "Never give up 💪",
-
-        "Good vibes only 😎",
-
-        "Believe in yourself ❤️"
-
-    ];
-
-
-    function createPost(index) {
-
-        const post =
-            document.createElement(
-                "article"
-            );
-
-
-        post.className = "post";
-
-
-        const userNumber =
-            ((index - 1) % 100) + 1;
-
-
-        const caption =
-            captions[
-                (index - 1) %
-                captions.length
-            ];
-
-
-        post.innerHTML = `
-
-            <div class="post-header">
-
-                <div class="avatar">
-                    U${userNumber}
-                </div>
-
-
-                <div>
-
-                    <div class="post-user">
-                        Tam Tak User ${userNumber}
-                    </div>
-
-                    <div class="post-time">
-                        Post #${index}
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <img
-                class="post-image"
-                src="https://picsum.photos/seed/tamtak-post-${index}/700/700"
-                alt="Tam Tak Post ${index}"
-                loading="lazy"
-            >
-
-
-            <div class="post-content">
-
-                <div class="caption">
-                    ${caption}
-                </div>
-
-
-                <div class="actions">
-
-                    <button
-                        class="action-button"
-                        onclick="likePost(this)"
-                    >
-                        ❤️ Like
-                    </button>
-
-
-                    <button
-                        class="action-button"
-                        onclick="commentPost(${index})"
-                    >
-                        💬 Comment
-                    </button>
-
-
-                    <button
-                        class="action-button"
-                        onclick="sharePost(${index})"
-                    >
-                        📤 Share
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        return post;
-
-    }
-
-
-    for (
-        let i = 1;
-        i <= 100;
-        i++
-    ) {
-
-        postsContainer.appendChild(
-            createPost(i)
-        );
-
-    }
-
-
-
-    /* =========================
-       100 REELS
-    ========================= */
-
-    const reelsContainer =
-        document.getElementById(
-            "reelsContainer"
-        );
-
-
-    function createReel(index) {
-
-        const reel =
-            document.createElement(
-                "article"
-            );
-
-
-        reel.className = "reel";
-
-
-        const userNumber =
-            ((index - 1) % 100) + 1;
-
-
-        reel.innerHTML = `
-
-            <video
-                class="reel-video"
-                controls
-                muted
-                loop
-                preload="metadata"
-                poster="https://picsum.photos/seed/tamtak-reel-${index}/500/850"
-            >
-
-                <source
-                    src="https://www.w3schools.com/html/mov_bbb.mp4"
-                    type="video/mp4"
-                >
-
-                Your browser does not support video.
-
-            </video>
-
-
-            <div class="reel-info">
-
-                <div class="reel-user">
-                    🎬 Tam Tak User ${userNumber}
-                </div>
-
-
-                <div class="reel-caption">
-
-                    Amazing Tam Tak Reel #${index} 🔥
-
-                    <br>
-
-                    Connect. Share. Discover.
-
-                </div>
-
-
-                <div class="reel-actions">
-
-                    <button
-                        onclick="likeReel(this)"
-                    >
-                        ❤️ Like
-                    </button>
-
-
-                    <button
-                        onclick="commentReel(${index})"
-                    >
-                        💬 Comment
-                    </button>
-
-
-                    <button
-                        onclick="shareReel(${index})"
-                    >
-                        📤 Share
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        return reel;
-
-    }
-
-
-    for (
-        let i = 1;
-        i <= 100;
-        i++
-    ) {
-
-        reelsContainer.appendChild(
-            createReel(i)
-        );
-
-    }
-
-
-
-    /* =========================
-       LIKE POST
-    ========================= */
-
-    window.likePost =
-        function(button) {
-
-            if (
-                button.dataset.liked ===
-                "true"
-            ) {
-
-                button.dataset.liked =
-                    "false";
-
-                button.textContent =
-                    "❤️ Like";
-
-            } else {
-
-                button.dataset.liked =
-                    "true";
-
-                button.textContent =
-                    "💖 Liked";
-
-            }
-
-        };
-
-
-
-    /* =========================
-       LIKE REEL
-    ========================= */
-
-    window.likeReel =
-        function(button) {
-
-            if (
-                button.dataset.liked ===
-                "true"
-            ) {
-
-                button.dataset.liked =
-                    "false";
-
-                button.textContent =
-                    "❤️ Like";
-
-            } else {
-
-                button.dataset.liked =
-                    "true";
-
-                button.textContent =
-                    "💖 Liked";
-
-            }
-
-        };
-
-
-
-    /* =========================
-       COMMENT POST
-    ========================= */
-
-    window.commentPost =
-        function(index) {
-
-            const comment =
-                prompt(
-                    "Comment on Post #" +
-                    index
-                );
-
-
-            if (
-                comment &&
-                comment.trim()
-            ) {
-
-                alert(
-                    "Comment added successfully! 💬"
-                );
-
-            }
-
-        };
-
-
-
-    /* =========================
-       COMMENT REEL
-    ========================= */
-
-    window.commentReel =
-        function(index) {
-
-            const comment =
-                prompt(
-                    "Comment on Reel #" +
-                    index
-                );
-
-
-            if (
-                comment &&
-                comment.trim()
-            ) {
-
-                alert(
-                    "Comment added successfully! 💬"
-                );
-
-            }
-
-        };
-
-
-
-    /* =========================
-       SHARE POST
-    ========================= */
-
-    window.sharePost =
-        async function(index) {
-
-            const text =
-                "Check out Tam Tak Post #" +
-                index;
-
-
-            if (
-                navigator.share
-            ) {
-
-                try {
-
-                    await navigator.share({
-
-                        title:
-                            "Tam Tak",
-
-                        text:
-                            text,
-
-                        url:
-                            window.location.href
-
-                    });
-
-                } catch (error) {
-
-                    console.log(error);
-
-                }
-
-            } else {
-
-                alert(text);
-
-            }
-
-        };
-
-
-
-    /* =========================
-       SHARE REEL
-    ========================= */
-
-    window.shareReel =
-        async function(index) {
-
-            const text =
-                "Check out Tam Tak Reel #" +
-                index;
-
-
-            if (
-                navigator.share
-            ) {
-
-                try {
-
-                    await navigator.share({
-
-                        title:
-                            "Tam Tak Reel",
-
-                        text:
-                            text,
-
-                        url:
-                            window.location.href
-
-                    });
-
-                } catch (error) {
-
-                    console.log(error);
-
-                }
-
-            } else {
-
-                alert(text);
-
-            }
-
-        };
-
-
-
-    /* =========================
-       CREATE POST
-    ========================= */
-
-    document
-        .getElementById("createPostBtn")
-        .addEventListener(
-            "click",
-            () => {
-
-                const textarea =
-                    document.getElementById(
-                        "newPostText"
-                    );
-
-
-                const text =
-                    textarea.value.trim();
-
-
-                if (!text) {
-
-                    alert(
-                        "Please write something first."
-                    );
-
-                    return;
-
-                }
-
-
-                alert(
-                    "Post created successfully! 🎉"
-                );
-
-
-                textarea.value = "";
-
-            }
-        );
+};
 
 </script>
 
