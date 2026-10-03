@@ -15,17 +15,17 @@
 
         body {
             margin: 0;
+            background: #f5f6f8;
             font-family: Arial, sans-serif;
-            background: #f4f6f8;
             color: #111827;
         }
 
         .topbar {
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
             height: 64px;
-            background: white;
+            background: #fff;
             border-bottom: 1px solid #ddd;
             display: flex;
             align-items: center;
@@ -34,13 +34,20 @@
         }
 
         .logo {
-            font-size: 25px;
+            font-size: 26px;
             font-weight: 800;
-            color: #833ab4;
+            background: linear-gradient(
+                90deg,
+                #833ab4,
+                #fd1d1d,
+                #fcb045
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .logout-btn {
-            border: none;
+        .logout {
+            border: 0;
             background: #111827;
             color: white;
             padding: 9px 15px;
@@ -50,171 +57,185 @@
 
         .container {
             width: min(700px, 94%);
-            margin: 20px auto 100px;
+            margin: 20px auto 90px;
         }
 
-        .user-card,
-        .create-card,
-        .post-card {
+        .welcome {
             background: white;
-            border-radius: 15px;
-            padding: 16px;
-            margin-bottom: 18px;
-            box-shadow: 0 3px 14px rgba(0,0,0,.08);
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 20px;
-            overflow: hidden;
-        }
-
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .name {
-            font-weight: 700;
-        }
-
-        .email {
-            font-size: 13px;
-            color: #777;
-        }
-
-        .create-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 14px;
-        }
-
-        #caption {
-            width: 100%;
-            min-height: 90px;
-            resize: vertical;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            outline: none;
-            font-size: 15px;
-            margin-bottom: 12px;
-        }
-
-        .file-box {
-            border: 2px dashed #bbb;
-            border-radius: 12px;
             padding: 18px;
-            text-align: center;
-            margin-bottom: 12px;
-            background: #fafafa;
+            border-radius: 15px;
+            margin-bottom: 18px;
+            box-shadow: 0 3px 15px rgba(0,0,0,.07);
         }
 
-        #mediaFile {
-            width: 100%;
+        .welcome h2 {
+            margin: 0 0 5px;
         }
 
-        #preview {
-            margin-top: 12px;
+        .welcome p {
+            margin: 0;
+            color: #666;
         }
 
-        #preview img,
-        #preview video {
-            width: 100%;
-            max-height: 450px;
-            object-fit: contain;
-            border-radius: 12px;
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
         }
 
-        .post-btn {
-            width: 100%;
-            border: none;
-            background: linear-gradient(90deg,#833ab4,#fd1d1d,#fcb045);
-            color: white;
-            padding: 13px;
+        .tab {
+            flex: 1;
+            border: 0;
+            padding: 12px;
             border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
+            background: white;
             cursor: pointer;
+            font-weight: bold;
         }
 
-        .post-btn:disabled {
-            opacity: .6;
-            cursor: not-allowed;
+        .tab.active {
+            background: #111827;
+            color: white;
         }
 
-        .progress {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #555;
-            text-align: center;
+        .post {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,.08);
         }
 
         .post-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
+            gap: 11px;
+            padding: 14px;
         }
 
-        .post-date {
-            font-size: 12px;
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                #833ab4,
+                #fd1d1d,
+                #fcb045
+            );
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .post-name {
+            font-weight: 700;
+        }
+
+        .post-time {
             color: #888;
+            font-size: 12px;
+            margin-top: 2px;
         }
 
         .caption {
-            margin: 8px 0 12px;
+            padding: 0 14px 13px;
+            line-height: 1.5;
             white-space: pre-wrap;
-            word-break: break-word;
         }
 
-        .post-media {
+        .post-image,
+        .post-video {
             width: 100%;
-            max-height: 600px;
-            object-fit: contain;
+            display: block;
+            max-height: 620px;
+            object-fit: cover;
             background: #000;
-            border-radius: 12px;
+        }
+
+        .post-video {
+            aspect-ratio: 9 / 16;
         }
 
         .actions {
             display: flex;
-            gap: 8px;
-            margin-top: 12px;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 12px;
+            border-top: 1px solid #eee;
         }
 
-        .action-btn {
-            border: none;
-            background: #f1f3f5;
-            padding: 9px 14px;
+        .action {
+            border: 0;
+            background: transparent;
+            padding: 9px 12px;
             border-radius: 8px;
             cursor: pointer;
+            font-size: 15px;
         }
 
-        .feed-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin: 25px 0 14px;
+        .action:hover {
+            background: #f1f3f5;
+        }
+
+        .action.liked {
+            color: #e11d48;
+            font-weight: bold;
+        }
+
+        .comments {
+            padding: 0 14px 14px;
+        }
+
+        .comment-list {
+            max-height: 180px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .comment {
+            background: #f4f5f7;
+            padding: 8px 10px;
+            border-radius: 10px;
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+
+        .comment strong {
+            margin-right: 5px;
+        }
+
+        .comment-form {
+            display: flex;
+            gap: 7px;
+        }
+
+        .comment-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            padding: 10px;
+            outline: none;
+        }
+
+        .comment-send {
+            border: 0;
+            background: #111827;
+            color: white;
+            border-radius: 9px;
+            padding: 0 14px;
+            cursor: pointer;
         }
 
         .loading,
         .empty {
-            text-align: center;
+            background: white;
             padding: 30px;
+            border-radius: 15px;
+            text-align: center;
             color: #777;
         }
 
@@ -229,20 +250,20 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .bottom-nav button {
-            border: none;
-            background: none;
-            font-size: 14px;
+            border: 0;
+            background: transparent;
             cursor: pointer;
+            font-size: 14px;
         }
 
-        .message {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
+        .reels-title {
+            font-size: 21px;
+            font-weight: bold;
+            margin: 10px 0 15px;
         }
     </style>
 </head>
@@ -252,7 +273,7 @@
 <header class="topbar">
     <div class="logo">Tam Tak</div>
 
-    <button id="logoutBtn" class="logout-btn">
+    <button id="logoutBtn" class="logout">
         Logout
     </button>
 </header>
@@ -260,103 +281,49 @@
 
 <main class="container">
 
-    <!-- CURRENT USER -->
-    <section class="user-card">
-        <div class="user-info">
-
-            <div class="avatar" id="userAvatar">
-                U
-            </div>
-
-            <div>
-                <div class="name" id="userName">
-                    Loading...
-                </div>
-
-                <div class="email" id="userEmail">
-                    Loading...
-                </div>
-            </div>
-
-        </div>
+    <section class="welcome">
+        <h2 id="welcomeName">Welcome to Tam Tak</h2>
+        <p>Connect. Share. Discover.</p>
     </section>
 
 
-    <!-- CREATE POST -->
-    <section class="create-card">
-
-        <div class="create-title">
-            Create a Post
-        </div>
-
-        <textarea
-            id="caption"
-            placeholder="What's on your mind?"
-        ></textarea>
-
-        <div class="file-box">
-
-            <input
-                type="file"
-                id="mediaFile"
-                accept="image/*,video/*"
-            >
-
-            <div style="font-size:13px;color:#777;margin-top:8px;">
-                Select a photo or video
-            </div>
-
-        </div>
-
-
-        <div id="preview"></div>
-
+    <div class="tabs">
 
         <button
-            id="postBtn"
-            class="post-btn"
-            type="button"
+            id="postsTab"
+            class="tab active"
         >
-            Post
+            🏠 Posts
         </button>
 
+        <button
+            id="reelsTab"
+            class="tab"
+        >
+            🎬 Reels
+        </button>
 
-        <div
-            id="progress"
-            class="progress"
-        ></div>
-
-        <div
-            id="message"
-            class="message"
-        ></div>
-
-    </section>
-
-
-    <div class="feed-title">
-        Latest Posts
     </div>
 
-    <section id="feed">
+
+    <div id="feed">
 
         <div class="loading">
-            Loading posts...
+            Loading Tam Tak...
         </div>
 
-    </section>
+    </div>
 
 </main>
 
 
-<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
 
-    <button onclick="location.href='./home.html'">
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
         🏠 Home
     </button>
 
-    <button onclick="location.href='./home.html#feed'">
+    <button onclick="showReels()">
         🎬 Reels
     </button>
 
@@ -364,7 +331,7 @@
         💬 Messages
     </button>
 
-    <button onclick="scrollToTop()">
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
         👤 Profile
     </button>
 
@@ -380,61 +347,77 @@ import {
 
 import {
     collection,
-    addDoc,
     query,
     orderBy,
     limit,
     getDocs,
-    serverTimestamp
+    addDoc,
+    serverTimestamp,
+    doc,
+    updateDoc,
+    arrayUnion
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 import {
-    ref,
-    uploadBytesResumable,
-    getDownloadURL
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-storage.js";
-
-import {
     auth,
-    db,
-    storage
+    db
 } from "./firebase-config.js";
 
 
 /* =========================
-   ELEMENTS
+   USERS YOU PROVIDED
 ========================= */
 
-const userName = document.getElementById("userName");
-const userEmail = document.getElementById("userEmail");
-const userAvatar = document.getElementById("userAvatar");
+const users = [
+    "Rahul",
+    "Anuj",
+    "Dhurv",
+    "Himani",
+    "Poonam",
+    "Amit",
+    "Avinash",
+    "Om",
+    "Rohit",
+    "Prince",
+    "Akash",
+    "Deepak",
+    "Piyush",
+    "Pinki",
+    "Rani",
+    "Raju",
+    "Ram",
+    "Rakesh",
+    "Pinku",
+    "Tanu",
+    "Neeru",
+    "Neelam",
+    "Pravesh",
+    "Rk"
+];
 
-const mediaFile = document.getElementById("mediaFile");
-const caption = document.getElementById("caption");
-const preview = document.getElementById("preview");
 
-const postBtn = document.getElementById("postBtn");
-const progress = document.getElementById("progress");
-const message = document.getElementById("message");
-const feed = document.getElementById("feed");
+/* =========================
+   SAMPLE REELS
+========================= */
 
-const logoutBtn = document.getElementById("logoutBtn");
+const sampleVideos = [
+    "https://www.w3schools.com/html/mov_bbb.mp4",
+    "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+];
 
 
 let currentUser = null;
 
 
 /* =========================
-   AUTH CHECK
+   AUTH
 ========================= */
 
 onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
-
         window.location.href = "./index.html";
         return;
-
     }
 
     currentUser = user;
@@ -444,22 +427,8 @@ onAuthStateChanged(auth, async (user) => {
         user.email?.split("@")[0] ||
         "User";
 
-    userName.textContent = name;
-
-    userEmail.textContent =
-        user.email || "";
-
-    const firstLetter =
-        name.charAt(0).toUpperCase();
-
-    userAvatar.textContent = firstLetter;
-
-    if (user.photoURL) {
-
-        userAvatar.innerHTML =
-            `<img src="${user.photoURL}" alt="Profile">`;
-
-    }
+    document.getElementById("welcomeName")
+        .textContent = "Welcome, " + name + " 👋";
 
     await loadPosts();
 
@@ -467,377 +436,95 @@ onAuthStateChanged(auth, async (user) => {
 
 
 /* =========================
-   IMAGE / VIDEO PREVIEW
-========================= */
-
-mediaFile.addEventListener("change", () => {
-
-    preview.innerHTML = "";
-
-    const file = mediaFile.files[0];
-
-    if (!file) return;
-
-
-    if (file.size > 100 * 1024 * 1024) {
-
-        message.textContent =
-            "Video/photo must be under 100 MB.";
-
-        mediaFile.value = "";
-
-        return;
-
-    }
-
-
-    const url = URL.createObjectURL(file);
-
-
-    if (file.type.startsWith("image/")) {
-
-        const img =
-            document.createElement("img");
-
-        img.src = url;
-
-        preview.appendChild(img);
-
-    }
-
-
-    else if (file.type.startsWith("video/")) {
-
-        const video =
-            document.createElement("video");
-
-        video.src = url;
-
-        video.controls = true;
-
-        preview.appendChild(video);
-
-    }
-
-});
-
-
-/* =========================
-   CREATE POST
-========================= */
-
-postBtn.addEventListener("click", async () => {
-
-    if (!currentUser) {
-
-        message.textContent =
-            "Please login first.";
-
-        return;
-
-    }
-
-
-    const file =
-        mediaFile.files[0];
-
-    const text =
-        caption.value.trim();
-
-
-    if (!file && !text) {
-
-        message.textContent =
-            "Please add a photo, video or caption.";
-
-        return;
-
-    }
-
-
-    if (file &&
-        !file.type.startsWith("image/") &&
-        !file.type.startsWith("video/")) {
-
-        message.textContent =
-            "Only photo and video files are allowed.";
-
-        return;
-
-    }
-
-
-    if (file &&
-        file.size > 100 * 1024 * 1024) {
-
-        message.textContent =
-            "File must be under 100 MB.";
-
-        return;
-
-    }
-
-
-    postBtn.disabled = true;
-
-    message.textContent = "";
-
-    progress.textContent =
-        "Preparing post...";
-
-
-    try {
-
-        let mediaUrl = "";
-        let mediaType = "";
-        let storagePath = "";
-
-
-        /* =========================
-           UPLOAD MEDIA
-        ========================= */
-
-        if (file) {
-
-            mediaType =
-                file.type.startsWith("video/")
-                    ? "video"
-                    : "image";
-
-
-            const safeName =
-                file.name
-                    .replace(/[^a-zA-Z0-9._-]/g, "_");
-
-
-            const fileName =
-                Date.now() +
-                "_" +
-                safeName;
-
-
-            storagePath =
-                `posts/${currentUser.uid}/${fileName}`;
-
-
-            const storageRef =
-                ref(storage, storagePath);
-
-
-            const uploadTask =
-                uploadBytesResumable(
-                    storageRef,
-                    file
-                );
-
-
-            await new Promise(
-                (resolve, reject) => {
-
-                    uploadTask.on(
-                        "state_changed",
-
-                        (snapshot) => {
-
-                            const percent =
-                                Math.round(
-                                    (
-                                        snapshot.bytesTransferred /
-                                        snapshot.totalBytes
-                                    ) * 100
-                                );
-
-                            progress.textContent =
-                                `Uploading ${percent}%`;
-
-                        },
-
-                        (error) => {
-
-                            reject(error);
-
-                        },
-
-                        async () => {
-
-                            mediaUrl =
-                                await getDownloadURL(
-                                    uploadTask.snapshot.ref
-                                );
-
-                            resolve();
-
-                        }
-                    );
-
-                }
-            );
-
-        }
-
-
-        progress.textContent =
-            "Saving post...";
-
-
-        /* =========================
-           SAVE POST IN FIRESTORE
-        ========================= */
-
-        const name =
-            currentUser.displayName ||
-            currentUser.email?.split("@")[0] ||
-            "User";
-
-
-        await addDoc(
-            collection(db, "posts"),
-            {
-
-                uid: currentUser.uid,
-
-                name: name,
-
-                email:
-                    currentUser.email || "",
-
-                caption: text,
-
-                mediaUrl: mediaUrl,
-
-                mediaType: mediaType,
-
-                storagePath: storagePath,
-
-                createdAt:
-                    serverTimestamp()
-
-            }
-        );
-
-
-        /* =========================
-           RESET
-        ========================= */
-
-        caption.value = "";
-
-        mediaFile.value = "";
-
-        preview.innerHTML = "";
-
-        progress.textContent = "";
-
-        message.textContent =
-            "Post uploaded successfully! 🎉";
-
-
-        await loadPosts();
-
-
-    }
-
-    catch (error) {
-
-        console.error(error);
-
-        console.error(
-            "Firebase error code:",
-            error.code
-        );
-
-        console.error(
-            "Firebase error message:",
-            error.message
-        );
-
-
-        progress.textContent = "";
-
-
-        message.textContent =
-            "Post upload failed: " +
-            error.message;
-
-    }
-
-
-    finally {
-
-        postBtn.disabled = false;
-
-    }
-
-});
-
-
-/* =========================
-   LOAD POSTS
+   LOAD FIRESTORE POSTS
 ========================= */
 
 async function loadPosts() {
+
+    const feed =
+        document.getElementById("feed");
 
     feed.innerHTML =
         `<div class="loading">
             Loading posts...
         </div>`;
 
-
     try {
 
-        const postsQuery =
-            query(
-                collection(db, "posts"),
-                orderBy(
-                    "createdAt",
-                    "desc"
-                ),
-                limit(100)
-            );
-
+        const q = query(
+            collection(db, "posts"),
+            orderBy("createdAt", "desc"),
+            limit(100)
+        );
 
         const snapshot =
-            await getDocs(postsQuery);
-
+            await getDocs(q);
 
         feed.innerHTML = "";
 
-
         if (snapshot.empty) {
 
-            feed.innerHTML =
-                `<div class="empty">
-                    No posts yet.<br>
-                    Create the first post!
-                </div>`;
+            createDemoPosts();
 
             return;
-
         }
 
+        snapshot.forEach(postDoc => {
 
-        snapshot.forEach((doc) => {
-
-            const post =
-                doc.data();
-
-            renderPost(post);
+            renderPost(
+                postDoc.id,
+                postDoc.data()
+            );
 
         });
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
-        feed.innerHTML =
-            `<div class="empty">
-                Unable to load posts.<br><br>
-                ${escapeHTML(error.message)}
-            </div>`;
+        createDemoPosts();
 
     }
+
+}
+
+
+/* =========================
+   DEMO POSTS
+========================= */
+
+function createDemoPosts() {
+
+    const feed =
+        document.getElementById("feed");
+
+    feed.innerHTML = "";
+
+    users.forEach((name, index) => {
+
+        renderPost(
+            "demo-" + index,
+            {
+                name: name,
+                caption:
+                    "Welcome to Tam Tak ❤️",
+                mediaType:
+                    index % 4 === 0
+                        ? "video"
+                        : "image",
+                mediaUrl:
+                    index % 4 === 0
+                        ? sampleVideos[
+                            index %
+                            sampleVideos.length
+                        ]
+                        : `https://picsum.photos/seed/tamtak-${index}/800/900`,
+                likes: [],
+                comments: []
+            }
+        );
+
+    });
 
 }
 
@@ -846,24 +533,18 @@ async function loadPosts() {
    RENDER POST
 ========================= */
 
-function renderPost(post) {
+function renderPost(id, post) {
 
-    const card =
+    const feed =
+        document.getElementById("feed");
+
+    const article =
         document.createElement("article");
 
-    card.className =
-        "post-card";
+    article.className = "post";
 
 
-    const name =
-        post.name ||
-        post.email?.split("@")[0] ||
-        "User";
-
-
-    const firstLetter =
-        name.charAt(0).toUpperCase();
-
+    /* HEADER */
 
     const header =
         document.createElement("div");
@@ -878,73 +559,47 @@ function renderPost(post) {
     avatar.className =
         "avatar";
 
+    const name =
+        post.name ||
+        post.email?.split("@")[0] ||
+        "User";
+
     avatar.textContent =
-        firstLetter;
+        name.charAt(0).toUpperCase();
 
 
-    const userBox =
+    const info =
         document.createElement("div");
 
+    info.innerHTML = `
+        <div class="post-name"></div>
+        <div class="post-time">Tam Tak</div>
+    `;
 
-    const nameElement =
-        document.createElement("div");
-
-    nameElement.className =
-        "name";
-
-    nameElement.textContent =
-        name;
+    info.querySelector(".post-name")
+        .textContent = name;
 
 
-    const emailElement =
-        document.createElement("div");
+    header.appendChild(avatar);
+    header.appendChild(info);
 
-    emailElement.className =
-        "email";
-
-    emailElement.textContent =
-        post.email || "";
-
-
-    userBox.appendChild(
-        nameElement
-    );
-
-    userBox.appendChild(
-        emailElement
-    );
-
-
-    header.appendChild(
-        avatar
-    );
-
-    header.appendChild(
-        userBox
-    );
-
-
-    card.appendChild(
-        header
-    );
+    article.appendChild(header);
 
 
     /* CAPTION */
 
     if (post.caption) {
 
-        const captionElement =
+        const caption =
             document.createElement("div");
 
-        captionElement.className =
+        caption.className =
             "caption";
 
-        captionElement.textContent =
+        caption.textContent =
             post.caption;
 
-        card.appendChild(
-            captionElement
-        );
+        article.appendChild(caption);
 
     }
 
@@ -959,41 +614,34 @@ function renderPost(post) {
                 document.createElement("video");
 
             video.className =
-                "post-media";
+                "post-video";
 
             video.src =
                 post.mediaUrl;
 
             video.controls = true;
 
+            video.playsInline = true;
+
             video.preload = "metadata";
 
-            card.appendChild(
-                video
-            );
+            article.appendChild(video);
 
-        }
+        } else {
 
-        else {
-
-            const img =
+            const image =
                 document.createElement("img");
 
-            img.className =
-                "post-media";
+            image.className =
+                "post-image";
 
-            img.src =
+            image.src =
                 post.mediaUrl;
 
-            img.alt =
-                "Tam Tak post";
-
-            img.loading =
+            image.loading =
                 "lazy";
 
-            card.appendChild(
-                img
-            );
+            article.appendChild(image);
 
         }
 
@@ -1009,69 +657,396 @@ function renderPost(post) {
         "actions";
 
 
-    const like =
+    const likeButton =
         document.createElement("button");
 
-    like.className =
-        "action-btn";
+    likeButton.className =
+        "action";
 
-    like.textContent =
-        "❤️ Like";
+    const initialLikes =
+        Array.isArray(post.likes)
+            ? post.likes.length
+            : 0;
 
-    like.onclick = () => {
-
-        like.textContent =
-            "❤️ Liked";
-
-    };
+    likeButton.textContent =
+        `❤️ Like ${initialLikes}`;
 
 
-    const comment =
+    likeButton.onclick =
+        async () => {
+
+            likeButton.classList.toggle(
+                "liked"
+            );
+
+            if (
+                !id.startsWith("demo-")
+            ) {
+
+                try {
+
+                    await updateDoc(
+                        doc(db, "posts", id),
+                        {
+                            likes: arrayUnion(
+                                currentUser.uid
+                            )
+                        }
+                    );
+
+                } catch (error) {
+
+                    console.error(error);
+
+                }
+
+            }
+
+        };
+
+
+    const commentButton =
         document.createElement("button");
 
-    comment.className =
-        "action-btn";
+    commentButton.className =
+        "action";
 
-    comment.textContent =
+    commentButton.textContent =
         "💬 Comment";
 
-    comment.onclick = () => {
 
-        alert(
-            "Comments feature will be connected next."
-        );
-
-    };
-
-
-    const share =
+    const shareButton =
         document.createElement("button");
 
-    share.className =
-        "action-btn";
+    shareButton.className =
+        "action";
 
-    share.textContent =
+    shareButton.textContent =
         "↗️ Share";
 
-    share.onclick = async () => {
 
-        try {
+    shareButton.onclick =
+        async () => {
 
-            await navigator.clipboard.writeText(
-                post.mediaUrl || ""
+            const shareData = {
+                title: "Tam Tak",
+                text:
+                    `${name} posted on Tam Tak`,
+                url:
+                    window.location.href
+            };
+
+            try {
+
+                if (
+                    navigator.share
+                ) {
+
+                    await navigator.share(
+                        shareData
+                    );
+
+                } else {
+
+                    await navigator.clipboard
+                        .writeText(
+                            window.location.href
+                        );
+
+                    alert(
+                        "Post link copied!"
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.log(error);
+
+            }
+
+        };
+
+
+    actions.appendChild(
+        likeButton
+    );
+
+    actions.appendChild(
+        commentButton
+    );
+
+    actions.appendChild(
+        shareButton
+    );
+
+    article.appendChild(actions);
+
+
+    /* COMMENTS */
+
+    const commentsBox =
+        document.createElement("div");
+
+    commentsBox.className =
+        "comments";
+
+
+    const commentList =
+        document.createElement("div");
+
+    commentList.className =
+        "comment-list";
+
+
+    if (
+        Array.isArray(post.comments)
+    ) {
+
+        post.comments.forEach(comment => {
+
+            addCommentToScreen(
+                commentList,
+                comment
             );
 
-            alert(
-                "Post link copied!"
+        });
+
+    }
+
+
+    const form =
+        document.createElement("div");
+
+    form.className =
+        "comment-form";
+
+
+    const input =
+        document.createElement("input");
+
+    input.className =
+        "comment-input";
+
+    input.placeholder =
+        "Write a comment...";
+
+
+    const send =
+        document.createElement("button");
+
+    send.className =
+        "comment-send";
+
+    send.textContent =
+        "Send";
+
+
+    send.onclick =
+        async () => {
+
+            const text =
+                input.value.trim();
+
+            if (!text) return;
+
+
+            const commenter =
+                currentUser.displayName ||
+                currentUser.email?.split("@")[0] ||
+                "User";
+
+
+            const comment = {
+
+                uid:
+                    currentUser.uid,
+
+                name:
+                    commenter,
+
+                text:
+                    text,
+
+                createdAt:
+                    new Date().toISOString()
+
+            };
+
+
+            addCommentToScreen(
+                commentList,
+                comment
             );
+
+            input.value = "";
+
+
+            /*
+             * REAL FIRESTORE POST
+             */
+
+            if (
+                !id.startsWith("demo-")
+            ) {
+
+                try {
+
+                    await updateDoc(
+                        doc(db, "posts", id),
+                        {
+                            comments:
+                                arrayUnion(
+                                    comment
+                                )
+                        }
+                    );
+
+                } catch (error) {
+
+                    console.error(
+                        "Comment error:",
+                        error
+                    );
+
+                }
+
+            }
+
+        };
+
+
+    input.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                send.click();
+
+            }
 
         }
+    );
 
-        catch {
 
-            alert(
-                "Share link: " +
-                (post.mediaUrl || "")
+    form.appendChild(input);
+    form.appendChild(send);
+
+    commentsBox.appendChild(
+        commentList
+    );
+
+    commentsBox.appendChild(
+        form
+    );
+
+    article.appendChild(
+        commentsBox
+    );
+
+
+    feed.appendChild(article);
+
+}
+
+
+/* =========================
+   COMMENT DISPLAY
+========================= */
+
+function addCommentToScreen(
+    container,
+    comment
+) {
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "comment";
+
+
+    const strong =
+        document.createElement("strong");
+
+    strong.textContent =
+        comment.name ||
+        "User";
+
+
+    const text =
+        document.createElement("span");
+
+    text.textContent =
+        comment.text;
+
+
+    div.appendChild(strong);
+    div.appendChild(text);
+
+    container.appendChild(div);
+
+}
+
+
+/* =========================
+   REELS
+========================= */
+
+window.showReels =
+    function () {
+
+        document.getElementById(
+            "postsTab"
+        ).classList.remove("active");
+
+        document.getElementById(
+            "reelsTab"
+        ).classList.add("active");
+
+
+        const feed =
+            document.getElementById(
+                "feed"
+            );
+
+        feed.innerHTML = `
+            <div class="reels-title">
+                🎬 Tam Tak Reels
+            </div>
+        `;
+
+
+        for (
+            let i = 0;
+            i < 10;
+            i++
+        ) {
+
+            renderPost(
+                "reel-demo-" + i,
+                {
+                    name:
+                        users[i % users.length],
+
+                    caption:
+                        "Enjoy this Tam Tak Reel 🎬❤️",
+
+                    mediaType:
+                        "video",
+
+                    mediaUrl:
+                        sampleVideos[
+                            i %
+                            sampleVideos.length
+                        ],
+
+                    likes: [],
+                    comments: []
+                }
             );
 
         }
@@ -1079,85 +1054,48 @@ function renderPost(post) {
     };
 
 
-    actions.appendChild(
-        like
-    );
+/* =========================
+   TABS
+========================= */
 
-    actions.appendChild(
-        comment
-    );
+document.getElementById(
+    "postsTab"
+).onclick = async () => {
 
-    actions.appendChild(
-        share
-    );
+    document.getElementById(
+        "postsTab"
+    ).classList.add("active");
+
+    document.getElementById(
+        "reelsTab"
+    ).classList.remove("active");
+
+    await loadPosts();
+
+};
 
 
-    card.appendChild(
-        actions
-    );
-
-
-    feed.appendChild(
-        card
-    );
-
-}
+document.getElementById(
+    "reelsTab"
+).onclick =
+    window.showReels;
 
 
 /* =========================
    LOGOUT
 ========================= */
 
-logoutBtn.addEventListener(
-    "click",
+document.getElementById(
+    "logoutBtn"
+).onclick =
     async () => {
 
-        try {
+        await signOut(auth);
 
-            await signOut(auth);
+        window.location.href =
+            "./index.html";
 
-            window.location.href =
-                "./index.html";
-
-        }
-
-        catch (error) {
-
-            alert(
-                "Logout failed: " +
-                error.message
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================
-   HELPERS
-========================= */
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-
-}
-
-
-window.scrollToTop = function () {
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-};
+    };
 
 </script>
 
