@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tam Tak - Profile</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f6f8;
+            font-family: Arial, sans-serif;
+            color: #111827;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 64px;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 18px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(
+                90deg,
+                #833ab4,
+                #fd1d1d,
+                #fcb045
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .top-btn {
+            border: 0;
+            background: #111827;
+            color: white;
+            padding: 9px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .profile-container {
+            width: min(760px, 94%);
+            margin: 20px auto 90px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 3px 15px rgba(0,0,0,.07);
+        }
+
+        .profile-top {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .profile-photo {
+            width: 110px;
+            height: 110px;
+            min-width: 110px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                #833ab4,
+                #fd1d1d,
+                #fcb045
+            );
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 42px;
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .username {
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .email {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .bio {
+            color: #333;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 25px;
+            margin: 20px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+
+        .stat {
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .stat-label {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .follow-btn,
+        .edit-btn {
+            border: 0;
+            border-radius: 9px;
+            padding: 11px 22px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .follow-btn {
+            background: #111827;
+            color: white;
+        }
+
+        .follow-btn.following {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .edit-btn {
+            background: #eee;
+            color: #111827;
+        }
+
+        .section-title {
+            font-size: 21px;
+            font-weight: 800;
+            margin: 25px 0 15px;
+        }
+
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+        }
+
+        .grid-item {
+            aspect-ratio: 1 / 1;
+            background: #ddd;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .grid-item img,
+        .grid-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .empty {
+            grid-column: 1 / -1;
+            background: white;
+            padding: 35px;
+            text-align: center;
+            border-radius: 12px;
+            color: #777;
+        }
+
+        .loading {
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 62px;
+            background: white;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .bottom-nav button {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+
+            .profile-top {
+                align-items: flex-start;
+            }
+
+            .profile-photo {
+                width: 85px;
+                height: 85px;
+                min-width: 85px;
+                font-size: 32px;
+            }
+
+            .username {
+                font-size: 20px;
+            }
+
+            .stats {
+                justify-content: space-between;
+                gap: 5px;
+            }
+
+            .stat {
+                min-width: auto;
+                flex: 1;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="logo">
+        Tam Tak
+    </div>
+
+    <button
+        class="top-btn"
+        id="homeBtn"
+    >
+        🏠 Home
+    </button>
+
+</header>
+
+
+<main class="profile-container">
+
+    <div
+        id="loading"
+        class="loading"
+    >
+        Loading profile...
+    </div>
+
+
+    <section
+        id="profileCard"
+        class="profile-card"
+        style="display:none;"
+    >
+
+        <div class="profile-top">
+
+            <div
+                id="profilePhoto"
+                class="profile-photo"
+            >
+                U
+            </div>
+
+
+            <div class="profile-info">
+
+                <div
+                    id="profileName"
+                    class="username"
+                >
+                    User
+                </div>
+
+                <div
+                    id="profileEmail"
+                    class="email"
+                >
+                    -
+                </div>
+
+                <div
+                    id="profileBio"
+                    class="bio"
+                >
+                    Welcome to Tam Tak.
+                </div>
+
+
+                <div class="profile-actions">
+
+                    <button
+                        id="followBtn"
+                        class="follow-btn"
+                    >
+                        Follow
+                    </button>
+
+                    <button
+                        id="editBtn"
+                        class="edit-btn"
+                        style="display:none;"
+                    >
+                        Edit Profile
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <span
+                    id="postsCount"
+                    class="stat-number"
+                >
+                    0
+                </span>
+
+                <span class="stat-label">
+                    Posts
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span
+                    id="followersCount"
+                    class="stat-number"
+                >
+                    0
+                </span>
+
+                <span class="stat-label">
+                    Followers
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span
+                    id="followingCount"
+                    class="stat-number"
+                >
+                    0
+                </span>
+
+                <span class="stat-label">
+                    Following
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span
+                    id="viewsCount"
+                    class="stat-number"
+                >
+                    0
+                </span>
+
+                <span class="stat-label">
+                    Views
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <h2 class="section-title">
+        Posts
+    </h2>
+
+
+    <section
+        id="postGrid"
+        class="post-grid"
+    >
+        <div class="empty">
+            Loading posts...
+        </div>
+    </section>
+
+</main>
+
+
+<nav class="bottom-nav">
+
+    <button id="navHome">
+        🏠 Home
+    </button>
+
+    <button id="navReels">
+        🎬 Reels
+    </button>
+
+    <button id="navMessages">
+        💬 Messages
+    </button>
+
+    <button id="navMyProfile">
+        👤 My Profile
+    </button>
+
+</nav>
+
+
+<script type="module">
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    doc,
+    getDoc,
+    setDoc,
+    updateDoc,
+    collection,
+    query,
+    where,
+    getDocs,
+    arrayUnion,
+    arrayRemove,
+    increment
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+import {
+    auth,
+    db
+} from "./firebase-config.js";
+
+
+let currentUser = null;
+let profileUserId = null;
+let profileData = null;
+
+
+/* =========================
+   GET USER ID FROM URL
+========================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const requestedUid =
+    params.get("uid");
+
+
+/* =========================
+   AUTH
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if (!user) {
+
+            window.location.href =
+                "./index.html";
+
+            return;
+
+        }
+
+        currentUser = user;
+
+        /*
+         * If no uid is supplied,
+         * open the logged-in user's profile.
+         */
+
+        profileUserId =
+            requestedUid ||
+            user.uid;
+
+
+        await loadProfile();
+
+    }
+);
+
+
+/* =========================
+   LOAD PROFILE
+========================= */
+
+async function loadProfile() {
+
+    try {
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                profileUserId
+            );
+
+
+        const userSnap =
+            await getDoc(userRef);
+
+
+        if (userSnap.exists()) {
+
+            profileData =
+                userSnap.data();
+
+        } else {
+
+            /*
+             * If this is the logged-in
+             * user and profile document
+             * does not exist yet,
+             * create it automatically.
+             */
+
+            if (
+                profileUserId ===
+                currentUser.uid
+            ) {
+
+                profileData = {
+
+                    uid:
+                        currentUser.uid,
+
+                    name:
+                        currentUser.displayName ||
+                        currentUser.email
+                            ?.split("@")[0] ||
+                        "User",
+
+                    email:
+                        currentUser.email ||
+                        "",
+
+                    bio:
+                        "Welcome to Tam Tak.",
+
+                    photoURL:
+                        currentUser.photoURL ||
+                        "",
+
+                    followers: [],
+
+                    following: [],
+
+                    profileViews: 0
+
+                };
+
+
+                await setDoc(
+                    userRef,
+                    profileData
+                );
+
+            } else {
+
+                showError(
+                    "User profile not found."
+                );
+
+                return;
+
+            }
+
+        }
+
+
+        displayProfile();
+
+
+        await increaseProfileViews();
+
+
+        await loadUserPosts();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Profile error:",
+            error
+        );
+
+        showError(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================
+   DISPLAY PROFILE
+========================= */
+
+function displayProfile() {
+
+    const name =
+        profileData.name ||
+        "User";
+
+    const email =
+        profileData.email ||
+        "";
+
+    const bio =
+        profileData.bio ||
+        "Welcome to Tam Tak.";
+
+    const followers =
+        Array.isArray(
+            profileData.followers
+        )
+            ? profileData.followers
+            : [];
+
+    const following =
+        Array.isArray(
+            profileData.following
+        )
+            ? profileData.following
+            : [];
+
+
+    document.getElementById(
+        "profileName"
+    ).textContent = name;
+
+
+    document.getElementById(
+        "profileEmail"
+    ).textContent = email;
+
+
+    document.getElementById(
+        "profileBio"
+    ).textContent = bio;
+
+
+    document.getElementById(
+        "followersCount"
+    ).textContent =
+        followers.length;
+
+
+    document.getElementById(
+        "followingCount"
+    ).textContent =
+        following.length;
+
+
+    document.getElementById(
+        "viewsCount"
+    ).textContent =
+        profileData.profileViews || 0;
+
+
+    const photo =
+        document.getElementById(
+            "profilePhoto"
+        );
+
+
+    photo.innerHTML = "";
+
+
+    if (profileData.photoURL) {
+
+        const img =
+            document.createElement("img");
+
+        img.src =
+            profileData.photoURL;
+
+        img.alt =
+            name;
+
+        photo.appendChild(img);
+
+    } else {
+
+        photo.textContent =
+            name
+                .charAt(0)
+                .toUpperCase();
+
+    }
+
+
+    const followBtn =
+        document.getElementById(
+            "followBtn"
+        );
+
+    const editBtn =
+        document.getElementById(
+            "editBtn"
+        );
+
+
+    /*
+     * OWN PROFILE
+     */
+
+    if (
+        profileUserId ===
+        currentUser.uid
+    ) {
+
+        followBtn.style.display =
+            "none";
+
+        editBtn.style.display =
+            "inline-block";
+
+        editBtn.onclick =
+            () => {
+
+                alert(
+                    "Edit Profile feature will be connected next."
+                );
+
+            };
+
+    } else {
+
+        followBtn.style.display =
+            "inline-block";
+
+        editBtn.style.display =
+            "none";
+
+
+        const isFollowing =
+            followers.includes(
+                currentUser.uid
+            );
+
+
+        if (isFollowing) {
+
+            followBtn.textContent =
+                "Following";
+
+            followBtn.classList.add(
+                "following"
+            );
+
+        } else {
+
+            followBtn.textContent =
+                "Follow";
+
+            followBtn.classList.remove(
+                "following"
+            );
+
+        }
+
+    }
+
+
+    document.getElementById(
+        "loading"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "profileCard"
+    ).style.display = "block";
+
+}
+
+
+/* =========================
+   PROFILE VIEWS
+========================= */
+
+async function increaseProfileViews() {
+
+    /*
+     * Don't count a user's own visit
+     * as a profile view.
+     */
+
+    if (
+        profileUserId ===
+        currentUser.uid
+    ) {
+        return;
+    }
+
+
+    try {
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                profileUserId
+            );
+
+
+        await updateDoc(
+            userRef,
+            {
+                profileViews:
+                    increment(1)
+            }
+        );
+
+
+        profileData.profileViews =
+            (profileData.profileViews || 0) + 1;
+
+
+        document.getElementById(
+            "viewsCount"
+        ).textContent =
+            profileData.profileViews;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "View update:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================
+   FOLLOW / UNFOLLOW
+========================= */
+
+document.getElementById(
+    "followBtn"
+).addEventListener(
+    "click",
+    async () => {
+
+        if (
+            profileUserId ===
+            currentUser.uid
+        ) {
+            return;
+        }
+
+
+        const targetRef =
+            doc(
+                db,
+                "users",
+                profileUserId
+            );
+
+
+        const currentRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            );
+
+
+        const followers =
+            Array.isArray(
+                profileData.followers
+            )
+                ? profileData.followers
+                : [];
+
+
+        const alreadyFollowing =
+            followers.includes(
+                currentUser.uid
+            );
+
+
+        try {
+
+            if (alreadyFollowing) {
+
+                await updateDoc(
+                    targetRef,
+                    {
+                        followers:
+                            arrayRemove(
+                                currentUser.uid
+                            )
+                    }
+                );
+
+
+                await updateDoc(
+                    currentRef,
+                    {
+                        following:
+                            arrayRemove(
+                                profileUserId
+                            )
+                    }
+                );
+
+
+                profileData.followers =
+                    followers.filter(
+                        id =>
+                            id !==
+                            currentUser.uid
+                    );
+
+            } else {
+
+                await updateDoc(
+                    targetRef,
+                    {
+                        followers:
+                            arrayUnion(
+                                currentUser.uid
+                            )
+                    }
+                );
+
+
+                await updateDoc(
+                    currentRef,
+                    {
+                        following:
+                            arrayUnion(
+                                profileUserId
+                            )
+                    }
+                );
+
+
+                profileData.followers =
+                    [
+                        ...followers,
+                        currentUser.uid
+                    ];
+
+            }
+
+
+            displayProfile();
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Follow error:",
+                error
+            );
+
+            alert(
+                "Follow update failed: " +
+                error.message
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   LOAD USER POSTS
+========================= */
+
+async function loadUserPosts() {
+
+    const grid =
+        document.getElementById(
+            "postGrid"
+        );
+
+
+    grid.innerHTML =
+        `<div class="empty">
+            Loading posts...
+        </div>`;
+
+
+    try {
+
+        const postsRef =
+            collection(
+                db,
+                "posts"
+            );
+
+
+        const q =
+            query(
+                postsRef,
+                where(
+                    "uid",
+                    "==",
+                    profileUserId
+                )
+            );
+
+
+        const snapshot =
+            await getDocs(q);
+
+
+        grid.innerHTML = "";
+
+
+        if (snapshot.empty) {
+
+            grid.innerHTML =
+                `<div class="empty">
+                    No posts yet.
+                </div>`;
+
+            document.getElementById(
+                "postsCount"
+            ).textContent = "0";
+
+            return;
+
+        }
+
+
+        const posts = [];
+
+
+        snapshot.forEach(
+            postDoc => {
+
+                posts.push({
+                    id:
+                        postDoc.id,
+
+                    ...postDoc.data()
+                });
+
+            }
+        );
+
+
+        /*
+         * Newest first.
+         */
+
+        posts.sort(
+            (a, b) => {
+
+                const aTime =
+                    a.createdAt
+                        ?.seconds || 0;
+
+                const bTime =
+                    b.createdAt
+                        ?.seconds || 0;
+
+                return bTime - aTime;
+
+            }
+        );
+
+
+        document.getElementById(
+            "postsCount"
+        ).textContent =
+            posts.length;
+
+
+        posts.forEach(
+            post => {
+
+                createGridItem(
+                    post
+                );
+
+            }
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Posts error:",
+            error
+        );
+
+        grid.innerHTML =
+            `<div class="empty">
+                Unable to load posts.
+            </div>`;
+
+    }
+
+}
+
+
+/* =========================
+   CREATE POST GRID ITEM
+========================= */
+
+function createGridItem(post) {
+
+    const grid =
+        document.getElementById(
+            "postGrid"
+        );
+
+
+    const item =
+        document.createElement("div");
+
+    item.className =
+        "grid-item";
+
+
+    if (
+        post.mediaType ===
+        "video"
+    ) {
+
+        const video =
+            document.createElement(
+                "video"
+            );
+
+        video.src =
+            post.mediaUrl;
+
+        video.muted = true;
+
+        video.preload =
+            "metadata";
+
+        item.appendChild(
+            video
+        );
+
+    } else {
+
+        const img =
+            document.createElement(
+                "img"
+            );
+
+        img.src =
+            post.mediaUrl;
+
+        img.alt =
+            post.caption ||
+            "Tam Tak post";
+
+        img.loading =
+            "lazy";
+
+        item.appendChild(
+            img
+        );
+
+    }
+
+
+    item.onclick =
+        () => {
+
+            if (
+                post.mediaUrl
+            ) {
+
+                window.open(
+                    post.mediaUrl,
+                    "_blank"
+                );
+
+            }
+
+        };
+
+
+    grid.appendChild(item);
+
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+function showError(text) {
+
+    document.getElementById(
+        "loading"
+    ).textContent =
+        text;
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+document.getElementById(
+    "homeBtn"
+).onclick =
+    () => {
+
+        window.location.href =
+            "./home.html";
+
+    };
+
+
+document.getElementById(
+    "navHome"
+).onclick =
+    () => {
+
+        window.location.href =
+            "./home.html";
+
+    };
+
+
+document.getElementById(
+    "navReels"
+).onclick =
+    () => {
+
+        window.location.href =
+            "./home.html#reels";
+
+    };
+
+
+document.getElementById(
+    "navMessages"
+).onclick =
+    () => {
+
+        window.location.href =
+            "./messages.html";
+
+    };
+
+
+document.getElementById(
+    "navMyProfile"
+).onclick =
+    () => {
+
+        window.location.href =
+            "./profile.html";
+
+    };
+
+</script>
+
+</body>
+</html>
