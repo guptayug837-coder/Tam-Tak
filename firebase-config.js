@@ -1,7 +1,10 @@
 import { initializeApp } from
     "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-import { getAuth } from
+import {
+    getAuth,
+    GoogleAuthProvider
+} from
     "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
@@ -20,9 +23,12 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
+const googleProvider = new GoogleAuthProvider();
+
 console.log("Firebase connected successfully");
 
+
 export {
-    app,
-    auth
+    auth,
+    googleProvider
 };
