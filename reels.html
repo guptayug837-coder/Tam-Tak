@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tam Tak Reels</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        .reels-container {
+            width: 100%;
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+        }
+
+        .reel {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            scroll-snap-align: start;
+            background: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reel video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Dark gradient */
+        .reel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    transparent 50%,
+                    rgba(0,0,0,.75)
+                );
+            pointer-events: none;
+        }
+
+        /* Top */
+        .top {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .camera {
+            background: rgba(255,255,255,.15);
+            border: none;
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 20px;
+        }
+
+        /* Right buttons */
+
+        .actions {
+            position: absolute;
+            right: 15px;
+            bottom: 100px;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .action {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .action span {
+            display: block;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .liked {
+            color: #ff2d55;
+        }
+
+        /* Bottom information */
+
+        .info {
+            position: absolute;
+            left: 18px;
+            right: 80px;
+            bottom: 30px;
+            z-index: 3;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                #7c3aed,
+                #ec4899
+            );
+            display: grid;
+            place-items: center;
+            font-weight: bold;
+        }
+
+        .follow {
+            border: 1px solid white;
+            color: white;
+            background: transparent;
+            border-radius: 7px;
+            padding: 5px 10px;
+            margin-left: 8px;
+        }
+
+        .caption {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .music {
+            margin-top: 8px;
+            font-size: 13px;
+        }
+
+        /* Play icon */
+
+        .play {
+            position: absolute;
+            z-index: 4;
+            font-size: 70px;
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+        }
+
+        .show-play {
+            opacity: .9;
+        }
+
+        @media (min-width: 700px) {
+
+            .reel video {
+                width: 430px;
+            }
+
+            .reel {
+                background: #080808;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="reels-container">
+
+
+    <!-- REEL 1 -->
+
+    <section class="reel">
+
+        <video
+            src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+            loop
+            playsinline
+        ></video>
+
+        <div class="top">
+
+            <div class="logo">
+                Tam Tak
+            </div>
+
+            <button class="camera">
+                ＋
+            </button>
+
+        </div>
+
+
+        <div class="play">
+            ▶
+        </div>
+
+
+        <div class="actions">
+
+            <button class="action like">
+                ♡
+                <span>1.2K</span>
+            </button>
+
+            <button class="action">
+                💬
+                <span>120</span>
+            </button>
+
+            <button class="action">
+                ↗
+                <span>Share</span>
+            </button>
+
+            <button class="action mute">
+                🔊
+            </button>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="user">
+
+                <div class="avatar">
+                    Y
+                </div>
+
+                <strong>
+                    Yug Gupta
+                </strong>
+
+                <button class="follow">
+                    Follow
+                </button>
+
+            </div>
+
+            <div class="caption">
+                Welcome to Tam Tak 🚀
+                <br>
+                Connect. Share. Discover.
+            </div>
+
+            <div class="music">
+                🎵 Original sound · Tam Tak
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- REEL 2 -->
+
+    <section class="reel">
+
+        <video
+            src="https://www.w3schools.com/html/mov_bbb.mp4"
+            loop
+            playsinline
+        ></video>
+
+        <div class="top">
+
+            <div class="logo">
+                Tam Tak
+            </div>
+
+            <button class="camera">
+                ＋
+            </button>
+
+        </div>
+
+
+        <div class="play">
+            ▶
+        </div>
+
+
+        <div class="actions">
+
+            <button class="action like">
+                ♡
+                <span>856</span>
+            </button>
+
+            <button class="action">
+                💬
+                <span>67</span>
+            </button>
+
+            <button class="action">
+                ↗
+                <span>Share</span>
+            </button>
+
+            <button class="action mute">
+                🔊
+            </button>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="user">
+
+                <div class="avatar">
+                    S
+                </div>
+
+                <strong>
+                    Simran
+                </strong>
+
+                <button class="follow">
+                    Follow
+                </button>
+
+            </div>
+
+            <div class="caption">
+                Enjoy your day ✨
+                <br>
+                #TamTak #Reels
+            </div>
+
+            <div class="music">
+                🎵 Trending sound
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+    const reels =
+        document.querySelectorAll(".reel");
+
+    /*
+       Automatically play the reel
+       visible on screen.
+    */
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    const video =
+                        entry.target.querySelector("video");
+
+                    if (entry.isIntersecting) {
+
+                        video.play().catch(() => {});
+
+                    } else {
+
+                        video.pause();
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.7
+            }
+        );
+
+
+    reels.forEach(reel => {
+
+        observer.observe(reel);
+
+    });
+
+
+
+    /*
+       Like button
+    */
+
+    document
+        .querySelectorAll(".like")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    this.classList.toggle("liked");
+
+                    if (
+                        this.classList.contains("liked")
+                    ) {
+
+                        this.innerHTML =
+                            "♥<span>Liked</span>";
+
+                    } else {
+
+                        this.innerHTML =
+                            "♡<span>Like</span>";
+
+                    }
+
+                }
+            );
+
+        });
+
+
+
+    /*
+       Video click = play / pause
+    */
+
+    reels.forEach(reel => {
+
+        const video =
+            reel.querySelector("video");
+
+        const playIcon =
+            reel.querySelector(".play");
+
+
+        video.addEventListener(
+            "click",
+            () => {
+
+                if (video.paused) {
+
+                    video.play();
+
+                    playIcon.classList.remove(
+                        "show-play"
+                    );
+
+                } else {
+
+                    video.pause();
+
+                    playIcon.classList.add(
+                        "show-play"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+
+    /*
+       Mute / Unmute
+    */
+
+    document
+        .querySelectorAll(".mute")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const reel =
+                        this.closest(".reel");
+
+                    const video =
+                        reel.querySelector("video");
+
+                    video.muted =
+                        !video.muted;
+
+                    this.textContent =
+                        video.muted
+                        ? "🔇"
+                        : "🔊";
+
+                }
+            );
+
+        });
+
+</script>
+
+</body>
+</html>
