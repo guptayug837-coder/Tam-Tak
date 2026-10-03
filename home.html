@@ -1,1103 +1,482 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Tam Tak - Home</title>
 
-    <link rel="stylesheet" href="./style.css">
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            background: #f5f6f8;
-            font-family: Arial, sans-serif;
-            color: #111827;
-        }
-
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            height: 64px;
-            background: #fff;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-        }
-
-        .logo {
-            font-size: 26px;
-            font-weight: 800;
-            background: linear-gradient(
-                90deg,
-                #833ab4,
-                #fd1d1d,
-                #fcb045
-            );
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .logout {
-            border: 0;
-            background: #111827;
-            color: white;
-            padding: 9px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .container {
-            width: min(700px, 94%);
-            margin: 20px auto 90px;
-        }
-
-        .welcome {
-            background: white;
-            padding: 18px;
-            border-radius: 15px;
-            margin-bottom: 18px;
-            box-shadow: 0 3px 15px rgba(0,0,0,.07);
-        }
-
-        .welcome h2 {
-            margin: 0 0 5px;
-        }
-
-        .welcome p {
-            margin: 0;
-            color: #666;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 18px;
-        }
-
-        .tab {
-            flex: 1;
-            border: 0;
-            padding: 12px;
-            border-radius: 10px;
-            background: white;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .tab.active {
-            background: #111827;
-            color: white;
-        }
-
-        .post {
-            background: white;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            box-shadow: 0 3px 15px rgba(0,0,0,.08);
-        }
-
-        .post-header {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            padding: 14px;
-        }
-
-        .avatar {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: linear-gradient(
-                135deg,
-                #833ab4,
-                #fd1d1d,
-                #fcb045
-            );
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .post-name {
-            font-weight: 700;
-        }
-
-        .post-time {
-            color: #888;
-            font-size: 12px;
-            margin-top: 2px;
-        }
-
-        .caption {
-            padding: 0 14px 13px;
-            line-height: 1.5;
-            white-space: pre-wrap;
-        }
-
-        .post-image,
-        .post-video {
-            width: 100%;
-            display: block;
-            max-height: 620px;
-            object-fit: cover;
-            background: #000;
-        }
-
-        .post-video {
-            aspect-ratio: 9 / 16;
-        }
-
-        .actions {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 10px 12px;
-            border-top: 1px solid #eee;
-        }
-
-        .action {
-            border: 0;
-            background: transparent;
-            padding: 9px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 15px;
-        }
-
-        .action:hover {
-            background: #f1f3f5;
-        }
-
-        .action.liked {
-            color: #e11d48;
-            font-weight: bold;
-        }
-
-        .comments {
-            padding: 0 14px 14px;
-        }
-
-        .comment-list {
-            max-height: 180px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-        }
-
-        .comment {
-            background: #f4f5f7;
-            padding: 8px 10px;
-            border-radius: 10px;
-            margin-bottom: 7px;
-            font-size: 14px;
-        }
-
-        .comment strong {
-            margin-right: 5px;
-        }
-
-        .comment-form {
-            display: flex;
-            gap: 7px;
-        }
-
-        .comment-input {
-            flex: 1;
-            border: 1px solid #ddd;
-            border-radius: 9px;
-            padding: 10px;
-            outline: none;
-        }
-
-        .comment-send {
-            border: 0;
-            background: #111827;
-            color: white;
-            border-radius: 9px;
-            padding: 0 14px;
-            cursor: pointer;
-        }
-
-        .loading,
-        .empty {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            color: #777;
-        }
-
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 62px;
-            background: white;
-            border-top: 1px solid #ddd;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .bottom-nav button {
-            border: 0;
-            background: transparent;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .reels-title {
-            font-size: 21px;
-            font-weight: bold;
-            margin: 10px 0 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="topbar">
-    <div class="logo">Tam Tak</div>
+    <!-- ================= HEADER ================= -->
 
-    <button id="logoutBtn" class="logout">
-        Logout
-    </button>
-</header>
+    <header class="topbar">
 
-
-<main class="container">
-
-    <section class="welcome">
-        <h2 id="welcomeName">Welcome to Tam Tak</h2>
-        <p>Connect. Share. Discover.</p>
-    </section>
-
-
-    <div class="tabs">
-
-        <button
-            id="postsTab"
-            class="tab active"
-        >
-            🏠 Posts
-        </button>
-
-        <button
-            id="reelsTab"
-            class="tab"
-        >
-            🎬 Reels
-        </button>
-
-    </div>
-
-
-    <div id="feed">
-
-        <div class="loading">
-            Loading Tam Tak...
+        <div class="logo">
+            <span class="logo-dot"></span>
+            Tam Tak
         </div>
 
-    </div>
+        <div class="search-box">
+            <span>⌕</span>
+            <input type="text" placeholder="Search Tam Tak">
+        </div>
 
-</main>
+        <div class="top-actions">
 
+            <button class="top-btn">⌂</button>
 
-<nav class="bottom-nav">
+            <button class="top-btn">✉</button>
 
-    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        🏠 Home
-    </button>
+            <button class="profile-avatar">
+                Y
+            </button>
 
-    <button onclick="showReels()">
-        🎬 Reels
-    </button>
+        </div>
 
-    <button onclick="location.href='./messages.html'">
-        💬 Messages
-    </button>
+    </header>
 
-    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        👤 Profile
-    </button>
 
-</nav>
+    <!-- ================= MAIN ================= -->
 
+    <main class="layout">
 
-<script type="module">
 
-import {
-    onAuthStateChanged,
-    signOut
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+        <!-- ================= LEFT SIDEBAR ================= -->
 
-import {
-    collection,
-    query,
-    orderBy,
-    limit,
-    getDocs,
-    addDoc,
-    serverTimestamp,
-    doc,
-    updateDoc,
-    arrayUnion
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+        <aside class="sidebar">
 
-import {
-    auth,
-    db
-} from "./firebase-config.js";
+            <a class="nav active">
+                <span>⌂</span>
+                Home
+            </a>
 
+            <a class="nav">
+                <span>▶</span>
+                Reels
+            </a>
 
-/* =========================
-   USERS YOU PROVIDED
-========================= */
+            <a class="nav">
+                <span>✉</span>
+                Messages
 
-const users = [
-    "Rahul",
-    "Anuj",
-    "Dhurv",
-    "Himani",
-    "Poonam",
-    "Amit",
-    "Avinash",
-    "Om",
-    "Rohit",
-    "Prince",
-    "Akash",
-    "Deepak",
-    "Piyush",
-    "Pinki",
-    "Rani",
-    "Raju",
-    "Ram",
-    "Rakesh",
-    "Pinku",
-    "Tanu",
-    "Neeru",
-    "Neelam",
-    "Pravesh",
-    "Rk"
-];
+                <b>3</b>
+            </a>
 
+            <a class="nav">
+                <span>♡</span>
+                Notifications
+            </a>
 
-/* =========================
-   SAMPLE REELS
-========================= */
+            <a class="nav">
+                <span>＋</span>
+                Create Post
+            </a>
 
-const sampleVideos = [
-    "https://www.w3schools.com/html/mov_bbb.mp4",
-    "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-];
+            <a class="nav">
+                <span>◎</span>
+                Profile
+            </a>
 
 
-let currentUser = null;
+            <div class="welcome-card">
 
+                <h3>Welcome to Tam Tak</h3>
 
-/* =========================
-   AUTH
-========================= */
+                <p>
+                    Connect. Share. Discover.
+                </p>
 
-onAuthStateChanged(auth, async (user) => {
-
-    if (!user) {
-        window.location.href = "./index.html";
-        return;
-    }
-
-    currentUser = user;
-
-    const name =
-        user.displayName ||
-        user.email?.split("@")[0] ||
-        "User";
-
-    document.getElementById("welcomeName")
-        .textContent = "Welcome, " + name + " 👋";
-
-    await loadPosts();
-
-});
-
-
-/* =========================
-   LOAD FIRESTORE POSTS
-========================= */
-
-async function loadPosts() {
-
-    const feed =
-        document.getElementById("feed");
-
-    feed.innerHTML =
-        `<div class="loading">
-            Loading posts...
-        </div>`;
-
-    try {
-
-        const q = query(
-            collection(db, "posts"),
-            orderBy("createdAt", "desc"),
-            limit(100)
-        );
-
-        const snapshot =
-            await getDocs(q);
-
-        feed.innerHTML = "";
-
-        if (snapshot.empty) {
-
-            createDemoPosts();
-
-            return;
-        }
-
-        snapshot.forEach(postDoc => {
-
-            renderPost(
-                postDoc.id,
-                postDoc.data()
-            );
-
-        });
-
-    } catch (error) {
-
-        console.error(error);
-
-        createDemoPosts();
-
-    }
-
-}
-
-
-/* =========================
-   DEMO POSTS
-========================= */
-
-function createDemoPosts() {
-
-    const feed =
-        document.getElementById("feed");
-
-    feed.innerHTML = "";
-
-    users.forEach((name, index) => {
-
-        renderPost(
-            "demo-" + index,
-            {
-                name: name,
-                caption:
-                    "Welcome to Tam Tak ❤️",
-                mediaType:
-                    index % 4 === 0
-                        ? "video"
-                        : "image",
-                mediaUrl:
-                    index % 4 === 0
-                        ? sampleVideos[
-                            index %
-                            sampleVideos.length
-                        ]
-                        : `https://picsum.photos/seed/tamtak-${index}/800/900`,
-                likes: [],
-                comments: []
-            }
-        );
-
-    });
-
-}
-
-
-/* =========================
-   RENDER POST
-========================= */
-
-function renderPost(id, post) {
-
-    const feed =
-        document.getElementById("feed");
-
-    const article =
-        document.createElement("article");
-
-    article.className = "post";
-
-
-    /* HEADER */
-
-    const header =
-        document.createElement("div");
-
-    header.className =
-        "post-header";
-
-
-    const avatar =
-        document.createElement("div");
-
-    avatar.className =
-        "avatar";
-
-    const name =
-        post.name ||
-        post.email?.split("@")[0] ||
-        "User";
-
-    avatar.textContent =
-        name.charAt(0).toUpperCase();
-
-
-    const info =
-        document.createElement("div");
-
-    info.innerHTML = `
-        <div class="post-name"></div>
-        <div class="post-time">Tam Tak</div>
-    `;
-
-    info.querySelector(".post-name")
-        .textContent = name;
-
-
-    header.appendChild(avatar);
-    header.appendChild(info);
-
-    article.appendChild(header);
-
-
-    /* CAPTION */
-
-    if (post.caption) {
-
-        const caption =
-            document.createElement("div");
-
-        caption.className =
-            "caption";
-
-        caption.textContent =
-            post.caption;
-
-        article.appendChild(caption);
-
-    }
-
-
-    /* MEDIA */
-
-    if (post.mediaUrl) {
-
-        if (post.mediaType === "video") {
-
-            const video =
-                document.createElement("video");
-
-            video.className =
-                "post-video";
-
-            video.src =
-                post.mediaUrl;
-
-            video.controls = true;
-
-            video.playsInline = true;
-
-            video.preload = "metadata";
-
-            article.appendChild(video);
-
-        } else {
-
-            const image =
-                document.createElement("img");
-
-            image.className =
-                "post-image";
-
-            image.src =
-                post.mediaUrl;
-
-            image.loading =
-                "lazy";
-
-            article.appendChild(image);
-
-        }
-
-    }
-
-
-    /* ACTIONS */
-
-    const actions =
-        document.createElement("div");
-
-    actions.className =
-        "actions";
-
-
-    const likeButton =
-        document.createElement("button");
-
-    likeButton.className =
-        "action";
-
-    const initialLikes =
-        Array.isArray(post.likes)
-            ? post.likes.length
-            : 0;
-
-    likeButton.textContent =
-        `❤️ Like ${initialLikes}`;
-
-
-    likeButton.onclick =
-        async () => {
-
-            likeButton.classList.toggle(
-                "liked"
-            );
-
-            if (
-                !id.startsWith("demo-")
-            ) {
-
-                try {
-
-                    await updateDoc(
-                        doc(db, "posts", id),
-                        {
-                            likes: arrayUnion(
-                                currentUser.uid
-                            )
-                        }
-                    );
-
-                } catch (error) {
-
-                    console.error(error);
-
-                }
-
-            }
-
-        };
-
-
-    const commentButton =
-        document.createElement("button");
-
-    commentButton.className =
-        "action";
-
-    commentButton.textContent =
-        "💬 Comment";
-
-
-    const shareButton =
-        document.createElement("button");
-
-    shareButton.className =
-        "action";
-
-    shareButton.textContent =
-        "↗️ Share";
-
-
-    shareButton.onclick =
-        async () => {
-
-            const shareData = {
-                title: "Tam Tak",
-                text:
-                    `${name} posted on Tam Tak`,
-                url:
-                    window.location.href
-            };
-
-            try {
-
-                if (
-                    navigator.share
-                ) {
-
-                    await navigator.share(
-                        shareData
-                    );
-
-                } else {
-
-                    await navigator.clipboard
-                        .writeText(
-                            window.location.href
-                        );
-
-                    alert(
-                        "Post link copied!"
-                    );
-
-                }
-
-            } catch (error) {
-
-                console.log(error);
-
-            }
-
-        };
-
-
-    actions.appendChild(
-        likeButton
-    );
-
-    actions.appendChild(
-        commentButton
-    );
-
-    actions.appendChild(
-        shareButton
-    );
-
-    article.appendChild(actions);
-
-
-    /* COMMENTS */
-
-    const commentsBox =
-        document.createElement("div");
-
-    commentsBox.className =
-        "comments";
-
-
-    const commentList =
-        document.createElement("div");
-
-    commentList.className =
-        "comment-list";
-
-
-    if (
-        Array.isArray(post.comments)
-    ) {
-
-        post.comments.forEach(comment => {
-
-            addCommentToScreen(
-                commentList,
-                comment
-            );
-
-        });
-
-    }
-
-
-    const form =
-        document.createElement("div");
-
-    form.className =
-        "comment-form";
-
-
-    const input =
-        document.createElement("input");
-
-    input.className =
-        "comment-input";
-
-    input.placeholder =
-        "Write a comment...";
-
-
-    const send =
-        document.createElement("button");
-
-    send.className =
-        "comment-send";
-
-    send.textContent =
-        "Send";
-
-
-    send.onclick =
-        async () => {
-
-            const text =
-                input.value.trim();
-
-            if (!text) return;
-
-
-            const commenter =
-                currentUser.displayName ||
-                currentUser.email?.split("@")[0] ||
-                "User";
-
-
-            const comment = {
-
-                uid:
-                    currentUser.uid,
-
-                name:
-                    commenter,
-
-                text:
-                    text,
-
-                createdAt:
-                    new Date().toISOString()
-
-            };
-
-
-            addCommentToScreen(
-                commentList,
-                comment
-            );
-
-            input.value = "";
-
-
-            /*
-             * REAL FIRESTORE POST
-             */
-
-            if (
-                !id.startsWith("demo-")
-            ) {
-
-                try {
-
-                    await updateDoc(
-                        doc(db, "posts", id),
-                        {
-                            comments:
-                                arrayUnion(
-                                    comment
-                                )
-                        }
-                    );
-
-                } catch (error) {
-
-                    console.error(
-                        "Comment error:",
-                        error
-                    );
-
-                }
-
-            }
-
-        };
-
-
-    input.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Enter"
-            ) {
-
-                send.click();
-
-            }
-
-        }
-    );
-
-
-    form.appendChild(input);
-    form.appendChild(send);
-
-    commentsBox.appendChild(
-        commentList
-    );
-
-    commentsBox.appendChild(
-        form
-    );
-
-    article.appendChild(
-        commentsBox
-    );
-
-
-    feed.appendChild(article);
-
-}
-
-
-/* =========================
-   COMMENT DISPLAY
-========================= */
-
-function addCommentToScreen(
-    container,
-    comment
-) {
-
-    const div =
-        document.createElement("div");
-
-    div.className =
-        "comment";
-
-
-    const strong =
-        document.createElement("strong");
-
-    strong.textContent =
-        comment.name ||
-        "User";
-
-
-    const text =
-        document.createElement("span");
-
-    text.textContent =
-        comment.text;
-
-
-    div.appendChild(strong);
-    div.appendChild(text);
-
-    container.appendChild(div);
-
-}
-
-
-/* =========================
-   REELS
-========================= */
-
-window.showReels =
-    function () {
-
-        document.getElementById(
-            "postsTab"
-        ).classList.remove("active");
-
-        document.getElementById(
-            "reelsTab"
-        ).classList.add("active");
-
-
-        const feed =
-            document.getElementById(
-                "feed"
-            );
-
-        feed.innerHTML = `
-            <div class="reels-title">
-                🎬 Tam Tak Reels
             </div>
-        `;
+
+        </aside>
 
 
-        for (
-            let i = 0;
-            i < 10;
-            i++
-        ) {
 
-            renderPost(
-                "reel-demo-" + i,
-                {
-                    name:
-                        users[i % users.length],
+        <!-- ================= FEED ================= -->
 
-                    caption:
-                        "Enjoy this Tam Tak Reel 🎬❤️",
-
-                    mediaType:
-                        "video",
-
-                    mediaUrl:
-                        sampleVideos[
-                            i %
-                            sampleVideos.length
-                        ],
-
-                    likes: [],
-                    comments: []
-                }
-            );
-
-        }
-
-    };
+        <section class="feed">
 
 
-/* =========================
-   TABS
-========================= */
+            <!-- STORIES -->
 
-document.getElementById(
-    "postsTab"
-).onclick = async () => {
+            <div class="stories">
 
-    document.getElementById(
-        "postsTab"
-    ).classList.add("active");
+                <div class="story">
 
-    document.getElementById(
-        "reelsTab"
-    ).classList.remove("active");
+                    <div class="story-add">
+                        +
+                    </div>
 
-    await loadPosts();
+                    <span>Your story</span>
 
-};
+                </div>
 
 
-document.getElementById(
-    "reelsTab"
-).onclick =
-    window.showReels;
+                <div class="story">
+
+                    <div class="story-pic p1">
+                        A
+                    </div>
+
+                    <span>Arjun</span>
+
+                </div>
 
 
-/* =========================
-   LOGOUT
-========================= */
+                <div class="story">
 
-document.getElementById(
-    "logoutBtn"
-).onclick =
-    async () => {
+                    <div class="story-pic p2">
+                        S
+                    </div>
 
-        await signOut(auth);
+                    <span>Simran</span>
 
-        window.location.href =
-            "./index.html";
+                </div>
 
-    };
 
-</script>
+                <div class="story">
+
+                    <div class="story-pic p3">
+                        R
+                    </div>
+
+                    <span>Rahul</span>
+
+                </div>
+
+
+                <div class="story">
+
+                    <div class="story-pic p4">
+                        N
+                    </div>
+
+                    <span>Neha</span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= POST 1 ================= -->
+
+            <article class="post">
+
+
+                <div class="post-header">
+
+                    <div class="user-avatar">
+                        Y
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Yug Gupta
+                        </strong>
+
+                        <small>
+                            Just now · Public
+                        </small>
+
+                    </div>
+
+                    <button class="more">
+                        •••
+                    </button>
+
+                </div>
+
+
+                <p class="caption">
+
+                    Welcome to the new Tam Tak ✨
+
+                    <br>
+
+                    Connect. Share. Discover.
+
+                </p>
+
+
+                <div class="post-image">
+
+                    <div class="tam-logo">
+                        Tam Tak
+                    </div>
+
+                    <div class="tagline">
+                        YOUR SOCIAL WORLD
+                    </div>
+
+                </div>
+
+
+                <div class="post-stats">
+
+                    <span>
+                        ♡ 128 Likes
+                    </span>
+
+                    <span>
+                        42 Comments
+                    </span>
+
+                </div>
+
+
+                <div class="post-actions">
+
+                    <button>
+                        ♡ Like
+                    </button>
+
+                    <button>
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗ Share
+                    </button>
+
+                </div>
+
+
+                <div class="comment-box">
+
+                    <input
+                        type="text"
+                        placeholder="Write a comment..."
+                    >
+
+                    <button>
+                        Post
+                    </button>
+
+                </div>
+
+
+            </article>
+
+
+
+            <!-- ================= POST 2 ================= -->
+
+            <article class="post">
+
+
+                <div class="post-header">
+
+                    <div class="user-avatar second">
+                        S
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Simran K.
+                        </strong>
+
+                        <small>
+                            15 min ago · Public
+                        </small>
+
+                    </div>
+
+                    <button class="more">
+                        •••
+                    </button>
+
+                </div>
+
+
+                <p class="caption">
+
+                    Building something exciting today 🚀
+
+                </p>
+
+
+                <div class="reel-preview">
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                    <strong>
+                        Reel Preview
+                    </strong>
+
+                    <small>
+                        Tap to watch
+                    </small>
+
+                </div>
+
+
+                <div class="post-stats">
+
+                    <span>
+                        ♡ 86 Likes
+                    </span>
+
+                    <span>
+                        17 Comments
+                    </span>
+
+                </div>
+
+
+                <div class="post-actions">
+
+                    <button>
+                        ♡ Like
+                    </button>
+
+                    <button>
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗ Share
+                    </button>
+
+                </div>
+
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- ================= RIGHT SIDEBAR ================= -->
+
+        <aside class="rightbar">
+
+
+            <div class="mini-profile">
+
+                <div class="user-avatar">
+                    Y
+                </div>
+
+                <div>
+
+                    <strong>
+                        Yug Gupta
+                    </strong>
+
+                    <small>
+                        @yug
+                    </small>
+
+                </div>
+
+                <button>
+                    Profile
+                </button>
+
+            </div>
+
+
+
+            <h3>
+                Suggested for you
+            </h3>
+
+
+
+            <div class="suggestion">
+
+                <div class="suggest-avatar">
+                    R
+                </div>
+
+                <div class="suggest-info">
+
+                    <strong>
+                        Rahul
+                    </strong>
+
+                    <small>
+                        5 mutual friends
+                    </small>
+
+                </div>
+
+                <button>
+                    Follow
+                </button>
+
+            </div>
+
+
+
+            <div class="suggestion">
+
+                <div class="suggest-avatar orange">
+                    N
+                </div>
+
+                <div class="suggest-info">
+
+                    <strong>
+                        Neha
+                    </strong>
+
+                    <small>
+                        3 mutual friends
+                    </small>
+
+                </div>
+
+                <button>
+                    Follow
+                </button>
+
+            </div>
+
+
+
+            <div class="suggestion">
+
+                <div class="suggest-avatar blue">
+                    A
+                </div>
+
+                <div class="suggest-info">
+
+                    <strong>
+                        Arjun
+                    </strong>
+
+                    <small>
+                        2 mutual friends
+                    </small>
+
+                </div>
+
+                <button>
+                    Follow
+                </button>
+
+            </div>
+
+
+        </aside>
+
+
+    </main>
+
 
 </body>
+
 </html>
