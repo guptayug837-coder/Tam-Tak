@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tam Tak - Messages</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+        }
+
+        .topbar {
+            height: 64px;
+            background: white;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            background: linear-gradient(
+                45deg,
+                #833ab4,
+                #fd1d1d,
+                #fcb045
+            );
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .back-btn {
+            border: none;
+            background: #111827;
+            color: white;
+            padding: 9px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 12px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        #searchUsers {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .messages-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 15px;
+        }
+
+        .users {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            max-height: 650px;
+            overflow-y: auto;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .user:hover {
+            background: #f3f4f6;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                #833ab4,
+                #fd1d1d
+            );
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .user-name {
+            font-weight: bold;
+        }
+
+        .online {
+            color: #16a34a;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        .chat {
+            background: white;
+            border-radius: 12px;
+            min-height: 650px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 12px;
+            display: flex;
+        }
+
+        .message.you {
+            justify-content: flex-end;
+        }
+
+        .bubble {
+            max-width: 70%;
+            padding: 10px 13px;
+            border-radius: 14px;
+            background: #e5e7eb;
+        }
+
+        .you .bubble {
+            background: #2563eb;
+            color: white;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid #ddd;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            outline: none;
+        }
+
+        #sendMessage {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 0 18px;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        .empty {
+            padding: 30px;
+            text-align: center;
+            color: #777;
+        }
+
+        @media (max-width: 700px) {
+
+            .messages-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .users {
+                max-height: 300px;
+            }
+
+            .chat {
+                min-height: 500px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="logo">
+        Tam Tak
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="goHome()"
+    >
+        ← Home
+    </button>
+
+</header>
+
+
+<main class="page">
+
+    <div class="search-box">
+
+        <input
+            id="searchUsers"
+            type="search"
+            placeholder="🔎 Search users..."
+        >
+
+    </div>
+
+
+    <div class="messages-layout">
+
+        <!-- USERS -->
+        <section class="users" id="usersList">
+
+            <div class="empty">
+                Loading users...
+            </div>
+
+        </section>
+
+
+        <!-- CHAT -->
+        <section class="chat">
+
+            <div
+                class="chat-header"
+                id="chatHeader"
+            >
+                Select a user to start chatting
+            </div>
+
+
+            <div
+                class="chat-messages"
+                id="chatMessages"
+            >
+
+                <div class="empty">
+                    💬 Your conversation will appear here.
+                </div>
+
+            </div>
+
+
+            <div class="chat-input">
+
+                <input
+                    id="messageInput"
+                    type="text"
+                    placeholder="Write a message..."
+                >
+
+                <button id="sendMessage">
+                    Send
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<script type="module">
+
+    import {
+        onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+    import {
+        auth
+    } from "./firebase-config.js";
+
+
+    let currentUser = null;
+    let selectedUser = null;
+
+
+    /* =========================
+       LOGIN CHECK
+    ========================= */
+
+    onAuthStateChanged(auth, (user) => {
+
+        if (!user) {
+
+            window.location.href = "./index.html";
+
+            return;
+        }
+
+        currentUser = user;
+
+        generateUsers();
+
+    });
+
+
+    /* =========================
+       GENERATE 1000 USERS
+    ========================= */
+
+    const usersList =
+        document.getElementById("usersList");
+
+
+    const allUsers = [];
+
+
+    function generateUsers() {
+
+        usersList.innerHTML = "";
+
+        allUsers.length = 0;
+
+
+        for (let i = 1; i <= 1000; i++) {
+
+            const user = {
+
+                id: i,
+
+                name: "Tam Tak User " + i,
+
+                online: i % 3 !== 0
+
+            };
+
+
+            allUsers.push(user);
+
+
+            addUserToList(user);
+
+        }
+
+    }
+
+
+    function addUserToList(user) {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "user";
+
+
+        div.innerHTML = `
+
+            <div class="avatar">
+                ${user.id}
+            </div>
+
+            <div>
+
+                <div class="user-name">
+                    ${user.name}
+                </div>
+
+                <div class="online">
+
+                    ${
+                        user.online
+                        ? "● Online"
+                        : "● Offline"
+                    }
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        div.addEventListener(
+            "click",
+            () => openChat(user)
+        );
+
+
+        usersList.appendChild(div);
+
+    }
+
+
+    /* =========================
+       SEARCH USERS
+    ========================= */
+
+    document
+        .getElementById("searchUsers")
+        .addEventListener("input", function () {
+
+            const search =
+                this.value
+                    .toLowerCase()
+                    .trim();
+
+
+            usersList.innerHTML = "";
+
+
+            const filtered =
+                allUsers.filter(user =>
+                    user.name
+                        .toLowerCase()
+                        .includes(search)
+                );
+
+
+            if (filtered.length === 0) {
+
+                usersList.innerHTML = `
+                    <div class="empty">
+                        No users found.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            filtered.forEach(user =>
+                addUserToList(user)
+            );
+
+        });
+
+
+    /* =========================
+       OPEN CHAT
+    ========================= */
+
+    function openChat(user) {
+
+        selectedUser = user;
+
+
+        document
+            .getElementById("chatHeader")
+            .textContent =
+            "💬 " + user.name;
+
+
+        const chatMessages =
+            document.getElementById("chatMessages");
+
+
+        chatMessages.innerHTML = `
+
+            <div class="message">
+
+                <div class="bubble">
+                    Hello 👋 Welcome to Tam Tak!
+                </div>
+
+            </div>
+
+            <div class="message">
+
+                <div class="bubble">
+                    You are chatting with ${user.name}.
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =========================
+       SEND MESSAGE
+    ========================= */
+
+    document
+        .getElementById("sendMessage")
+        .addEventListener("click", sendMessage);
+
+
+    document
+        .getElementById("messageInput")
+        .addEventListener("keydown", (event) => {
+
+            if (event.key === "Enter") {
+
+                sendMessage();
+
+            }
+
+        });
+
+
+    function sendMessage() {
+
+        if (!selectedUser) {
+
+            alert(
+                "Please select a user first."
+            );
+
+            return;
+
+        }
+
+
+        const input =
+            document.getElementById("messageInput");
+
+
+        const text =
+            input.value.trim();
+
+
+        if (!text) {
+
+            return;
+
+        }
+
+
+        const chatMessages =
+            document.getElementById("chatMessages");
+
+
+        const message =
+            document.createElement("div");
+
+
+        message.className =
+            "message you";
+
+
+        message.innerHTML = `
+
+            <div class="bubble">
+                ${escapeHTML(text)}
+            </div>
+
+        `;
+
+
+        chatMessages.appendChild(message);
+
+
+        input.value = "";
+
+
+        chatMessages.scrollTop =
+            chatMessages.scrollHeight;
+
+    }
+
+
+    /* =========================
+       SECURITY
+       ========================= */
+
+    function escapeHTML(text) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent = text;
+
+        return div.innerHTML;
+
+    }
+
+
+    /* =========================
+       HOME
+       ========================= */
+
+    window.goHome = function () {
+
+        window.location.href =
+            "./home.html";
+
+    };
+
+</script>
+
+</body>
+</html>
