@@ -1,7 +1,6 @@
-/* =========================================
-   TAM TAK - PREMIUM STYLE
-   LOGIN + HOME
-========================================= */
+/* =========================
+   RESET
+========================= */
 
 * {
     margin: 0;
@@ -9,751 +8,525 @@
     box-sizing: border-box;
 }
 
-:root {
-    --primary: #6c5ce7;
-    --secondary: #00cec9;
-    --pink: #fd79a8;
-    --dark: #0b1020;
-    --text: #20242d;
-    --muted: #6b7280;
-    --white: #ffffff;
-    --light: #f5f7fb;
-    --border: #e5e7eb;
-}
-
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fb;
-    color: var(--text);
+    background: #fafafa;
+    color: #111;
+    padding-bottom: 75px;
 }
 
-
-/* =========================================
-   LOGIN
-========================================= */
-
-.login-page {
-    min-height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 25px;
-
-    background:
-        radial-gradient(
-            circle at 10% 20%,
-            rgba(108, 92, 231, .35),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(0, 206, 201, .25),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #0b1020,
-            #151b35,
-            #10172c
-        );
-}
-
-.login-card {
-    width: 100%;
-    max-width: 430px;
-
-    padding: 38px 34px;
-
-    background: rgba(255, 255, 255, .97);
-
-    border-radius: 24px;
-
-    box-shadow:
-        0 30px 80px rgba(0, 0, 0, .35);
-
-    animation: cardIn .6s ease;
-}
-
-@keyframes cardIn {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* =========================================
-   LOGO
-========================================= */
-
-.logo,
-.home-logo {
-    text-align: center;
-}
-
-.logo {
-    margin-bottom: 28px;
-}
-
-.logo h1,
-.home-logo h1 {
-    font-size: 40px;
-    font-weight: 800;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--primary),
-            var(--pink),
-            var(--secondary)
-        );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-}
-
-.logo p {
-    margin-top: 7px;
-    color: var(--muted);
-    font-size: 14px;
-}
-
-
-/* =========================================
-   SOCIAL BUTTON
-========================================= */
-
-.social-button {
-    width: 100%;
-    height: 52px;
-
-    margin-bottom: 12px;
-
-    border: 1px solid var(--border);
-    border-radius: 12px;
-
-    background: white;
-
-    cursor: pointer;
-
-    font-size: 15px;
-    font-weight: 600;
-
-    transition: .2s;
-}
-
-.social-button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, .12);
-}
-
-.social-button span {
-    margin-right: 10px;
-    font-weight: 800;
-}
-
-
-/* =========================================
-   DIVIDER
-========================================= */
-
-.divider {
-    display: flex;
-    align-items: center;
-
-    gap: 12px;
-
-    margin: 23px 0;
-}
-
-.divider span {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-}
-
-.divider b {
-    font-size: 12px;
-    color: #9ca3af;
-}
-
-
-/* =========================================
-   FORM
-========================================= */
-
-label {
-    display: block;
-
-    margin-bottom: 7px;
-
-    font-size: 13px;
-    font-weight: 700;
-}
-
-input,
-textarea {
-    width: 100%;
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    outline: none;
-
-    background: #f9fafb;
-
-    font-family: inherit;
-
-    transition: .2s;
-}
-
-input {
-    height: 52px;
-    padding: 0 15px;
-
-    margin-bottom: 17px;
-}
-
-input:focus,
-textarea:focus {
-    background: white;
-
-    border-color: var(--primary);
-
-    box-shadow:
-        0 0 0 4px rgba(108, 92, 231, .10);
-}
-
-
-/* =========================================
-   PASSWORD
-========================================= */
-
-.password-wrapper {
-    position: relative;
-}
-
-.password-wrapper input {
-    padding-right: 70px;
-}
-
-.password-wrapper button {
-    position: absolute;
-
-    right: 10px;
-    top: 7px;
-
-    height: 38px;
-
+button {
     border: none;
-
-    background: transparent;
-
-    color: var(--primary);
-
-    font-weight: 700;
-
+    background: none;
     cursor: pointer;
 }
 
 
-/* =========================================
-   FORGOT
-========================================= */
+/* =========================
+   HEADER
+========================= */
 
-.forgot-row {
+.top-header {
+    height: 65px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+
     display: flex;
+    align-items: center;
     justify-content: space-between;
 
-    margin-bottom: 20px;
-}
+    padding: 0 20px;
 
-.forgot-row button {
-    border: none;
-    background: transparent;
-
-    color: var(--primary);
-
-    cursor: pointer;
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-
-/* =========================================
-   LOGIN BUTTON
-========================================= */
-
-.login-button {
-    width: 100%;
-    height: 53px;
-
-    border: none;
-    border-radius: 13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6c5ce7,
-            #8e44ad,
-            #fd79a8
-        );
-
-    color: white;
-
-    font-size: 16px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 10px 25px rgba(108, 92, 231, .3);
-
-    transition: .2s;
-}
-
-.login-button:hover {
-    transform: translateY(-2px);
-}
-
-
-/* =========================================
-   CREATE ACCOUNT
-========================================= */
-
-.create-button {
-    width: 100%;
-    height: 50px;
-
-    margin-top: 12px;
-
-    border: 1px solid #d9dbea;
-    border-radius: 13px;
-
-    background: white;
-
-    color: var(--primary);
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.create-button:hover {
-    background: #f7f5ff;
-}
-
-
-/* =========================================
-   MESSAGE
-========================================= */
-
-.auth-message {
-    min-height: 22px;
-
-    margin-top: 14px;
-
-    text-align: center;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    color: #dc2626;
-}
-
-
-/* =========================================
-   TERMS
-========================================= */
-
-.terms {
-    margin-top: 17px;
-
-    text-align: center;
-
-    color: #9ca3af;
-
-    font-size: 11px;
-
-    line-height: 1.6;
-}
-
-
-/* =========================================
-   HOME PAGE
-========================================= */
-
-.home-page {
-    min-height: 100vh;
-
-    background:
-        linear-gradient(
-            180deg,
-            #f8f9ff,
-            #eef2f7
-        );
-}
-
-
-/* =========================================
-   HEADER
-========================================= */
-
-.home-header {
     position: sticky;
     top: 0;
     z-index: 100;
-
-    min-height: 72px;
-
-    padding: 10px 5%;
-
-    background: rgba(255, 255, 255, .95);
-
-    border-bottom: 1px solid var(--border);
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    backdrop-filter: blur(15px);
 }
 
-.home-logo h1 {
+.logo {
     font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
-.home-nav {
+.header-icons {
     display: flex;
-    align-items: center;
-
-    gap: 8px;
+    gap: 25px;
 }
 
-.home-nav button,
-.mobile-nav button {
-    border: none;
-
-    background: transparent;
-
-    padding: 10px 13px;
-
-    border-radius: 10px;
-
-    color: #4b5563;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.home-nav button:hover,
-.mobile-nav button:hover {
-    background: #f0edff;
-    color: var(--primary);
-}
-
-#logoutBtn {
-    background: #fff0f3;
-    color: #e11d48;
+.header-icons button {
+    font-size: 27px;
 }
 
 
-/* =========================================
-   HOME CONTENT
-========================================= */
+/* =========================
+   MAIN
+========================= */
 
-.home-content {
+.main-container {
     width: 100%;
-    max-width: 850px;
-
+    max-width: 650px;
     margin: auto;
-
-    padding: 35px 20px 100px;
 }
 
 
-/* =========================================
-   WELCOME
-========================================= */
+/* =========================
+   STORIES
+========================= */
 
-.welcome-box {
-    padding: 30px;
+.stories-section {
+    background: white;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 10px;
+}
 
-    border-radius: 20px;
+.stories {
+    display: flex;
+    gap: 17px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
 
-    color: white;
+.stories::-webkit-scrollbar {
+    display: none;
+}
+
+.story-item {
+    min-width: 75px;
+    text-align: center;
+}
+
+.story-image {
+    width: 70px;
+    height: 70px;
+
+    padding: 3px;
+
+    border-radius: 50%;
 
     background:
         linear-gradient(
-            135deg,
-            #6c5ce7,
-            #8e44ad,
-            #fd79a8
+            45deg,
+            #f9ce34,
+            #ee2a7b,
+            #6228d7
         );
 
-    box-shadow:
-        0 15px 35px rgba(108, 92, 231, .25);
-
-    margin-bottom: 25px;
+    position: relative;
 }
 
-.welcome-box h2 {
-    font-size: 28px;
-    margin-bottom: 8px;
+.story-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid white;
 }
 
-.welcome-box p {
-    opacity: .9;
+.story-item p {
+    font-size: 12px;
+    margin-top: 6px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.story-plus {
+    position: absolute;
+
+    right: -2px;
+    bottom: -2px;
+
+    width: 23px;
+    height: 23px;
+
+    border-radius: 50%;
+
+    background: #0095f6;
+    color: white;
+
+    border: 2px solid white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
 }
 
 
-/* =========================================
-   CREATE POST
-========================================= */
+/* =========================
+   POST
+========================= */
 
-.create-post {
-    padding: 22px;
-
+.post {
     background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, .05);
-
-    margin-bottom: 28px;
-}
-
-.create-post h3 {
     margin-bottom: 15px;
+
+    border-bottom: 1px solid #ddd;
 }
 
-textarea {
-    min-height: 100px;
+.post-header {
+    min-height: 65px;
 
-    padding: 15px;
+    display: flex;
+    align-items: center;
 
-    resize: vertical;
+    padding: 10px 12px;
 
-    margin-bottom: 12px;
+    gap: 10px;
 }
 
-#createPostBtn {
-    padding: 12px 22px;
+.user-info {
+    display: flex;
+    align-items: center;
 
-    border: none;
-    border-radius: 10px;
+    gap: 10px;
 
-    background: var(--primary);
+    flex: 1;
+}
+
+.user-info img {
+    width: 42px;
+    height: 42px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+.user-info h3 {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.user-info span {
+    font-size: 11px;
+    color: #777;
+}
+
+.user-info span i {
+    margin-right: 4px;
+}
+
+.follow-btn {
+    font-size: 14px;
+    color: #0095f6;
+    font-weight: bold;
+}
+
+.more-btn {
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+
+/* =========================
+   POST MEDIA
+========================= */
+
+.post-media {
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    background: #eee;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.post-media img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.video-play {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.55);
 
     color: white;
 
-    font-weight: 700;
+    font-size: 22px;
 
-    cursor: pointer;
-}
-
-
-/* =========================================
-   FEED
-========================================= */
-
-.feed {
-    width: 100%;
-}
-
-.section-title {
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+
+/* =========================
+   POST ACTIONS
+========================= */
+
+.post-actions {
+    display: flex;
     justify-content: space-between;
+
+    padding: 10px 13px 5px;
+}
+
+.left-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.post-actions button {
+    font-size: 25px;
+}
+
+.like-btn.liked {
+    color: #ed4956;
+}
+
+.save-btn.saved {
+    color: #111;
+}
+
+
+/* =========================
+   POST CONTENT
+========================= */
+
+.post-content {
+    padding: 0 14px 15px;
+}
+
+.likes {
+    display: block;
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+.post-content p {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.post-content p strong {
+    margin-right: 5px;
+}
+
+.view-comments {
+    color: #777;
+
+    font-size: 14px;
+
+    margin-top: 7px;
+}
+
+.post-content small {
+    display: block;
+
+    color: #999;
+
+    font-size: 10px;
+
+    margin-top: 9px;
+}
+
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 65px;
+
+    background: white;
+
+    border-top: 1px solid #ddd;
+
+    display: flex;
+    justify-content: space-around;
     align-items: center;
 
-    margin-bottom: 18px;
+    z-index: 200;
 }
 
-.section-title span {
-    color: var(--muted);
-    font-size: 13px;
-}
-
-
-/* =========================================
-   POSTS
-========================================= */
-
-#postsContainer {
+.nav-btn {
     display: flex;
 
     flex-direction: column;
 
-    gap: 18px;
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 3px;
+
+    min-width: 55px;
+
+    font-size: 21px;
+
+    color: #555;
 }
 
-.post-card {
-    padding: 20px;
+.nav-btn span {
+    font-size: 9px;
+}
+
+.nav-btn.active {
+    color: #111;
+}
+
+.nav-btn img {
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+.create-btn {
+    width: 42px;
+    height: 42px;
+
+    border: 2px solid #111;
+
+    border-radius: 12px;
+
+    font-size: 21px;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    z-index: 500;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: 90%;
+    max-width: 400px;
 
     background: white;
 
-    border: 1px solid var(--border);
-
     border-radius: 18px;
 
-    box-shadow:
-        0 7px 20px rgba(0, 0, 0, .05);
+    padding: 25px;
+
+    position: relative;
+
+    text-align: center;
 }
 
-.post-user {
-    font-weight: 700;
-    margin-bottom: 12px;
+.modal-box h2 {
+    margin-bottom: 25px;
 }
 
-.post-text {
-    line-height: 1.6;
+.close-modal {
+    position: absolute;
 
-    color: #4b5563;
+    right: 18px;
+    top: 12px;
+
+    font-size: 30px;
+}
+
+.upload-box {
+    border: 2px dashed #bbb;
+
+    padding: 35px 15px;
+
+    border-radius: 15px;
+
+    margin-bottom: 20px;
+}
+
+.upload-box i {
+    font-size: 45px;
 
     margin-bottom: 15px;
 }
 
-.post-actions {
-    display: flex;
+.upload-box p {
+    margin-bottom: 15px;
 
-    gap: 10px;
-
-    border-top: 1px solid #f0f0f0;
-
-    padding-top: 12px;
+    color: #666;
 }
 
-.post-actions button {
-    border: none;
+.publish-btn {
+    width: 100%;
 
-    background: #f5f6fa;
+    padding: 13px;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
-    padding: 8px 13px;
+    background: #0095f6;
 
-    cursor: pointer;
+    color: white;
 
-    font-weight: 600;
-}
+    font-size: 16px;
 
-
-/* =========================================
-   MOBILE NAV
-========================================= */
-
-.mobile-nav {
-    display: none;
+    font-weight: bold;
 }
 
 
-/* =========================================
-   MOBILE
-========================================= */
+/* =========================
+   DESKTOP
+========================= */
 
-@media (max-width: 700px) {
+@media (min-width: 700px) {
 
-    .home-header {
-        padding: 10px 15px;
+    .top-header {
+        padding-left: calc((100% - 650px) / 2);
+        padding-right: calc((100% - 650px) / 2);
     }
 
-    .home-logo h1 {
-        font-size: 25px;
+    .bottom-nav {
+        max-width: 650px;
+
+        left: 50%;
+        right: auto;
+
+        transform: translateX(-50%);
+
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
     }
 
-    .home-nav {
-        display: none;
-    }
-
-    .home-content {
-        padding: 25px 12px 90px;
-    }
-
-    .welcome-box {
-        padding: 24px;
-    }
-
-    .welcome-box h2 {
-        font-size: 23px;
-    }
-
-    .mobile-nav {
-        position: fixed;
-
-        display: flex;
-
-        left: 0;
-        right: 0;
-        bottom: 0;
-
-        z-index: 200;
-
-        height: 65px;
-
-        background: rgba(255, 255, 255, .96);
-
-        border-top: 1px solid var(--border);
-
-        justify-content: space-around;
-        align-items: center;
-
-        backdrop-filter: blur(15px);
-    }
-
-    .mobile-nav button {
-        font-size: 11px;
-
-        padding: 8px;
-    }
-}
-
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
-
-@media (max-width: 450px) {
-
-    .login-page {
-        padding: 15px;
-    }
-
-    .login-card {
-        padding: 28px 20px;
-        border-radius: 20px;
-    }
-
-    .logo h1 {
-        font-size: 35px;
-    }
-
-    .forgot-row {
-        gap: 5px;
-    }
-
-    .forgot-row button {
-        font-size: 11px;
-    }
 }
