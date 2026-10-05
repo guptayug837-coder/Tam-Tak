@@ -1,457 +1,230 @@
-// ==========================================
-// TAM TAK - LOGIN JAVASCRIPT
-// ==========================================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-// Firebase imports
 import {
-    getAuth,
-    GoogleAuthProvider,
-    FacebookAuthProvider,
-    signInWithPopup,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
-    sendPasswordResetEmail
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-
-// ==========================================
+// ===============================
 // FIREBASE CONFIG
-// ==========================================
+// ===============================
 
 const firebaseConfig = {
-    apiKey: "PASTE_YOUR_API_KEY",
-    authDomain: "tam-tak.firebaseapp.com",
-    projectId: "tam-tak",
-    storageBucket: "tam-tak.firebasestorage.app",
-    messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID",
-    appId: "PASTE_YOUR_APP_ID"
+  apiKey: "AIzaSyAm895WgYQdj3zLL7SmV61RJI3LeS1IMqk",
+  authDomain: "tam-tak.firebaseapp.com",
+  projectId: "tam-tak",
+  storageBucket: "tam-tak.firebasestorage.app",
+  messagingSenderId: "101567918585",
+  appId: "1:101567918585:web:5f697ea6c737a02ccdcd28",
+  measurementId: "G-QHVJMEDY99"
 };
 
 
-// ==========================================
+// ===============================
 // INITIALIZE FIREBASE
-// ==========================================
+// ===============================
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
-
-
-// ==========================================
-// PROVIDERS
-// ==========================================
-
 const googleProvider = new GoogleAuthProvider();
-const facebookProvider = new FacebookAuthProvider();
 
 
-// ==========================================
-// ELEMENTS
-// ==========================================
-
-const googleLogin =
-    document.getElementById("googleLogin");
-
-const facebookLogin =
-    document.getElementById("facebookLogin");
-
-const loginBtn =
-    document.getElementById("loginBtn");
-
-const createAccountBtn =
-    document.getElementById("createAccountBtn");
-
-const showPassword =
-    document.getElementById("showPassword");
-
-const forgotPassword =
-    document.getElementById("forgotPassword");
-
-const forgotEmail =
-    document.getElementById("forgotEmail");
-
-const emailInput =
-    document.getElementById("email");
-
-const passwordInput =
-    document.getElementById("password");
-
-const authMessage =
-    document.getElementById("authMessage");
-
-
-// ==========================================
-// MESSAGE FUNCTION
-// ==========================================
-
-function showMessage(message, type = "normal") {
-
-    if (!authMessage) return;
-
-    authMessage.textContent = message;
-
-    if (type === "error") {
-        authMessage.style.color = "#e53935";
-    } else {
-        authMessage.style.color = "#16803c";
-    }
-}
-
-
-// ==========================================
-// GO TO HOME
-// ==========================================
-
-function goToHome() {
-
-    showMessage("Login successful. Opening Tam Tak...");
-
-    setTimeout(() => {
-        window.location.href = "home.html";
-    }, 700);
-
-}
-
-
-// ==========================================
+// ===============================
 // GOOGLE LOGIN
-// ==========================================
+// ===============================
+
+const googleLogin = document.getElementById("googleLogin");
 
 if (googleLogin) {
+  googleLogin.addEventListener("click", async () => {
 
-    googleLogin.addEventListener("click", async () => {
+    try {
 
-        try {
+      googleLogin.disabled = true;
+      googleLogin.textContent = "Opening Google...";
 
-            showMessage("Opening Google Login...");
+      const result = await signInWithPopup(auth, googleProvider);
 
-            const result =
-                await signInWithPopup(
-                    auth,
-                    googleProvider
-                );
+      console.log("Google Login Successful:", result.user);
 
-            console.log(
-                "Google user:",
-                result.user
-            );
+      window.location.href = "home.html";
 
-            goToHome();
+    } catch (error) {
 
-        } catch (error) {
+      console.error("Google Login Error:", error);
 
-            console.error(error);
+      alert("Google Login Error: " + error.code);
 
-            showMessage(
-                "Google Login Error: " + error.code,
-                "error"
-            );
+      googleLogin.disabled = false;
+      googleLogin.innerHTML = "<span>G</span> Continue with Google";
+    }
 
-        }
-
-    });
-
+  });
 }
 
 
-// ==========================================
-// FACEBOOK LOGIN
-// ==========================================
-
-if (facebookLogin) {
-
-    facebookLogin.addEventListener("click", async () => {
-
-        try {
-
-            showMessage("Opening Facebook Login...");
-
-            const result =
-                await signInWithPopup(
-                    auth,
-                    facebookProvider
-                );
-
-            console.log(
-                "Facebook user:",
-                result.user
-            );
-
-            goToHome();
-
-        } catch (error) {
-
-            console.error(error);
-
-            showMessage(
-                "Facebook Login Error: " + error.code,
-                "error"
-            );
-
-        }
-
-    });
-
-}
-
-
-// ==========================================
+// ===============================
 // EMAIL LOGIN
-// ==========================================
+// ===============================
+
+const loginBtn = document.getElementById("loginBtn");
 
 if (loginBtn) {
 
-    loginBtn.addEventListener("click", async () => {
+  loginBtn.addEventListener("click", async () => {
 
-        const email =
-            emailInput.value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
-        const password =
-            passwordInput.value;
+    if (!email || !password) {
+      alert("Please enter email and password.");
+      return;
+    }
 
-        if (!email) {
+    try {
 
-            showMessage(
-                "Please enter your email.",
-                "error"
-            );
+      const result = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-            emailInput.focus();
+      console.log("Login Successful:", result.user);
 
-            return;
-        }
+      window.location.href = "home.html";
 
-        if (!password) {
+    } catch (error) {
 
-            showMessage(
-                "Please enter your password.",
-                "error"
-            );
+      console.error(error);
+      alert("Login Error: " + error.code);
 
-            passwordInput.focus();
+    }
 
-            return;
-        }
-
-
-        try {
-
-            showMessage("Logging in...");
-
-            const result =
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
-            console.log(
-                "Logged in user:",
-                result.user
-            );
-
-            goToHome();
-
-        } catch (error) {
-
-            console.error(error);
-
-            showMessage(
-                "Login failed: " + error.code,
-                "error"
-            );
-
-        }
-
-    });
+  });
 
 }
 
 
-// ==========================================
+// ===============================
 // CREATE ACCOUNT
-// ==========================================
+// ===============================
+
+const createAccountBtn =
+  document.getElementById("createAccountBtn");
 
 if (createAccountBtn) {
 
-    createAccountBtn.addEventListener(
-        "click",
-        async () => {
+  createAccountBtn.addEventListener("click", async () => {
 
-            const email =
-                emailInput.value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
-            const password =
-                passwordInput.value;
+    if (!email || !password) {
+      alert("Enter email and password first.");
+      return;
+    }
 
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters.");
+      return;
+    }
 
-            if (!email) {
+    try {
 
-                showMessage(
-                    "Enter your email to create an account.",
-                    "error"
-                );
+      const result =
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
 
-                return;
-            }
+      console.log("Account Created:", result.user);
 
+      alert("Account created successfully!");
 
-            if (!password || password.length < 6) {
+      window.location.href = "home.html";
 
-                showMessage(
-                    "Password must be at least 6 characters.",
-                    "error"
-                );
+    } catch (error) {
 
-                return;
-            }
+      console.error(error);
+      alert("Create Account Error: " + error.code);
 
+    }
 
-            try {
-
-                showMessage(
-                    "Creating your Tam Tak account..."
-                );
-
-                const result =
-                    await createUserWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
-
-                console.log(
-                    "New user:",
-                    result.user
-                );
-
-                goToHome();
-
-            } catch (error) {
-
-                console.error(error);
-
-                showMessage(
-                    "Account error: " + error.code,
-                    "error"
-                );
-
-            }
-
-        }
-    );
+  });
 
 }
 
 
-// ==========================================
+// ===============================
 // SHOW / HIDE PASSWORD
-// ==========================================
+// ===============================
+
+const showPassword =
+  document.getElementById("showPassword");
 
 if (showPassword) {
 
-    showPassword.addEventListener(
-        "click",
-        () => {
+  showPassword.addEventListener("click", () => {
 
-            if (passwordInput.type === "password") {
+    const password =
+      document.getElementById("password");
 
-                passwordInput.type = "text";
+    if (password.type === "password") {
 
-                showPassword.textContent = "Hide";
+      password.type = "text";
+      showPassword.textContent = "Hide";
 
-            } else {
+    } else {
 
-                passwordInput.type = "password";
+      password.type = "password";
+      showPassword.textContent = "Show";
 
-                showPassword.textContent = "Show";
+    }
 
-            }
-
-        }
-    );
+  });
 
 }
 
 
-// ==========================================
+// ===============================
 // FORGOT PASSWORD
-// ==========================================
+// ===============================
+
+const forgotPassword =
+  document.getElementById("forgotPassword");
 
 if (forgotPassword) {
 
-    forgotPassword.addEventListener(
-        "click",
-        async () => {
+  forgotPassword.addEventListener("click", async () => {
 
-            const email =
-                emailInput.value.trim();
+    const email =
+      document.getElementById("email").value.trim();
 
-            if (!email) {
+    if (!email) {
+      alert("Please enter your email address first.");
+      return;
+    }
 
-                showMessage(
-                    "Enter your email first.",
-                    "error"
-                );
+    try {
 
-                emailInput.focus();
+      await sendPasswordResetEmail(auth, email);
 
-                return;
-            }
+      alert("Password reset email sent.");
 
+    } catch (error) {
 
-            try {
+      console.error(error);
+      alert("Error: " + error.code);
 
-                await sendPasswordResetEmail(
-                    auth,
-                    email
-                );
+    }
 
-                showMessage(
-                    "Password reset email sent."
-                );
-
-            } catch (error) {
-
-                console.error(error);
-
-                showMessage(
-                    "Reset error: " + error.code,
-                    "error"
-                );
-
-            }
-
-        }
-    );
+  });
 
 }
-
-
-// ==========================================
-// FORGOT EMAIL
-// ==========================================
-
-if (forgotEmail) {
-
-    forgotEmail.addEventListener(
-        "click",
-        () => {
-
-            showMessage(
-                "Please enter the email you used when creating your Tam Tak account.",
-                "error"
-            );
-
-        }
-    );
-
-}
-
-
-console.log(
-    "Tam Tak Login loaded successfully!"
-);
