@@ -1,394 +1,457 @@
-/* =========================
-   TAM TAK HOME JAVASCRIPT
-========================= */
+// ==========================================
+// TAM TAK - LOGIN JAVASCRIPT
+// ==========================================
 
+// Firebase imports
+import {
+    getAuth,
+    GoogleAuthProvider,
+    FacebookAuthProvider,
+    signInWithPopup,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-/* =========================
-   LIKE BUTTON
-========================= */
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-const likeButtons = document.querySelectorAll(".like-btn");
 
-likeButtons.forEach(button => {
+// ==========================================
+// FIREBASE CONFIG
+// ==========================================
 
-    button.addEventListener("click", function () {
+const firebaseConfig = {
+    apiKey: "PASTE_YOUR_API_KEY",
+    authDomain: "tam-tak.firebaseapp.com",
+    projectId: "tam-tak",
+    storageBucket: "tam-tak.firebasestorage.app",
+    messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID",
+    appId: "PASTE_YOUR_APP_ID"
+};
 
-        const icon = this.querySelector("i");
 
-        const post = this.closest(".post");
+// ==========================================
+// INITIALIZE FIREBASE
+// ==========================================
 
-        const likesText = post.querySelector(".likes");
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-        let likes = parseInt(
-            likesText.textContent.replace(/[^0-9]/g, "")
-        );
 
-        if (!this.classList.contains("liked")) {
+// ==========================================
+// PROVIDERS
+// ==========================================
 
-            this.classList.add("liked");
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
-            icon.classList.remove("fa-regular");
-            icon.classList.add("fa-solid");
 
-            likes++;
+// ==========================================
+// ELEMENTS
+// ==========================================
 
-        } else {
+const googleLogin =
+    document.getElementById("googleLogin");
 
-            this.classList.remove("liked");
+const facebookLogin =
+    document.getElementById("facebookLogin");
 
-            icon.classList.remove("fa-solid");
-            icon.classList.add("fa-regular");
+const loginBtn =
+    document.getElementById("loginBtn");
 
-            likes--;
+const createAccountBtn =
+    document.getElementById("createAccountBtn");
 
-        }
+const showPassword =
+    document.getElementById("showPassword");
 
-        likesText.textContent = likes.toLocaleString() + " likes";
+const forgotPassword =
+    document.getElementById("forgotPassword");
 
-    });
+const forgotEmail =
+    document.getElementById("forgotEmail");
 
-});
+const emailInput =
+    document.getElementById("email");
 
+const passwordInput =
+    document.getElementById("password");
 
-/* =========================
-   SAVE BUTTON
-========================= */
+const authMessage =
+    document.getElementById("authMessage");
 
-const saveButtons = document.querySelectorAll(".save-btn");
 
-saveButtons.forEach(button => {
+// ==========================================
+// MESSAGE FUNCTION
+// ==========================================
 
-    button.addEventListener("click", function () {
+function showMessage(message, type = "normal") {
 
-        const icon = this.querySelector("i");
+    if (!authMessage) return;
 
-        this.classList.toggle("saved");
+    authMessage.textContent = message;
 
-        if (this.classList.contains("saved")) {
+    if (type === "error") {
+        authMessage.style.color = "#e53935";
+    } else {
+        authMessage.style.color = "#16803c";
+    }
+}
 
-            icon.classList.remove("fa-regular");
-            icon.classList.add("fa-solid");
 
-        } else {
+// ==========================================
+// GO TO HOME
+// ==========================================
 
-            icon.classList.remove("fa-solid");
-            icon.classList.add("fa-regular");
+function goToHome() {
 
-        }
+    showMessage("Login successful. Opening Tam Tak...");
 
-    });
-
-});
-
-
-/* =========================
-   FOLLOW BUTTON
-========================= */
-
-const followButtons =
-    document.querySelectorAll(".follow-btn");
-
-followButtons.forEach(button => {
-
-    button.addEventListener("click", function () {
-
-        if (this.textContent.trim() === "Follow") {
-
-            this.textContent = "Following";
-            this.style.color = "#555";
-
-        } else {
-
-            this.textContent = "Follow";
-            this.style.color = "#0095f6";
-
-        }
-
-    });
-
-});
-
-
-/* =========================
-   SHARE BUTTON
-========================= */
-
-const shareButtons =
-    document.querySelectorAll(".share-btn");
-
-shareButtons.forEach(button => {
-
-    button.addEventListener("click", async function () {
-
-        const post = this.closest(".post");
-
-        const username =
-            post.querySelector(".user-info h3").textContent;
-
-        const shareData = {
-            title: "Tam Tak",
-            text: `Check out ${username}'s post on Tam Tak!`
-        };
-
-        try {
-
-            if (navigator.share) {
-
-                await navigator.share(shareData);
-
-            } else {
-
-                await navigator.clipboard.writeText(
-                    "Check this post on Tam Tak!"
-                );
-
-                alert("Post link copied!");
-
-            }
-
-        } catch (error) {
-
-            console.log("Share cancelled");
-
-        }
-
-    });
-
-});
-
-
-/* =========================
-   COMMENTS
-========================= */
-
-const commentButtons =
-    document.querySelectorAll(".comment-btn");
-
-commentButtons.forEach(button => {
-
-    button.addEventListener("click", function () {
-
-        const post = this.closest(".post");
-
-        const username =
-            post.querySelector(".user-info h3").textContent;
-
-        const comment = prompt(
-            `Comment on ${username}'s post:`
-        );
-
-        if (comment && comment.trim() !== "") {
-
-            alert("Comment added successfully!");
-
-        }
-
-    });
-
-});
-
-
-/* =========================
-   CREATE POST MODAL
-========================= */
-
-const postModal =
-    document.getElementById("postModal");
-
-const createPostBtn =
-    document.getElementById("createPostBtn");
-
-const bottomCreateBtn =
-    document.getElementById("bottomCreateBtn");
-
-const closeModal =
-    document.getElementById("closeModal");
-
-
-function openCreatePost() {
-
-    postModal.classList.add("show");
+    setTimeout(() => {
+        window.location.href = "home.html";
+    }, 700);
 
 }
 
 
-createPostBtn.addEventListener(
-    "click",
-    openCreatePost
-);
+// ==========================================
+// GOOGLE LOGIN
+// ==========================================
 
+if (googleLogin) {
 
-bottomCreateBtn.addEventListener(
-    "click",
-    openCreatePost
-);
+    googleLogin.addEventListener("click", async () => {
 
+        try {
 
-closeModal.addEventListener(
-    "click",
-    function () {
+            showMessage("Opening Google Login...");
 
-        postModal.classList.remove("show");
+            const result =
+                await signInWithPopup(
+                    auth,
+                    googleProvider
+                );
 
-    }
-);
+            console.log(
+                "Google user:",
+                result.user
+            );
 
+            goToHome();
 
-/* Close modal outside box */
+        } catch (error) {
 
-postModal.addEventListener(
-    "click",
-    function (event) {
+            console.error(error);
 
-        if (event.target === postModal) {
-
-            postModal.classList.remove("show");
-
-        }
-
-    }
-);
-
-
-/* =========================
-   PUBLISH POST
-========================= */
-
-const publishBtn =
-    document.getElementById("publishBtn");
-
-const postImage =
-    document.getElementById("postImage");
-
-publishBtn.addEventListener(
-    "click",
-    function () {
-
-        if (!postImage.files.length) {
-
-            alert("Please select an image first.");
-
-            return;
-
-        }
-
-        alert(
-            "Post ready! Firebase Storage ko connect karne ke baad ye post permanently upload hogi."
-        );
-
-        postModal.classList.remove("show");
-
-    }
-);
-
-
-/* =========================
-   SEARCH
-========================= */
-
-document
-    .getElementById("searchBtn")
-    .addEventListener("click", function () {
-
-        const search =
-            prompt("Tam Tak par kya search karna hai?");
-
-        if (search && search.trim() !== "") {
-
-            alert(
-                `Searching for "${search}"...`
+            showMessage(
+                "Google Login Error: " + error.code,
+                "error"
             );
 
         }
 
     });
 
-
-/* =========================
-   REELS
-========================= */
-
-document
-    .getElementById("reelsBtn")
-    .addEventListener("click", function () {
-
-        alert(
-            "Tam Tak Reels page next step mein connect karenge."
-        );
-
-    });
+}
 
 
-/* =========================
-   PROFILE
-========================= */
+// ==========================================
+// FACEBOOK LOGIN
+// ==========================================
 
-document
-    .getElementById("profileBtn")
-    .addEventListener("click", function () {
+if (facebookLogin) {
 
-        alert(
-            "Tam Tak Profile page next step mein connect karenge."
-        );
+    facebookLogin.addEventListener("click", async () => {
 
-    });
+        try {
 
+            showMessage("Opening Facebook Login...");
 
-/* =========================
-   NOTIFICATION
-========================= */
+            const result =
+                await signInWithPopup(
+                    auth,
+                    facebookProvider
+                );
 
-document
-    .getElementById("notificationBtn")
-    .addEventListener("click", function () {
+            console.log(
+                "Facebook user:",
+                result.user
+            );
 
-        alert(
-            "No new notifications."
-        );
+            goToHome();
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Facebook Login Error: " + error.code,
+                "error"
+            );
+
+        }
 
     });
 
+}
 
-/* =========================
-   DOUBLE CLICK LIKE
-========================= */
 
-const postImages =
-    document.querySelectorAll(".post-media img");
+// ==========================================
+// EMAIL LOGIN
+// ==========================================
 
-postImages.forEach(image => {
+if (loginBtn) {
 
-    image.addEventListener(
-        "dblclick",
-        function () {
+    loginBtn.addEventListener("click", async () => {
 
-            const post =
-                this.closest(".post");
+        const email =
+            emailInput.value.trim();
 
-            const likeButton =
-                post.querySelector(".like-btn");
+        const password =
+            passwordInput.value;
 
-            if (!likeButton.classList.contains("liked")) {
+        if (!email) {
 
-                likeButton.click();
+            showMessage(
+                "Please enter your email.",
+                "error"
+            );
+
+            emailInput.focus();
+
+            return;
+        }
+
+        if (!password) {
+
+            showMessage(
+                "Please enter your password.",
+                "error"
+            );
+
+            passwordInput.focus();
+
+            return;
+        }
+
+
+        try {
+
+            showMessage("Logging in...");
+
+            const result =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+            console.log(
+                "Logged in user:",
+                result.user
+            );
+
+            goToHome();
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Login failed: " + error.code,
+                "error"
+            );
+
+        }
+
+    });
+
+}
+
+
+// ==========================================
+// CREATE ACCOUNT
+// ==========================================
+
+if (createAccountBtn) {
+
+    createAccountBtn.addEventListener(
+        "click",
+        async () => {
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+
+            if (!email) {
+
+                showMessage(
+                    "Enter your email to create an account.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (!password || password.length < 6) {
+
+                showMessage(
+                    "Password must be at least 6 characters.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            try {
+
+                showMessage(
+                    "Creating your Tam Tak account..."
+                );
+
+                const result =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+                console.log(
+                    "New user:",
+                    result.user
+                );
+
+                goToHome();
+
+            } catch (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "Account error: " + error.code,
+                    "error"
+                );
 
             }
 
         }
     );
 
-});
+}
 
 
-/* =========================
-   LOGIN → HOME
-=========================
+// ==========================================
+// SHOW / HIDE PASSWORD
+// ==========================================
 
-   Apne login page ke successful
-   login ke baad ye use kar sakte ho:
+if (showPassword) {
 
-   window.location.href = "home.html";
+    showPassword.addEventListener(
+        "click",
+        () => {
 
-========================= */
+            if (passwordInput.type === "password") {
 
-console.log("Tam Tak Home loaded successfully!");
+                passwordInput.type = "text";
+
+                showPassword.textContent = "Hide";
+
+            } else {
+
+                passwordInput.type = "password";
+
+                showPassword.textContent = "Show";
+
+            }
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// FORGOT PASSWORD
+// ==========================================
+
+if (forgotPassword) {
+
+    forgotPassword.addEventListener(
+        "click",
+        async () => {
+
+            const email =
+                emailInput.value.trim();
+
+            if (!email) {
+
+                showMessage(
+                    "Enter your email first.",
+                    "error"
+                );
+
+                emailInput.focus();
+
+                return;
+            }
+
+
+            try {
+
+                await sendPasswordResetEmail(
+                    auth,
+                    email
+                );
+
+                showMessage(
+                    "Password reset email sent."
+                );
+
+            } catch (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "Reset error: " + error.code,
+                    "error"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// FORGOT EMAIL
+// ==========================================
+
+if (forgotEmail) {
+
+    forgotEmail.addEventListener(
+        "click",
+        () => {
+
+            showMessage(
+                "Please enter the email you used when creating your Tam Tak account.",
+                "error"
+            );
+
+        }
+    );
+
+}
+
+
+console.log(
+    "Tam Tak Login loaded successfully!"
+);
