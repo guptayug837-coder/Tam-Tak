@@ -1,1112 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tam Tak - Home</title>
+    <title>Tam Tak - Home</title>
 
-<style>
+    <link rel="stylesheet" href="style.css">
 
-/* =========================
-   RESET
-========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#fafafa;
-    color:#111;
-    padding-bottom:70px;
-}
-
-
-/* =========================
-   HEADER
-========================= */
-
-.header{
-    height:62px;
-    background:#fff;
-    border-bottom:1px solid #ddd;
-
-    display:flex;
-    align-items:center;
-
-    padding:0 7%;
-
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-
-.logo{
-    color:#6d35e8;
-    text-decoration:none;
-
-    font-size:27px;
-    font-weight:800;
-}
-
-.search{
-    margin-left:80px;
-
-    width:270px;
-    height:38px;
-
-    background:#f1f1f1;
-
-    border-radius:10px;
-
-    display:flex;
-    align-items:center;
-
-    padding:0 12px;
-}
-
-.search input{
-    width:100%;
-
-    border:none;
-    outline:none;
-
-    background:transparent;
-
-    padding-left:8px;
-}
-
-.header-icons{
-    margin-left:auto;
-
-    display:flex;
-    align-items:center;
-
-    gap:16px;
-}
-
-.header-icons button{
-    border:none;
-    background:none;
-
-    font-size:23px;
-
-    cursor:pointer;
-}
-
-.profile{
-    width:35px;
-    height:35px;
-
-    border-radius:50%;
-
-    background:
-    linear-gradient(
-        135deg,
-        #7c3aed,
-        #ec4899
-    );
-
-    color:white;
-
-    display:grid;
-    place-items:center;
-
-    text-decoration:none;
-
-    font-weight:bold;
-}
-
-
-/* =========================
-   MAIN
-========================= */
-
-main{
-    width:630px;
-
-    max-width:100%;
-
-    margin:22px auto;
-}
-
-
-/* =========================
-   STORIES
-========================= */
-
-.stories{
-    background:white;
-
-    border:1px solid #ddd;
-
-    border-radius:10px;
-
-    padding:15px;
-
-    display:flex;
-
-    gap:18px;
-
-    overflow-x:auto;
-}
-
-.story{
-    min-width:68px;
-
-    text-align:center;
-
-    font-size:12px;
-}
-
-.story-image{
-    width:62px;
-    height:62px;
-
-    margin:auto;
-
-    margin-bottom:6px;
-
-    border-radius:50%;
-
-    display:grid;
-    place-items:center;
-
-    color:white;
-
-    font-size:20px;
-    font-weight:bold;
-
-    border:3px solid white;
-
-    box-shadow:
-    0 0 0 2px #8b3dff;
-}
-
-.add-story{
-    background:white;
-
-    color:#7c3aed;
-
-    font-size:30px;
-
-    box-shadow:
-    0 0 0 2px #ccc;
-}
-
-.s1{background:#ef4444;}
-.s2{background:#f59e0b;}
-.s3{background:#3b82f6;}
-.s4{background:#10b981;}
-.s5{background:#ec4899;}
-
-
-/* =========================
-   POST
-========================= */
-
-.post{
-    background:white;
-
-    border:1px solid #ddd;
-
-    border-radius:10px;
-
-    margin-top:22px;
-
-    overflow:hidden;
-}
-
-.post-header{
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:14px;
-}
-
-.avatar{
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-
-    display:grid;
-    place-items:center;
-
-    color:white;
-
-    font-weight:bold;
-
-    background:
-    linear-gradient(
-        135deg,
-        #7c3aed,
-        #ec4899
-    );
-}
-
-.avatar.blue{
-    background:
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #06b6d4
-    );
-}
-
-.post-header small{
-    display:block;
-
-    color:#777;
-
-    font-size:11px;
-
-    margin-top:3px;
-}
-
-.more{
-    margin-left:auto;
-
-    border:none;
-
-    background:none;
-
-    font-size:18px;
-
-    cursor:pointer;
-}
-
-.caption{
-    padding:0 14px 14px;
-
-    line-height:1.5;
-}
-
-
-/* =========================
-   POST IMAGE
-========================= */
-
-.post-photo{
-    height:470px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #2e1065,
-        #7c3aed,
-        #ec4899
-    );
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:white;
-}
-
-.tam-tak{
-    font-size:58px;
-
-    font-weight:900;
-
-    letter-spacing:-3px;
-}
-
-.post-photo p{
-    margin-top:8px;
-
-    letter-spacing:3px;
-
-    font-size:12px;
-}
-
-
-/* =========================
-   SECOND POST
-========================= */
-
-.second-photo{
-    height:470px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #172554,
-        #2563eb,
-        #06b6d4
-    );
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:white;
-
-    font-size:28px;
-}
-
-.second-photo span{
-    font-size:65px;
-
-    margin-bottom:15px;
-}
-
-
-/* =========================
-   POST INFO
-========================= */
-
-.post-info{
-    display:flex;
-
-    justify-content:space-between;
-
-    padding:10px 14px;
-
-    color:#666;
-
-    font-size:13px;
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.post-buttons{
-    border-top:1px solid #eee;
-
-    border-bottom:1px solid #eee;
-
-    display:flex;
-
-    align-items:center;
-
-    padding:6px 10px;
-}
-
-.post-buttons button{
-    border:none;
-
-    background:none;
-
-    font-size:25px;
-
-    cursor:pointer;
-
-    padding:5px 8px;
-}
-
-.post-buttons .save{
-    margin-left:auto;
-}
-
-.like-btn.liked{
-    color:#ed1b35;
-}
-
-
-/* =========================
-   COMMENT
-========================= */
-
-.comment{
-    display:flex;
-
-    padding:10px;
-}
-
-.comment input{
-    flex:1;
-
-    border:none;
-
-    outline:none;
-
-    font-size:13px;
-}
-
-.comment button{
-    border:none;
-
-    background:none;
-
-    color:#6d35e8;
-
-    font-weight:bold;
-
-    cursor:pointer;
-}
-
-
-/* =========================
-   BOTTOM NAVIGATION
-========================= */
-
-.bottom-nav{
-    position:fixed;
-
-    bottom:0;
-
-    left:0;
-    right:0;
-
-    height:65px;
-
-    background:white;
-
-    border-top:1px solid #ddd;
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:65px;
-
-    z-index:200;
-}
-
-.bottom-nav a{
-    color:#222;
-
-    text-decoration:none;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:3px;
-
-    font-size:20px;
-}
-
-.bottom-nav span{
-    font-size:10px;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:700px){
-
-    .header{
-        padding:0 15px;
-    }
-
-    .search{
-        display:none;
-    }
-
-    main{
-        width:100%;
-
-        margin-top:10px;
-    }
-
-    .stories{
-        border-radius:0;
-    }
-
-    .post{
-        border-left:none;
-        border-right:none;
-
-        border-radius:0;
-    }
-
-    .post-photo,
-    .second-photo{
-        height:430px;
-    }
-
-    .bottom-nav{
-        gap:0;
-
-        justify-content:space-around;
-    }
-
-}
-
-</style>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 </head>
-
 
 <body>
 
+<!-- ================= TOP HEADER ================= -->
 
-<!-- =========================
-     HEADER
-========================= -->
+<header class="top-header">
 
-<header class="header">
-
-    <a href="home.html" class="logo">
+    <div class="logo">
         Tam Tak
-    </a>
-
-    <div class="search">
-
-        🔍
-
-        <input
-            type="text"
-            placeholder="Search"
-        >
-
     </div>
 
-
     <div class="header-icons">
-
-        <button onclick="goHome()">
-            🏠
+        <button id="createPostBtn">
+            <i class="fa-solid fa-plus"></i>
         </button>
 
-        <button onclick="openMessages()">
-            ✈️
+        <button id="notificationBtn">
+            <i class="fa-regular fa-heart"></i>
         </button>
-
-        <button>
-            ♡
-        </button>
-
-        <a
-            href="profile.html"
-            class="profile"
-        >
-            Y
-        </a>
-
     </div>
 
 </header>
 
 
+<!-- ================= MAIN ================= -->
 
-<!-- =========================
-     MAIN
-========================= -->
+<main class="main-container">
 
-<main>
+    <!-- ================= STORIES ================= -->
 
+    <section class="stories-section">
 
-<!-- STORIES -->
+        <div class="stories">
 
-<section class="stories">
+            <!-- Your Story -->
+            <div class="story-item">
 
+                <div class="story-image your-story">
+                    <img
+                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200"
+                        alt="Your Story"
+                    >
 
-    <div class="story">
+                    <span class="story-plus">+</span>
+                </div>
 
-        <div class="story-image add-story">
-            +
-        </div>
+                <p>Your story</p>
 
-        <span>
-            Your story
-        </span>
-
-    </div>
-
-
-    <div class="story">
-
-        <div class="story-image s1">
-            A
-        </div>
-
-        <span>
-            Arjun
-        </span>
-
-    </div>
+            </div>
 
 
-    <div class="story">
+            <!-- Story 1 -->
+            <div class="story-item">
 
-        <div class="story-image s2">
-            S
-        </div>
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200"
+                        alt="Story"
+                    >
+                </div>
 
-        <span>
-            Simran
-        </span>
+                <p>thevishal</p>
 
-    </div>
-
-
-    <div class="story">
-
-        <div class="story-image s3">
-            R
-        </div>
-
-        <span>
-            Rahul
-        </span>
-
-    </div>
+            </div>
 
 
-    <div class="story">
+            <!-- Story 2 -->
+            <div class="story-item">
 
-        <div class="story-image s4">
-            N
-        </div>
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200"
+                        alt="Story"
+                    >
+                </div>
 
-        <span>
-            Neha
-        </span>
+                <p>gupta.yg</p>
 
-    </div>
-
-
-    <div class="story">
-
-        <div class="story-image s5">
-            P
-        </div>
-
-        <span>
-            Priya
-        </span>
-
-    </div>
-
-</section>
+            </div>
 
 
+            <!-- Story 3 -->
+            <div class="story-item">
 
-<!-- =========================
-     POST 1
-========================= -->
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200"
+                        alt="Story"
+                    >
+                </div>
 
-<article class="post">
+                <p>sadhna</p>
+
+            </div>
 
 
-    <div class="post-header">
+            <!-- Story 4 -->
+            <div class="story-item">
 
-        <div class="avatar">
-            Y
-        </div>
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200"
+                        alt="Story"
+                    >
+                </div>
 
-        <div>
+                <p>priya</p>
 
-            <strong>
-                Yug Gupta
-            </strong>
+            </div>
 
-            <small>
-                Just now · 🌎
-            </small>
+
+            <!-- Story 5 -->
+            <div class="story-item">
+
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200"
+                        alt="Story"
+                    >
+                </div>
+
+                <p>neha</p>
+
+            </div>
 
         </div>
 
-        <button class="more">
-            •••
-        </button>
+    </section>
 
-    </div>
 
+    <!-- ================= FEED ================= -->
 
-    <div class="caption">
+    <section id="feed">
 
-        Welcome to Tam Tak ❤️
 
-        <br>
+        <!-- ================= POST 1 ================= -->
 
-        Connect. Share. Discover.
+        <article class="post">
 
-    </div>
+            <!-- Post Header -->
 
+            <div class="post-header">
 
-    <div class="post-photo">
+                <div class="user-info">
 
-        <div class="tam-tak">
-            Tam Tak
-        </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100"
+                        alt="Profile"
+                    >
 
-        <p>
-            CONNECT · SHARE · DISCOVER
-        </p>
+                    <div>
+                        <h3>sonii.thakur</h3>
 
-    </div>
+                        <span>
+                            <i class="fa-solid fa-music"></i>
+                            Tam Tak Music
+                        </span>
+                    </div>
 
+                </div>
 
-    <div class="post-info">
 
-        <span>
-            ❤️ 1,248
-        </span>
+                <button class="follow-btn">
+                    Follow
+                </button>
 
-        <span>
-            128 comments
-        </span>
+                <button class="more-btn">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
 
-    </div>
+            </div>
 
 
-    <div class="post-buttons">
+            <!-- Post Image -->
 
-        <button
-            class="like-btn"
-            onclick="likePost(this)"
-        >
-            ♡
-        </button>
+            <div class="post-media">
 
-        <button
-            onclick="commentPost()"
-        >
-            💬
-        </button>
+                <img
+                    src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=900"
+                    alt="Tam Tak Post"
+                >
 
-        <button
-            onclick="sharePost()"
-        >
-            ↗
-        </button>
+                <button class="video-play">
+                    <i class="fa-solid fa-play"></i>
+                </button>
 
-        <button class="save">
-            ♡
-        </button>
+            </div>
 
-    </div>
 
+            <!-- Post Actions -->
 
-    <div class="comment">
+            <div class="post-actions">
 
-        <input
-            id="commentInput"
-            type="text"
-            placeholder="Add a comment..."
-        >
+                <div class="left-actions">
 
-        <button onclick="addComment()">
-            Post
-        </button>
+                    <button class="like-btn">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
 
-    </div>
+                    <button class="comment-btn">
+                        <i class="fa-regular fa-comment"></i>
+                    </button>
 
+                    <button class="share-btn">
+                        <i class="fa-regular fa-paper-plane"></i>
+                    </button>
 
-</article>
+                </div>
 
+                <button class="save-btn">
+                    <i class="fa-regular fa-bookmark"></i>
+                </button>
 
+            </div>
 
-<!-- =========================
-     POST 2
-========================= -->
 
-<article class="post">
+            <!-- Likes -->
 
+            <div class="post-content">
 
-    <div class="post-header">
+                <strong class="likes">
+                    1,245 likes
+                </strong>
 
-        <div class="avatar blue">
-            S
-        </div>
+                <p>
+                    <strong>sonii.thakur</strong>
+                    Welcome to Tam Tak ❤️
+                </p>
 
-        <div>
+                <button class="view-comments">
+                    View all 84 comments
+                </button>
 
-            <strong>
-                Simran
-            </strong>
+                <small>
+                    2 HOURS AGO
+                </small>
 
-            <small>
-                20 min ago
-            </small>
+            </div>
 
-        </div>
+        </article>
 
-        <button class="more">
-            •••
-        </button>
 
-    </div>
 
+        <!-- ================= POST 2 ================= -->
 
-    <div class="caption">
+        <article class="post">
 
-        Beautiful day ✨
+            <div class="post-header">
 
-        <br>
+                <div class="user-info">
 
-        #TamTak #Life
+                    <img
+                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"
+                        alt="Profile"
+                    >
 
-    </div>
+                    <div>
 
+                        <h3>priya_yg</h3>
 
-    <div class="second-photo">
+                        <span>
+                            Original audio
+                        </span>
 
-        <span>
-            📸
-        </span>
+                    </div>
 
-        <strong>
-            Tam Tak Post
-        </strong>
+                </div>
 
-    </div>
+                <button class="follow-btn">
+                    Follow
+                </button>
 
+                <button class="more-btn">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
 
-    <div class="post-info">
+            </div>
 
-        <span>
-            ❤️ 856
-        </span>
 
-        <span>
-            67 comments
-        </span>
+            <div class="post-media">
 
-    </div>
+                <img
+                    src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=900"
+                    alt="Tam Tak Post"
+                >
 
+            </div>
 
-    <div class="post-buttons">
 
-        <button
-            class="like-btn"
-            onclick="likePost(this)"
-        >
-            ♡
-        </button>
+            <div class="post-actions">
 
-        <button>
-            💬
-        </button>
+                <div class="left-actions">
 
-        <button
-            onclick="sharePost()"
-        >
-            ↗
-        </button>
+                    <button class="like-btn">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
 
-        <button class="save">
-            ♡
-        </button>
+                    <button class="comment-btn">
+                        <i class="fa-regular fa-comment"></i>
+                    </button>
 
-    </div>
+                    <button class="share-btn">
+                        <i class="fa-regular fa-paper-plane"></i>
+                    </button>
 
+                </div>
 
-</article>
+                <button class="save-btn">
+                    <i class="fa-regular fa-bookmark"></i>
+                </button>
 
+            </div>
+
+
+            <div class="post-content">
+
+                <strong class="likes">
+                    892 likes
+                </strong>
+
+                <p>
+                    <strong>priya_yg</strong>
+                    Life is better with good vibes ✨
+                </p>
+
+                <button class="view-comments">
+                    View all 31 comments
+                </button>
+
+                <small>
+                    5 HOURS AGO
+                </small>
+
+            </div>
+
+        </article>
+
+
+    </section>
 
 </main>
 
 
 
-<!-- =========================
-     BOTTOM NAV
-========================= -->
+<!-- ================= BOTTOM NAVIGATION ================= -->
 
 <nav class="bottom-nav">
 
-
-    <a href="home.html">
-
-        🏠
-
-        <span>
-            Home
-        </span>
-
-    </a>
+    <button class="nav-btn active" data-page="home">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+    </button>
 
 
-    <a href="reels.html">
-
-        ▶️
-
-        <span>
-            Reels
-        </span>
-
-    </a>
+    <button class="nav-btn" id="reelsBtn">
+        <i class="fa-solid fa-clapperboard"></i>
+        <span>Reels</span>
+    </button>
 
 
-    <a href="create-post.html">
-
-        ➕
-
-        <span>
-            Create
-        </span>
-
-    </a>
+    <button class="nav-btn create-btn" id="bottomCreateBtn">
+        <i class="fa-solid fa-plus"></i>
+    </button>
 
 
-    <a href="messages.html">
-
-        💬
-
-        <span>
-            Messages
-        </span>
-
-    </a>
+    <button class="nav-btn" id="searchBtn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>Search</span>
+    </button>
 
 
-    <a href="profile.html">
+    <button class="nav-btn" id="profileBtn">
+        <img
+            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100"
+            alt="Profile"
+        >
 
-        👤
+        <span>Profile</span>
 
-        <span>
-            Profile
-        </span>
-
-    </a>
-
+    </button>
 
 </nav>
 
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
+<!-- ================= CREATE POST MODAL ================= -->
 
-<script>
+<div class="modal" id="postModal">
 
+    <div class="modal-box">
 
-/* LIKE */
+        <button class="close-modal" id="closeModal">
+            ×
+        </button>
 
-function likePost(button){
+        <h2>Create Post</h2>
 
-    button.classList.toggle("liked");
+        <div class="upload-box">
 
-    if(
-        button.classList.contains("liked")
-    ){
+            <i class="fa-regular fa-image"></i>
 
-        button.innerHTML = "♥";
+            <p>
+                Create a new post on Tam Tak
+            </p>
 
-    }else{
+            <input
+                type="file"
+                id="postImage"
+                accept="image/*"
+            >
 
-        button.innerHTML = "♡";
+        </div>
 
-    }
+        <button class="publish-btn" id="publishBtn">
+            Publish
+        </button>
 
-}
+    </div>
 
-
-/* COMMENT */
-
-function addComment(){
-
-    const input =
-        document.getElementById(
-            "commentInput"
-        );
-
-    const text =
-        input.value.trim();
+</div>
 
 
-    if(text === ""){
 
-        alert(
-            "Please write a comment."
-        );
-
-        return;
-
-    }
-
-
-    alert(
-        "Comment posted: " + text
-    );
-
-
-    input.value = "";
-
-}
-
-
-/* COMMENT BUTTON */
-
-function commentPost(){
-
-    document
-        .getElementById("commentInput")
-        .focus();
-
-}
-
-
-/* SHARE */
-
-function sharePost(){
-
-    if(
-        navigator.share
-    ){
-
-        navigator.share({
-
-            title:"Tam Tak",
-
-            text:
-            "Check this post on Tam Tak!",
-
-            url:
-            window.location.href
-
-        });
-
-    }else{
-
-        alert(
-            "Post link copied!"
-        );
-
-    }
-
-}
-
-
-/* HOME */
-
-function goHome(){
-
-    window.location.href =
-        "home.html";
-
-}
-
-
-/* MESSAGES */
-
-function openMessages(){
-
-    window.location.href =
-        "messages.html";
-
-}
-
-</script>
-
+<script src="script.js"></script>
 
 </body>
 </html>
