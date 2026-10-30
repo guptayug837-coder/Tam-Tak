@@ -51,7 +51,7 @@ if (bottomCreateBtn) bottomCreateBtn.addEventListener("click", openPostModal);
 if (closeModalBtn) closeModalBtn.addEventListener("click", closePostModal);
 
 function escapeHTML(value) {
-    return String(value).replace(/[&<>"']/g, character => ({
+    return String(value || "").replace(/[&<>"']/g, character => ({
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",
@@ -82,9 +82,7 @@ function createPostElement(post) {
                 <div class="user-avatar">${initial}</div>
                 <div>
                     <strong>${name}</strong>
-                    <small>@tamtak · ${post.createdAt?.toDate
-                        ? post.createdAt.toDate().toLocaleString()
-                        : "Just now"}</small>
+                    <small>@tamtak · Just now</small>
                 </div>
             </div>
         </div>
@@ -147,7 +145,6 @@ async function loadPosts() {
     feed.innerHTML = `<p style="padding:20px;text-align:center;">Loading posts...</p>`;
 
     try {
-        // Query without orderBy to prevent index errors
         const snapshot = await getDocs(collection(db, "posts"));
         feed.innerHTML = "";
 
@@ -169,7 +166,7 @@ async function loadPosts() {
         console.error("Post loading error:", error);
         feed.innerHTML = `
             <p style="padding:20px;text-align:center;">
-                Posts could not load. Check Firestore connection.
+                No posts found or connection issue.
             </p>`;
     }
 }
@@ -211,14 +208,12 @@ if (publishBtn) {
         try {
             let imageUrl = "";
 
-            // Upload photo to Firebase Storage if selected
             if (file) {
                 const storageRef = ref(storage, `posts/${Date.now()}_${file.name}`);
                 const uploadResult = await uploadBytes(storageRef, file);
                 imageUrl = await getDownloadURL(uploadResult.ref);
             }
 
-            // Add document to Firestore
             await addDoc(collection(db, "posts"), {
                 userId: user.uid,
                 userName: user.displayName || user.email.split("@")[0] || "Tam Tak User",
