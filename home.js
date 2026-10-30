@@ -6,10 +6,7 @@ import {
 import {
     collection,
     addDoc,
-    getDocs,
-    query,
-    orderBy,
-    serverTimestamp
+    getDocs
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 import {
@@ -150,12 +147,8 @@ async function loadPosts() {
     feed.innerHTML = `<p style="padding:20px;text-align:center;">Loading posts...</p>`;
 
     try {
-        const postsQuery = query(
-            collection(db, "posts"),
-            orderBy("createdAt", "desc")
-        );
-
-        const snapshot = await getDocs(postsQuery);
+        // Query without orderBy to prevent index errors
+        const snapshot = await getDocs(collection(db, "posts"));
         feed.innerHTML = "";
 
         if (snapshot.empty) {
@@ -231,7 +224,7 @@ if (publishBtn) {
                 userName: user.displayName || user.email.split("@")[0] || "Tam Tak User",
                 text: text,
                 imageUrl: imageUrl,
-                createdAt: serverTimestamp()
+                createdAt: new Date()
             });
 
             closePostModal();
