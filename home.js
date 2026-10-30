@@ -10,23 +10,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 import {
-    getStorage,
-    ref,
-    uploadBytes,
-    getDownloadURL
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-storage.js";
-
-import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
-// Initialize Firebase Storage
-const storage = getStorage();
 
 const feed = document.getElementById("feed");
 const postModal = document.getElementById("postModal");
 const postText = document.getElementById("postText");
-const postImageInput = document.getElementById("postImageInput");
 const publishBtn = document.getElementById("publishBtn");
 
 function openPostModal() {
@@ -37,7 +26,6 @@ function closePostModal() {
     if (postModal) {
         postModal.classList.remove("show");
         if (postText) postText.value = "";
-        if (postImageInput) postImageInput.value = "";
     }
 }
 
@@ -61,20 +49,12 @@ function escapeHTML(value) {
 }
 
 function createPostElement(post) {
-    const name = escapeHTML(post.userName || "Tam Tak User");
+    const name = escapeHTML(post.userName || "Yug Gupta");
     const text = escapeHTML(post.text || "");
-    const imageUrl = post.imageUrl ? escapeHTML(post.imageUrl) : null;
     const initial = escapeHTML(name.charAt(0).toUpperCase());
 
     const article = document.createElement("article");
     article.className = "post";
-
-    let imageHTML = "";
-    if (imageUrl) {
-        imageHTML = `<div class="post-media" style="margin-top:10px; width:100%; text-align:center;">
-            <img src="${imageUrl}" alt="Post image" style="max-width:100%; max-height:450px; border-radius:8px; object-fit:cover;">
-        </div>`;
-    }
 
     article.innerHTML = `
         <div class="post-header">
@@ -87,10 +67,8 @@ function createPostElement(post) {
             </div>
         </div>
 
-        ${imageHTML}
-
-        <div class="post-content" style="padding-top:10px;">
-            <p class="caption">${text}</p>
+        <div class="post-content" style="padding-top:12px; padding-bottom:12px;">
+            <p class="caption" style="font-size: 15px; color: #111;">${text}</p>
         </div>
 
         <div class="post-actions">
@@ -185,11 +163,10 @@ onAuthStateChanged(auth, user => {
     }
 });
 
-// Publish Post with optional Photo Upload
+// Publish Post securely without Storage hang
 if (publishBtn) {
     publishBtn.addEventListener("click", async () => {
         const text = postText ? postText.value.trim() : "";
-        const file = postImageInput && postImageInput.files[0] ? postImageInput.files[0] : null;
         const user = auth.currentUser;
 
         if (!user) {
@@ -197,8 +174,8 @@ if (publishBtn) {
             return;
         }
 
-        if (!text && !file) {
-            alert("Please write something or choose an image.");
+        if (!text) {
+            alert("Please write something first.");
             return;
         }
 
@@ -206,24 +183,16 @@ if (publishBtn) {
         publishBtn.textContent = "Publishing...";
 
         try {
-            let imageUrl = "";
-
-            if (file) {
-                const storageRef = ref(storage, `posts/${Date.now()}_${file.name}`);
-                const uploadResult = await uploadBytes(storageRef, file);
-                imageUrl = await getDownloadURL(uploadResult.ref);
-            }
-
             await addDoc(collection(db, "posts"), {
                 userId: user.uid,
-                userName: user.displayName || user.email.split("@")[0] || "Tam Tak User",
+                userName: user.displayName || user.email.split("@")[0] || "Yug Gupta",
                 text: text,
-                imageUrl: imageUrl,
                 createdAt: new Date()
             });
 
             closePostModal();
             await loadPosts();
+            alert("Post published successfully! 🎉");
 
         } catch (error) {
             console.error("Publishing error:", error);
